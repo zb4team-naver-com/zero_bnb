@@ -38,3 +38,6 @@ out/
 
 ### log file ###
 logs
+
+### application-aws.yml
+application-aws.yml
