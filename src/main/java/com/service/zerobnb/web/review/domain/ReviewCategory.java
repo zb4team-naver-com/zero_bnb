@@ -19,7 +19,7 @@ public class ReviewCategory {
     @Column(name = "review_category_id")
     private Long id;
 
-    private int star;
+    private int score;
 
     @Enumerated(EnumType.ORDINAL)
     private ReviewType reviewType;

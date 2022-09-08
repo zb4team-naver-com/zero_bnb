@@ -38,15 +38,16 @@ public class Room extends BaseTimeEntity {
 
     private boolean smoke;
 
+    private int roomCount;
+
+    private long cost;
+
+    private int discount;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "accommodation_id")
     private Accommodation accommodation;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "room")
-    private LodgmentTypeRoom lodgmentTypeRoom;
-
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "room")
-    private RentTypeRoom rentTypeRoom;
 
     @Fetch(FetchMode.SUBSELECT)
     @OneToMany(mappedBy = "room")

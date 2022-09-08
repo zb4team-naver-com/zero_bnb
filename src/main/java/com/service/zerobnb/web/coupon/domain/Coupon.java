@@ -1,7 +1,6 @@
 package com.service.zerobnb.web.coupon.domain;
 
 import com.service.zerobnb.util.BaseTimeEntity;
-import com.service.zerobnb.util.status.CouponType;
 import com.service.zerobnb.web.accommodation.domain.Accommodation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,9 +24,6 @@ public class Coupon extends BaseTimeEntity {
     private String name;
 
     private long discount;
-
-    @Enumerated(EnumType.STRING)
-    private CouponType couponType;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "accommodation_id")
