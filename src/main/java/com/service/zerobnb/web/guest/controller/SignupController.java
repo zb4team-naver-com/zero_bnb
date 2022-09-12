@@ -23,7 +23,7 @@ public class SignupController {
     @GetMapping
     public String getSignupPage() {
 
-        return "미인증 회원 홈페이지";
+        return "회원가입 페이지";
     }
 
     @PostMapping
@@ -40,6 +40,6 @@ public class SignupController {
             return "인증 실패";
         }
 
-        return "인증 회원 홈페이지";
+        return "인증 회원 홈페이지 혹은 로그인 페이지";
     }
 }
