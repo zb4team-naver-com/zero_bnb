@@ -2,34 +2,34 @@
   GUEST INSERT
  */
 INSERT INTO guest
-values (1, NOW(), NOW(), '1994.12.01', 'a948594@naver.com', true, '강영민', '010-5948-3938', 25000,
+values (1, NOW(), NOW(), '1994.12.01', 'a948594@naver.com', 'auth-key', true, '강영민', 'password', '010-5948-3938', 25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EA%B0%95%EC%98%81%EB%AF%BC.jpg', 'ACTIVE');
 INSERT INTO guest
-values (2, NOW(), NOW(), '1985.03.10', 'fdsfs@daum.net', true, '김구라', '010-4343-5435', 25000,
+values (2, NOW(), NOW(), '1985.03.10', 'fdsfs@daum.net', 'auth-key', true, '김구라', 'password', '010-4343-5435', 25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EA%B9%80%EA%B5%AC%EB%9D%BC.png', 'NOT_AUTH');
 INSERT INTO guest
-values (3, NOW(), NOW(), '2002.05.25', 'fgfg@gmail.com', false, '김주민', '010-9828-3333', 25000,
+values (3, NOW(), NOW(), '2002.05.25', 'fgfg@gmail.com', 'auth-key', false, '김주민', 'password', '010-9828-3333', 25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EA%B0%95%EC%98%81%EB%AF%BC.jpg', 'ACTIVE');
 INSERT INTO guest
-values (4, NOW(), NOW(), '1985.12.25', 'sdkels2@naver.com', true, '여주영', '010-2185-3892', 25000,
+values (4, NOW(), NOW(), '1985.12.25', 'sdkels2@naver.com', 'auth-key', true, '여주영', 'password', '010-2185-3892', 25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EC%8B%A0%EC%A7%80%EC%97%B0.jpg', 'NOT_AUTH');
 INSERT INTO guest
-values (5, NOW(), NOW(), '2003.11.16', 'a948594@naver.com', false, '정주영', '010-3948-3567', 25000,
+values (5, NOW(), NOW(), '2003.11.16', 'a948594@naver.com', 'auth-key', false, '정주영', 'password', '010-3948-3567', 25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EC%8B%A0%EC%A7%80%EC%97%B0.jpg', 'ACTIVE');
 INSERT INTO guest
-values (6, NOW(), NOW(), '2000.06.19', 'yolu@naver.com', false, '신지연', '010-4343-3323', 25000,
+values (6, NOW(), NOW(), '2000.06.19', 'yolu@naver.com', 'auth-key', false, '신지연', 'password', '010-4343-3323', 25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EC%8B%A0%EC%A7%80%EC%97%B0.jpg', 'ACTIVE');
 INSERT INTO guest
-values (7, NOW(), NOW(), '1999.03.28', 'enime434@naver.com', false, '이유진', '010-1577-1577', 25000,
+values (7, NOW(), NOW(), '1999.03.28', 'enime434@naver.com', 'auth-key', false, '이유진', 'password', '010-1577-1577', 25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EA%B0%95%EC%98%81%EB%AF%BC.jpg', 'NOT_AUTH');
 INSERT INTO guest
-values (8, NOW(), NOW(), '1978.03.01', 'nebiros@tistory.com', false, '연준호', '010-8675-4938', 25000,
+values (8, NOW(), NOW(), '1978.03.01', 'nebiros@tistory.com', 'auth-key', false, '연준호', 'password', '010-8675-4938', 25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EA%B0%95%EC%98%81%EB%AF%BC.jpg', 'ACTIVE');
 INSERT INTO guest
-values (9, NOW(), NOW(), '1965.02.26', 'loveyooop@naver.com', true, '정준길', '010-5464-2343', 25000,
+values (9, NOW(), NOW(), '1965.02.26', 'loveyooop@naver.com', 'auth-key', true, '정준길', 'password', '010-5464-2343', 25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EA%B0%95%EC%98%81%EB%AF%BC.jpg', 'ACTIVE');
 INSERT INTO guest
-values (10, NOW(), NOW(), '1999.04.04', 'saymymin@kakao.com', true, '김준호', '010-4664-5453', 25000,
+values (10, NOW(), NOW(), '1999.04.04', 'saymymin@kakao.com', 'auth-key', true, '김준호', 'password', '010-4664-5453', 25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EA%B9%80%EC%A4%80%ED%98%B8.jpg', 'NOT_AUTH');
 
 -- /**

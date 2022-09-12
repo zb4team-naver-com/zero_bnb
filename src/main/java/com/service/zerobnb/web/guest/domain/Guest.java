@@ -6,37 +6,50 @@ import com.service.zerobnb.util.status.UserStatus;
 import com.service.zerobnb.web.host.domain.Host;
 import com.service.zerobnb.web.reservation.domain.Reservation;
 import com.service.zerobnb.web.review.domain.Review;
-import lombok.AllArgsConstructor;
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import lombok.AccessLevel;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import javax.persistence.*;
-import java.util.List;
-
 @Entity
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "guest", indexes = {@Index(name = "guest_email_index", columnList = "email")})
 public class Guest extends BaseTimeEntity {
     @Id
     @Column(name = "guest_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String email;
+
+    private String password;
 
     private String name;
 
     private String birth;
 
-    private String email;
-
     private String phone;
 
     @Enumerated(EnumType.STRING)
     private UserStatus status;
+
+    private String emailAuthKey;
 
     private String profileImage;
 
@@ -54,4 +67,25 @@ public class Guest extends BaseTimeEntity {
     @Fetch(FetchMode.SUBSELECT)
     @OneToMany(mappedBy = "guest")
     private List<Reservation> reservationList;
+
+    @Builder
+    public Guest(Long id, String email, String password, String name, String birth,
+        String phone, UserStatus status, String emailAuthKey, String profileImage, Long point,
+        boolean isHost) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.birth = birth;
+        this.phone = phone;
+        this.status = status;
+        this.emailAuthKey = emailAuthKey;
+        this.profileImage = profileImage;
+        this.point = point;
+        this.isHost = isHost;
+    }
+
+    public void changeStatus(UserStatus status) {
+        this.status = status;
+    }
 }
