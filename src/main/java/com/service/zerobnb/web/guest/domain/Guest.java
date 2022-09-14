@@ -24,6 +24,7 @@ import java.util.List;
 @Table(name = "guest", indexes = {@Index(name = "guest_email_index", columnList = "email")})
 public class Guest extends BaseTimeEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "guest_id")
     private Long id;
 
