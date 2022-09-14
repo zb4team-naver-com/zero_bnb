@@ -5,7 +5,6 @@ import com.service.zerobnb.util.BaseTimeEntity;
 import com.service.zerobnb.util.status.HostStatus;
 import com.service.zerobnb.web.accommodation.domain.Accommodation;
 import com.service.zerobnb.web.guest.domain.Guest;
-import com.service.zerobnb.web.host.model.HostInput;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -42,14 +41,4 @@ public class Host extends BaseTimeEntity {
 
     @Enumerated(EnumType.STRING)
     private HostStatus hostStatus;
-
-    public static Host from(HostInput hostInput, Guest guest) {
-        return Host.builder()
-                .guest(guest)
-                .profileImage(hostInput.getProfileImage())
-                .businessContact(hostInput.getBusinessContact())
-                .companyRegistrationNumber(hostInput.getCompanyRegistrationNumber())
-                .hostStatus(HostStatus.ACTIVE)
-                .build();
-    }
 }
