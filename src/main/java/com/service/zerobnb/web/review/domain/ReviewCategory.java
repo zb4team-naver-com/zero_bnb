@@ -16,6 +16,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class ReviewCategory {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_category_id")
     private Long id;
 

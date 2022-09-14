@@ -16,6 +16,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Coupon extends BaseTimeEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "coupon_id")
     private Long id;
 

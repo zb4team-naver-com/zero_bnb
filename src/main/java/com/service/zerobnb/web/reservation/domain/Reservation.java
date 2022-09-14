@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Reservation extends BaseTimeEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reservation_id")
     private Long id;
 
