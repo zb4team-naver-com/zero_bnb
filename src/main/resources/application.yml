@@ -5,6 +5,9 @@ server:
   port: 8000
 
 spring:
+  profiles:
+    include: secret
+
   thymeleaf:
     cache: false
 
@@ -21,17 +24,11 @@ spring:
       max-file-size: 20MB
       max-request-size: 20MB
 
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-
   datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    hikari:
-      username: sa
-      password:
+    url: jdbc:mysql://localhost:${DB_PORT}/${DB_SCHEMA}?serverTimezone=Asia/Seoul
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
 
   jpa:
     defer-datasource-initialization: true
@@ -46,6 +43,30 @@ spring:
   sql:
     init:
       mode: always
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${EMAIL_USERNAME}
+    password: ${EMAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+            required: true
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+
+  security:
+    basic:
+      enabled: false
+    user:
+      name: user
+      password: password
+      roles: USER
 
 springdoc:
   cache:
