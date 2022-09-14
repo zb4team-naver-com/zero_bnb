@@ -2,6 +2,10 @@ package com.service.zerobnb.web.guest.controller;
 
 import com.service.zerobnb.web.guest.model.Auth;
 import com.service.zerobnb.web.guest.service.GuestService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -16,30 +20,36 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/signup")
 @RequiredArgsConstructor
+@Tag(name = "회원가입", description = "회원가입 관련 API")
 public class SignupController {
 
     private final GuestService guestService;
 
-    @GetMapping
-    public String getSignupPage() {
-
-        return "회원가입 페이지";
-    }
-
+    @Operation(summary = "가입을 원하는 회원의 정보를 받습니다.", description = "회원 가입 메서드")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "회원 가입에 성공했을 때의 응답 코드"),
+        @ApiResponse(responseCode = "500", description = "특정 이유로 가입에 실패했을 때의 응답 코드")
+    })
     @PostMapping
-    public ResponseEntity<?> postSignup(@RequestBody Auth.Signup request) {
+    public ResponseEntity<?> Signup(@RequestBody Auth.Signup request) {
         var result = this.guestService.register(request);
 
         return ResponseEntity.ok(result);
     }
 
+
+    @Operation(summary = "이메일 인증이 완료된 회원이 받는 결과입니다.", description = "메일 인증 메서드")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "메일 인증에 성공했을 때의 응답 코드"),
+        @ApiResponse(responseCode = "404", description = "인증에 실패했을 때의 응답 코드")
+    })
     @GetMapping("/email-auth/{id}")
-    public String emailAuth(@PathVariable("id") String request) {
+    public ResponseEntity<?> emailAuth(@PathVariable("id") String request) {
 
         if(!guestService.emailAuth(request)) {
-            return "인증 실패";
+            return ResponseEntity.notFound().build();
         }
 
-        return "인증 회원 홈페이지 혹은 로그인 페이지";
+        return ResponseEntity.ok().build();
     }
 }
