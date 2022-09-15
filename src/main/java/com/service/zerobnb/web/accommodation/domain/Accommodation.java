@@ -6,10 +6,7 @@ import com.service.zerobnb.util.status.LocationPosition;
 import com.service.zerobnb.web.coupon.domain.Coupon;
 import com.service.zerobnb.web.host.domain.Host;
 import com.service.zerobnb.web.room.domain.Room;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -19,6 +16,7 @@ import java.util.List;
 @Entity
 @Data
 @Builder
+@ToString(exclude = "host")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Accommodation extends BaseTimeEntity {

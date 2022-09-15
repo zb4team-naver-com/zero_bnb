@@ -3,16 +3,14 @@ package com.service.zerobnb.web.payment.domain;
 import com.service.zerobnb.util.BaseTimeEntity;
 import com.service.zerobnb.util.status.PaymentMethod;
 import com.service.zerobnb.web.reservation.domain.Reservation;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Data
 @Builder
+@ToString(exclude = {"reservation"})
 @NoArgsConstructor
 @AllArgsConstructor
 public class Payment extends BaseTimeEntity {

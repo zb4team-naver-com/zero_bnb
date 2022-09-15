@@ -14,45 +14,50 @@ INSERT INTO guest
 values (4, NOW(), NOW(), '1985.12.25', 'sdkels2@naver.com', 'auth-key', true, '여주영', 'password', '010-2185-3892', 25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EC%8B%A0%EC%A7%80%EC%97%B0.jpg', 'NOT_AUTH');
 INSERT INTO guest
-values (5, NOW(), NOW(), '2003.11.16', 'a948594@naver.com', 'auth-key', false, '정주영', 'password', '010-3948-3567', 25000,
+values (5, NOW(), NOW(), '2003.11.16', 'a948594@naver.com', 'auth-key', false, '정주영', 'password', '010-3948-3567',
+        25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EC%8B%A0%EC%A7%80%EC%97%B0.jpg', 'ACTIVE');
 INSERT INTO guest
 values (6, NOW(), NOW(), '2000.06.19', 'yolu@naver.com', 'auth-key', false, '신지연', 'password', '010-4343-3323', 25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EC%8B%A0%EC%A7%80%EC%97%B0.jpg', 'ACTIVE');
 INSERT INTO guest
-values (7, NOW(), NOW(), '1999.03.28', 'enime434@naver.com', 'auth-key', false, '이유진', 'password', '010-1577-1577', 25000,
+values (7, NOW(), NOW(), '1999.03.28', 'enime434@naver.com', 'auth-key', false, '이유진', 'password', '010-1577-1577',
+        25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EA%B0%95%EC%98%81%EB%AF%BC.jpg', 'NOT_AUTH');
 INSERT INTO guest
-values (8, NOW(), NOW(), '1978.03.01', 'nebiros@tistory.com', 'auth-key', false, '연준호', 'password', '010-8675-4938', 25000,
+values (8, NOW(), NOW(), '1978.03.01', 'nebiros@tistory.com', 'auth-key', false, '연준호', 'password', '010-8675-4938',
+        25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EA%B0%95%EC%98%81%EB%AF%BC.jpg', 'ACTIVE');
 INSERT INTO guest
-values (9, NOW(), NOW(), '1965.02.26', 'loveyooop@naver.com', 'auth-key', true, '정준길', 'password', '010-5464-2343', 25000,
+values (9, NOW(), NOW(), '1965.02.26', 'loveyooop@naver.com', 'auth-key', true, '정준길', 'password', '010-5464-2343',
+        25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EA%B0%95%EC%98%81%EB%AF%BC.jpg', 'ACTIVE');
 INSERT INTO guest
-values (10, NOW(), NOW(), '1999.04.04', 'saymymin@kakao.com', 'auth-key', true, '김준호', 'password', '010-4664-5453', 25000,
+values (10, NOW(), NOW(), '1999.04.04', 'saymymin@kakao.com', 'auth-key', true, '김준호', 'password', '010-4664-5453',
+        25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EA%B9%80%EC%A4%80%ED%98%B8.jpg', 'NOT_AUTH');
 
 -- /**
 -- HOST INSERT
 --  */
 INSERT INTO host
-values (1, NOW(), NOW(), '010-5948-3938', '2013161993',
+values (1, NOW(), NOW(), '010-5948-3938', '2013161993', 'ACTIVE',
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EA%B9%80%EA%B0%91%EC%88%98.png', 1);
 
 INSERT INTO host
-values (2, NOW(), NOW(), '010-4343-5435', '5958474733',
+values (2, NOW(), NOW(), '010-4343-5435', '5958474733', 'ACTIVE',
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EA%B9%80%EA%B0%91%EB%A3%A1.png', 2);
 
 INSERT INTO host
-values (3, NOW(), NOW(), '010-9433-3544', '1952434533',
+values (3, NOW(), NOW(), '010-9433-3544', '1952434533', 'ACTIVE',
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EC%95%88%EC%88%99%ED%9D%AC.jpg', 4);
 
 INSERT INTO host
-values (4, NOW(), NOW(), '010-2955-4948', '3837273644',
+values (4, NOW(), NOW(), '010-2955-4948', '3837273644', 'ACTIVE',
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EC%95%84%EC%9D%B4%EC%9C%A0.jpg', 9);
 
 INSERT INTO host
-values (5, NOW(), NOW(), '010-3948-4938', '5453442233',
+values (5, NOW(), NOW(), '010-3948-4938', '5453442233', 'ACTIVE',
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EA%B9%80%EC%A0%95%EC%9D%80.jpg', 10);
 
 
@@ -60,22 +65,25 @@ values (5, NOW(), NOW(), '010-3948-4938', '5453442233',
 -- accommodation insert
  */
 INSERT INTO accommodation
-values (1, NOW(), NOW(), 'pension', '충북 청주시 노원구 삼할동 떙떙번지', '호텔 뷰가 정말 좋은 장소입니다.', '정목호텔',
+values (1, NOW(), NOW(), 'pension', '충북 청주시 노원구 삼할동 떙떙번지', '호텔 뷰가 정말 좋은 장소입니다.', 25.5, 34.4, '정목호텔',
         '다들 안녕하세요. 정목호텔입니다. 과도한 음주는 삼가해주시길 바랍니다.', '제1조: 호텔을 꺠끗이 쓰도록 한다.', 125, 1);
 INSERT INTO accommodation
-values (2, NOW(), NOW(), 'pension', '서울 강서구 등촌동 구구호텔', '강서구 최고의 경치!!', '구구호텔', '구구호텔에 오신 것을 환영합니다. 과도한 애정행각은 금지입니다.',
+values (2, NOW(), NOW(), 'pension', '서울 강서구 등촌동 구구호텔', '강서구 최고의 경치!!', 25.5, 34.4, '구구호텔',
+        '구구호텔에 오신 것을 환영합니다. 과도한 애정행각은 금지입니다.',
         '쓰고간 곳은 청결히 유지해주세요.', 11, 2);
 INSERT INTO accommodation
-values (3, NOW(), NOW(), 'motel', '서울 신림구 신림동 신림짝모텔', '둘이 들어가서 셋이되서 나오는 짝 모텔', '신림짝모텔', '신림짝 모텔입니다. 즐거운 사랑을 나누세요.',
+values (3, NOW(), NOW(), 'motel', '서울 신림구 신림동 신림짝모텔', '둘이 들어가서 셋이되서 나오는 짝 모텔', 25.5, 34.4, '신림짝모텔',
+        '신림짝 모텔입니다. 즐거운 사랑을 나누세요.',
         '쓰고간 곳은 청결히 유지해주세요. 위반 시 벌금 1백만원', 25, 2);
 INSERT INTO accommodation
-values (4, NOW(), NOW(), 'motel', '서울 강남구 강남동 강남 어게인', '밝게 빛나는 강남 어게인', '강남어게인', '강남 어게인 입니다.',
+values (4, NOW(), NOW(), 'motel', '서울 강남구 강남동 강남 어게인', '밝게 빛나는 강남 어게인', 25.5, 34.4, '강남어게인', '강남 어게인 입니다.',
         '1. 뒷처리는 깔끔히 한다. 2. 쓰고남은 휴지는 휴지통에 버린다.', 509, 3);
 INSERT INTO accommodation
-values (5, NOW(), NOW(), 'guest_house', '제주 특별시 감귤 게스트 하우스', '어서오세요, 감귤 게스트 하우스 입니다.', '감귤 게스트 하우스', '편하게 즐기다 가세요~',
+values (5, NOW(), NOW(), 'guest_house', '제주 특별시 감귤 게스트 하우스', '어서오세요, 감귤 게스트 하우스 입니다.', 25.5, 34.4, '감귤 게스트 하우스',
+        '편하게 즐기다 가세요~',
         '놀다간 뒷처리는 깔끔하게~', 119, 4);
 INSERT INTO accommodation
-values (6, NOW(), NOW(), 'villa', '경남 김해시 진주빌라', '진주 빌라 입니다.', '진주빌라', '어서오세요~ 진주빌라입니다.',
+values (6, NOW(), NOW(), 'villa', '경남 김해시 진주빌라', '진주 빌라 입니다.', 25.5, 34.4, '진주빌라', '어서오세요~ 진주빌라입니다.',
         '1. 뒷처리는 깔끔히 한다. 2. 쓰고남은 휴지는 휴지통에 버린다.', 3, 5);
 
 

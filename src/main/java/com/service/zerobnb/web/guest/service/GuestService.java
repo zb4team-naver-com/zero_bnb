@@ -2,12 +2,16 @@ package com.service.zerobnb.web.guest.service;
 
 import com.service.zerobnb.component.MailComponents;
 import com.service.zerobnb.util.status.UserStatus;
+import com.service.zerobnb.web.error.message.ExceptionMessage;
+import com.service.zerobnb.web.error.model.GuestException;
 import com.service.zerobnb.web.guest.UserDetailsImpl;
 import com.service.zerobnb.web.guest.domain.Guest;
 import com.service.zerobnb.web.guest.dto.GuestDto;
 import com.service.zerobnb.web.guest.model.Auth;
 import com.service.zerobnb.web.guest.repository.GuestRepository;
+
 import java.util.Optional;
+
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,10 +19,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
 @AllArgsConstructor
+@Transactional
 public class GuestService implements UserDetailsService {
 
     private final GuestRepository guestRepository;
@@ -29,10 +35,11 @@ public class GuestService implements UserDetailsService {
     private final String EMAIL_SUBJECT = "zero bnb 가입 인증 메일입니다.";
     private final String EMAIL_TEXT = "<p> 아래 링크를 통해 가입을 완료하세요. </p> <div><a href='http://localhost:8000/signup/email-auth/";
 
+    @Transactional(readOnly = true)
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Guest guest = this.guestRepository.findByEmail(email)
-                    .orElseThrow(() -> new UsernameNotFoundException(email + "이용자 정보를 찾을 수 없습니다."));
+                .orElseThrow(() -> new UsernameNotFoundException(email + "이용자 정보를 찾을 수 없습니다."));
 
         return new UserDetailsImpl(guest);
     }
@@ -52,12 +59,12 @@ public class GuestService implements UserDetailsService {
         }
 
         GuestDto guestDto = GuestDto.builder()
-                            .email(request.getEmail())
-                            .password(this.passwordEncoder.encode(request.getPassword()))
-                            .name(request.getName())
-                            .birth(request.getBirth())
-                            .phone(request.getPhone())
-                            .build();
+                .email(request.getEmail())
+                .password(this.passwordEncoder.encode(request.getPassword()))
+                .name(request.getName())
+                .birth(request.getBirth())
+                .phone(request.getPhone())
+                .build();
 
         guestRepository.save(guestDto.toEntity());
 
@@ -65,6 +72,15 @@ public class GuestService implements UserDetailsService {
 
         return guestDto;
     }
+
+    @Transactional(readOnly = true)
+    public Guest findGuestByEmail(String email) {
+        if (!guestRepository.existsByEmail(email)) {
+            throw new GuestException(ExceptionMessage.NOT_EXIST_GUEST);
+        }
+        return guestRepository.findByEmail(email).get();
+    }
+
 
     public boolean emailAuth(String uuid) {
 
@@ -75,7 +91,7 @@ public class GuestService implements UserDetailsService {
         }
 
         Guest guest = guestOpt.get();
-        guest.changeStatus(UserStatus.ROLE_ACTIVE);
+        guest.changeStatus(UserStatus.ACTIVE);
         guestRepository.save(guest);
 
         return true;

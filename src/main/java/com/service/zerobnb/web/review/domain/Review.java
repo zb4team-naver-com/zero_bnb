@@ -3,10 +3,7 @@ package com.service.zerobnb.web.review.domain;
 import com.service.zerobnb.util.BaseTimeEntity;
 import com.service.zerobnb.web.guest.domain.Guest;
 import com.service.zerobnb.web.room.domain.Room;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -16,6 +13,7 @@ import java.util.List;
 @Entity
 @Data
 @Builder
+@ToString(exclude = {"room", "guest"})
 @NoArgsConstructor
 @AllArgsConstructor
 public class Review extends BaseTimeEntity {
