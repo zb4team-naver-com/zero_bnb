@@ -2,7 +2,7 @@ package com.service.zerobnb.web.accommodation.domain;
 
 import com.service.zerobnb.util.BaseTimeEntity;
 import com.service.zerobnb.util.status.AccommodationType;
-import com.service.zerobnb.util.status.PopularFacilityServiceType;
+import com.service.zerobnb.util.status.LocationPosition;
 import com.service.zerobnb.web.coupon.domain.Coupon;
 import com.service.zerobnb.web.host.domain.Host;
 import com.service.zerobnb.web.room.domain.Room;
@@ -23,6 +23,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Accommodation extends BaseTimeEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "accommodation_id")
     private Long id;
 
@@ -31,6 +32,9 @@ public class Accommodation extends BaseTimeEntity {
     private Host host;
 
     private String name;
+
+    @Embedded
+    private LocationPosition locationPosition;
 
     private String address;
 

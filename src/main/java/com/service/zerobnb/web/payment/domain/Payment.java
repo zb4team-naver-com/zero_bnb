@@ -17,6 +17,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Payment extends BaseTimeEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "payment_id")
     private Long id;
 

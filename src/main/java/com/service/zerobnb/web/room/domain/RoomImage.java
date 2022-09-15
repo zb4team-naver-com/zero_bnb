@@ -15,6 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class RoomImage extends BaseTimeEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "room_image_id")
     private Long id;
 

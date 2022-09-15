@@ -17,6 +17,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class PopularFacilityService extends BaseTimeEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "popular_facility_service_id")
     private Long id;
 

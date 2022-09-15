@@ -2,6 +2,7 @@ package com.service.zerobnb.web.host.domain;
 
 
 import com.service.zerobnb.util.BaseTimeEntity;
+import com.service.zerobnb.util.status.HostStatus;
 import com.service.zerobnb.web.accommodation.domain.Accommodation;
 import com.service.zerobnb.web.guest.domain.Guest;
 import lombok.AllArgsConstructor;
@@ -37,4 +38,7 @@ public class Host extends BaseTimeEntity {
     @Fetch(FetchMode.SUBSELECT)
     @OneToMany(mappedBy = "host")
     private List<Accommodation> accommodationList;
+
+    @Enumerated(EnumType.STRING)
+    private HostStatus hostStatus;
 }

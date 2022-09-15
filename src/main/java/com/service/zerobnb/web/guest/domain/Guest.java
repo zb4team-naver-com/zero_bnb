@@ -32,6 +32,7 @@ import org.hibernate.annotations.FetchMode;
 @Table(name = "guest", indexes = {@Index(name = "guest_email_index", columnList = "email")})
 public class Guest extends BaseTimeEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "guest_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

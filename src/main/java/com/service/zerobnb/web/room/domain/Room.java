@@ -21,6 +21,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Room extends BaseTimeEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "room_id")
     private Long id;
 
