@@ -3,16 +3,14 @@ package com.service.zerobnb.web.accommodation.domain;
 import com.service.zerobnb.util.BaseTimeEntity;
 import com.service.zerobnb.util.status.PopularFacilityServiceType;
 import com.service.zerobnb.util.status.UserStatus;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Data
 @Builder
+@ToString(exclude = "accommodation")
 @NoArgsConstructor
 @AllArgsConstructor
 public class PopularFacilityService extends BaseTimeEntity {

@@ -5,10 +5,8 @@ import com.service.zerobnb.util.BaseTimeEntity;
 import com.service.zerobnb.util.status.HostStatus;
 import com.service.zerobnb.web.accommodation.domain.Accommodation;
 import com.service.zerobnb.web.guest.domain.Guest;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.service.zerobnb.web.host.model.HostInput;
+import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -18,10 +16,12 @@ import java.util.List;
 @Entity
 @Data
 @Builder
+@ToString(exclude = "guest")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Host extends BaseTimeEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "host_id")
     private Long id;
 
@@ -41,4 +41,21 @@ public class Host extends BaseTimeEntity {
 
     @Enumerated(EnumType.STRING)
     private HostStatus hostStatus;
+
+    public static Host from(HostInput hostInput, Guest guest) {
+        return Host.builder()
+                .guest(guest)
+                .profileImage(hostInput.getProfileImage())
+                .businessContact(hostInput.getBusinessContact())
+                .companyRegistrationNumber(hostInput.getCompanyRegistrationNumber())
+                .hostStatus(HostStatus.ACTIVE)
+                .build();
+    }
+
+    public static Host from(HostInput hostInput, Host host) {
+        host.setProfileImage(hostInput.getProfileImage());
+        host.setBusinessContact(hostInput.getBusinessContact());
+        host.setCompanyRegistrationNumber(hostInput.getCompanyRegistrationNumber());
+        return host;
+    }
 }

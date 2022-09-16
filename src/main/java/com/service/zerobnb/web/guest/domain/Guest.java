@@ -6,6 +6,7 @@ import com.service.zerobnb.util.status.UserStatus;
 import com.service.zerobnb.web.host.domain.Host;
 import com.service.zerobnb.web.reservation.domain.Reservation;
 import com.service.zerobnb.web.review.domain.Review;
+
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,22 +20,21 @@ import javax.persistence.Index;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 @Entity
-@Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "guest", indexes = {@Index(name = "guest_email_index", columnList = "email")})
 public class Guest extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "guest_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String email;
@@ -71,8 +71,8 @@ public class Guest extends BaseTimeEntity {
 
     @Builder
     public Guest(Long id, String email, String password, String name, String birth,
-        String phone, UserStatus status, String emailAuthKey, String profileImage, Long point,
-        boolean isHost) {
+                 String phone, UserStatus status, String emailAuthKey, String profileImage, Long point,
+                 boolean isHost) {
         this.id = id;
         this.email = email;
         this.password = password;

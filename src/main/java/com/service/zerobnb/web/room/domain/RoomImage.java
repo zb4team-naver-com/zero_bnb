@@ -1,16 +1,14 @@
 package com.service.zerobnb.web.room.domain;
 
 import com.service.zerobnb.util.BaseTimeEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Data
 @Builder
+@ToString(exclude = "room")
 @NoArgsConstructor
 @AllArgsConstructor
 public class RoomImage extends BaseTimeEntity {

@@ -5,10 +5,7 @@ import com.service.zerobnb.util.status.TransportationType;
 import com.service.zerobnb.web.guest.domain.Guest;
 import com.service.zerobnb.web.payment.domain.Payment;
 import com.service.zerobnb.web.room.domain.Room;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -16,6 +13,7 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @Builder
+@ToString(exclude = {"guest", "room", "payment"})
 @NoArgsConstructor
 @AllArgsConstructor
 public class Reservation extends BaseTimeEntity {

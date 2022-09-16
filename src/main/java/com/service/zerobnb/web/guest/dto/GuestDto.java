@@ -38,7 +38,7 @@ public class GuestDto {
         this.birth = birth;
         this.phone = phone;
         this.profileImage = profileImage;
-        this.status = UserStatus.ROLE_UNAUTH;
+        this.status = UserStatus.NOT_AUTH;
         this.emailAuthKey = UUID.randomUUID().toString();
         this.point = 0L;
         this.isHost = false;

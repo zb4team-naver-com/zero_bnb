@@ -9,11 +9,15 @@ public enum HostStatus {
     /**
      * 비활성화(중단) 회원
      */
-    WITHDRAW("DISABLED");
+    DISABLED("DISABLED");
 
     private final String status;
 
     HostStatus(String status) {
         this.status = status;
+    }
+
+    public static boolean checkIsActive(HostStatus hostStatus) {
+        return hostStatus == HostStatus.ACTIVE ? true : false;
     }
 }
