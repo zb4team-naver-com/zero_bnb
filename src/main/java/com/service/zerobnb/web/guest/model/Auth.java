@@ -6,15 +6,11 @@ import lombok.Data;
 public class Auth {
 
     @Data
-    public static class Signup {
+    public static class SignUp {
         private String email;
-
         private String password;
-
         private String name;
-
         private String birth;
-
         private String phone;
 
         public GuestDto of() {
@@ -26,5 +22,11 @@ public class Auth {
                         .phone(this.phone)
                         .build();
         }
+    }
+
+    @Data
+    public static class LogIn {
+        private String email;
+        private String password;
     }
 }

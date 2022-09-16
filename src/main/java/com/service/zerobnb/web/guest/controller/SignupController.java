@@ -31,7 +31,7 @@ public class SignupController {
         @ApiResponse(responseCode = "500", description = "특정 이유로 가입에 실패했을 때의 응답 코드")
     })
     @PostMapping
-    public ResponseEntity<?> Signup(@RequestBody Auth.Signup request) {
+    public ResponseEntity<?> Signup(@RequestBody Auth.SignUp request) {
         var result = this.guestService.register(request);
 
         return ResponseEntity.ok(result);

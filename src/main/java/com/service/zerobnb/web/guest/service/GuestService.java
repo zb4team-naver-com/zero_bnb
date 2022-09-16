@@ -8,6 +8,7 @@ import com.service.zerobnb.web.guest.UserDetailsImpl;
 import com.service.zerobnb.web.guest.domain.Guest;
 import com.service.zerobnb.web.guest.dto.GuestDto;
 import com.service.zerobnb.web.guest.model.Auth;
+import com.service.zerobnb.web.guest.model.Auth.SignUp;
 import com.service.zerobnb.web.guest.repository.GuestRepository;
 
 import java.util.Optional;
@@ -50,7 +51,7 @@ public class GuestService implements UserDetailsService {
      * @param request controller 를 통해 받은 유저 정보
      * @return 성공적으로 저장이 완료된 유저 정보
      */
-    public GuestDto register(Auth.Signup request) {
+    public GuestDto register(SignUp request) {
 
         boolean exists = this.guestRepository.existsByEmail(request.getEmail());
 
@@ -81,6 +82,11 @@ public class GuestService implements UserDetailsService {
         return guestRepository.findByEmail(email).get();
     }
 
+    /**
+     * 이메일 인증 메서드
+     * @param uuid 인증에 사용 된 authKey
+     * @return db에 저장된 유저의 key 와 일치하면 true 를 반환
+     */
 
     public boolean emailAuth(String uuid) {
 
@@ -97,4 +103,14 @@ public class GuestService implements UserDetailsService {
         return true;
     }
 
+    public GuestDto authenticate(Auth.LogIn user) {
+        var guest = this.guestRepository.findByEmail(user.getEmail())
+                                        .orElseThrow(() -> new RuntimeException("존재하지 않는 이메일입니다."));
+
+        if (!this.passwordEncoder.matches(user.getPassword(), guest.getPassword())) {
+            throw new RuntimeException("비밀번호가 일치하지 않습니다.");
+        }
+
+        return null;
+    }
 }
