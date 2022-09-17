@@ -1,4 +1,4 @@
-package com.service.zerobnb.security;
+package com.service.zerobnb.config.security;
 
 import com.service.zerobnb.util.status.GuestStatus;
 import io.jsonwebtoken.Claims;

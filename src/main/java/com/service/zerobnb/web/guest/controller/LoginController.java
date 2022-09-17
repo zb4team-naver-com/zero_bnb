@@ -1,6 +1,6 @@
 package com.service.zerobnb.web.guest.controller;
 
-import com.service.zerobnb.security.TokenProvider;
+import com.service.zerobnb.config.security.TokenProvider;
 import com.service.zerobnb.web.guest.model.Auth;
 import com.service.zerobnb.web.guest.service.GuestService;
 import lombok.RequiredArgsConstructor;
