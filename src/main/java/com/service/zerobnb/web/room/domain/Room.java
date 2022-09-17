@@ -43,7 +43,7 @@ public class Room extends BaseTimeEntity {
 
     private int discount;
 
-    private boolean is_delete;
+    private boolean isDelete;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "accommodation_id")
     private Accommodation accommodation;

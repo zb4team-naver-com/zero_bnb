@@ -53,7 +53,7 @@ public class Accommodation extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private AccommodationType accommodationType;
 
-    private  boolean is_delete;
+    private  boolean isDelete;
 
     @Fetch(FetchMode.SUBSELECT)
     @OneToMany(mappedBy = "accommodation")

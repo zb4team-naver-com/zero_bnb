@@ -67,7 +67,7 @@ public class AccommodationService {
     public Long deleteAccommodation(Long accommodationId) {
         // TODO principal 을 이용한 email 반환 및 해당 호스트 정보 획득, host activate 체크
         Accommodation accommodation = findAccommodationById(accommodationId);
-        accommodation.set_delete(true);
+        accommodation.setDelete(true);
         return accommodation.getId();
     }
 
@@ -126,7 +126,7 @@ public class AccommodationService {
 
         Accommodation accommodation = accommodationRepository.findById(accommodationId).get();
 
-        if (accommodation.is_delete()) {
+        if (accommodation.isDelete()) {
             throw new AccommodationException(ExceptionMessage.ALREADY_DELETE_ACCOMMODATION);
         }
         return accommodationRepository.findById(accommodationId).get();
@@ -138,7 +138,7 @@ public class AccommodationService {
         if (!HostStatus.checkIsActive(host.getStatus())) {
             throw new HostException(ExceptionMessage.DISABLED_HOST);
         }
-        return host.getAccommodationList().stream().filter(accommodation -> accommodation.is_delete() != true)
+        return host.getAccommodationList().stream().filter(accommodation -> accommodation.isDelete() != true)
                 .map(AccommodationForHostDto::from).collect(Collectors.toList());
     }
 }
