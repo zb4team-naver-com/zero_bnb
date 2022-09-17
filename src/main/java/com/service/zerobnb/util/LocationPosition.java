@@ -1,4 +1,4 @@
-package com.service.zerobnb.util.status;
+package com.service.zerobnb.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

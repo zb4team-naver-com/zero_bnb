@@ -1,4 +1,4 @@
-package com.service.zerobnb.util.status;
+package com.service.zerobnb.util.type;
 
 public enum PopularFacilityServiceType {
     /**
@@ -95,5 +95,9 @@ public enum PopularFacilityServiceType {
                 return LUGGAGE_STORAGE;
         }
         return null;
+    }
+
+    public int getType() {
+        return type;
     }
 }

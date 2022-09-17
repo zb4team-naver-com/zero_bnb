@@ -1,8 +1,8 @@
 package com.service.zerobnb.web.accommodation.domain;
 
 import com.service.zerobnb.util.BaseTimeEntity;
-import com.service.zerobnb.util.status.PopularFacilityServiceType;
-import com.service.zerobnb.util.status.UserStatus;
+import com.service.zerobnb.util.type.PopularFacilityServiceType;
+import com.service.zerobnb.web.accommodation.model.PopularFacilityServiceInput;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,4 +26,11 @@ public class PopularFacilityService extends BaseTimeEntity {
 
     @Enumerated(EnumType.ORDINAL)
     private PopularFacilityServiceType popularFacilityServiceType;
+
+    public static PopularFacilityService from(PopularFacilityServiceInput popularFacilityServiceInput, Accommodation accommodation) {
+        return PopularFacilityService.builder()
+                .accommodation(accommodation)
+                .popularFacilityServiceType(PopularFacilityServiceType.convert(popularFacilityServiceInput.getPopularFacilityServiceType()))
+                .build();
+    }
 }

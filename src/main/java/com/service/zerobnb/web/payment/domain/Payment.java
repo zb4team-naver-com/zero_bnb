@@ -1,7 +1,7 @@
 package com.service.zerobnb.web.payment.domain;
 
 import com.service.zerobnb.util.BaseTimeEntity;
-import com.service.zerobnb.util.status.PaymentMethod;
+import com.service.zerobnb.util.type.PaymentMethod;
 import com.service.zerobnb.web.reservation.domain.Reservation;
 import lombok.*;
 

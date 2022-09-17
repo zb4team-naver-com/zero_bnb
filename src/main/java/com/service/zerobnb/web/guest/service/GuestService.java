@@ -1,7 +1,7 @@
 package com.service.zerobnb.web.guest.service;
 
 import com.service.zerobnb.component.MailComponents;
-import com.service.zerobnb.util.status.UserStatus;
+import com.service.zerobnb.util.status.GuestStatus;
 import com.service.zerobnb.web.error.message.ExceptionMessage;
 import com.service.zerobnb.web.error.model.GuestException;
 import com.service.zerobnb.web.guest.UserDetailsImpl;
@@ -97,7 +97,7 @@ public class GuestService implements UserDetailsService {
         }
 
         Guest guest = guestOpt.get();
-        guest.changeStatus(UserStatus.ACTIVE);
+        guest.changeStatus(GuestStatus.ACTIVE);
         guestRepository.save(guest);
 
         return true;

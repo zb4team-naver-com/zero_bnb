@@ -1,7 +1,7 @@
 package com.service.zerobnb.util.status;
 
 
-public enum UserStatus {
+public enum GuestStatus {
     /**
      * 이메일 미인증 회원
      */
@@ -29,7 +29,7 @@ public enum UserStatus {
 
     private final String status;
 
-    UserStatus(String status) {
+    GuestStatus(String status) {
         this.status = status;
     }
 }

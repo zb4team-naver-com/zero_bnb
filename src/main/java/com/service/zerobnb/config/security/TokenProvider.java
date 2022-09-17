@@ -1,6 +1,6 @@
 package com.service.zerobnb.security;
 
-import com.service.zerobnb.util.status.UserStatus;
+import com.service.zerobnb.util.status.GuestStatus;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -27,7 +27,7 @@ public class TokenProvider {
      * @param role 유저의 상태
      * @return jwt 토큰
      */
-    public String generateToken(String email, UserStatus role) {
+    public String generateToken(String email, GuestStatus role) {
         Claims claims = Jwts.claims().setSubject(email);
         claims.put(KEY_ROLE, role);
 
