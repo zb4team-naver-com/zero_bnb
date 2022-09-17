@@ -1,6 +1,7 @@
 package com.service.zerobnb.web.accommodation.domain;
 
 import com.service.zerobnb.util.BaseTimeEntity;
+import com.service.zerobnb.web.accommodation.model.AccommodationImageInput;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,4 +23,11 @@ public class AccommodationImage extends BaseTimeEntity {
     private Accommodation accommodation;
 
     private String url;
+
+    public static AccommodationImage from(AccommodationImageInput accommodationImageInput, Accommodation accommodation) {
+        return AccommodationImage.builder()
+                .accommodation(accommodation)
+                .url(accommodationImageInput.getUrl())
+                .build();
+    }
 }

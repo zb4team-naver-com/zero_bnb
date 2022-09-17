@@ -1,7 +1,7 @@
 package com.service.zerobnb.web.reservation.domain;
 
 import com.service.zerobnb.util.BaseTimeEntity;
-import com.service.zerobnb.util.status.TransportationType;
+import com.service.zerobnb.util.type.TransportationType;
 import com.service.zerobnb.web.guest.domain.Guest;
 import com.service.zerobnb.web.payment.domain.Payment;
 import com.service.zerobnb.web.room.domain.Room;

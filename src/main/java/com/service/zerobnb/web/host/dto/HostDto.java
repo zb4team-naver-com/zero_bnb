@@ -24,7 +24,7 @@ public class HostDto {
                 .profileImage(host.getProfileImage())
                 .businessContact(host.getBusinessContact())
                 .companyRegistrationNumber(host.getCompanyRegistrationNumber())
-                .isActive(HostStatus.checkIsActive(host.getHostStatus()))
+                .isActive(HostStatus.checkIsActive(host.getStatus()))
                 .build();
     }
 }

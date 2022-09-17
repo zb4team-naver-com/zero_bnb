@@ -40,7 +40,7 @@ public class Host extends BaseTimeEntity {
     private List<Accommodation> accommodationList;
 
     @Enumerated(EnumType.STRING)
-    private HostStatus hostStatus;
+    private HostStatus status;
 
     public static Host from(HostInput hostInput, Guest guest) {
         return Host.builder()
@@ -48,7 +48,7 @@ public class Host extends BaseTimeEntity {
                 .profileImage(hostInput.getProfileImage())
                 .businessContact(hostInput.getBusinessContact())
                 .companyRegistrationNumber(hostInput.getCompanyRegistrationNumber())
-                .hostStatus(HostStatus.ACTIVE)
+                .status(HostStatus.ACTIVE)
                 .build();
     }
 

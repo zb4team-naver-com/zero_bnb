@@ -1,8 +1,9 @@
 package com.service.zerobnb.web.accommodation.domain;
 
 import com.service.zerobnb.util.BaseTimeEntity;
-import com.service.zerobnb.util.status.AccommodationType;
-import com.service.zerobnb.util.status.LocationPosition;
+import com.service.zerobnb.util.type.AccommodationType;
+import com.service.zerobnb.util.LocationPosition;
+import com.service.zerobnb.web.accommodation.model.AccommodationInput;
 import com.service.zerobnb.web.coupon.domain.Coupon;
 import com.service.zerobnb.web.host.domain.Host;
 import com.service.zerobnb.web.room.domain.Room;
@@ -52,6 +53,8 @@ public class Accommodation extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private AccommodationType accommodationType;
 
+    private  boolean is_delete;
+
     @Fetch(FetchMode.SUBSELECT)
     @OneToMany(mappedBy = "accommodation")
     private List<Room> roomList;
@@ -71,4 +74,18 @@ public class Accommodation extends BaseTimeEntity {
     @Fetch(FetchMode.SUBSELECT)
     @OneToMany(mappedBy = "accommodation")
     private List<PopularFacilityService> popularFacilityServiceList;
+
+    public static Accommodation from(AccommodationInput accommodationInput, Host host) {
+        return Accommodation.builder()
+                .host(host)
+                .name(accommodationInput.getName())
+                .locationPosition(accommodationInput.getLocationPosition())
+                .address(accommodationInput.getAddress())
+                .description(accommodationInput.getDescription())
+                .notice(accommodationInput.getNotice())
+                .policy(accommodationInput.getPolicy())
+                .wishCount(0)
+                .accommodationType(AccommodationType.convert(accommodationInput.getType()))
+                .build();
+    }
 }

@@ -1,7 +1,7 @@
 package com.service.zerobnb.web.review.domain;
 
 
-import com.service.zerobnb.util.status.ReviewType;
+import com.service.zerobnb.util.type.ReviewType;
 import lombok.*;
 
 import javax.persistence.*;
