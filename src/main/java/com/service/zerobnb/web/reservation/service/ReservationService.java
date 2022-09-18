@@ -13,8 +13,8 @@ import com.service.zerobnb.web.room.domain.Room;
 import com.service.zerobnb.web.room.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,6 +23,7 @@ import static com.service.zerobnb.web.error.message.ExceptionMessage.*;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ReservationService {
 
     private final ReservationRepository reservationRepository;
@@ -44,7 +45,7 @@ public class ReservationService {
         }
 
         if (room.getStandardPeople() < form.getPeopleCount()) {
-            // TODO 추가 비용 선정
+            // TODO 추가 인원에 따른 비용 추가 고민 
         }
 
         room.setRoomCount(room.getRoomCount() - 1);
