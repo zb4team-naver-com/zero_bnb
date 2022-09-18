@@ -6,24 +6,15 @@ import com.service.zerobnb.util.status.GuestStatus;
 import com.service.zerobnb.web.host.domain.Host;
 import com.service.zerobnb.web.reservation.domain.Reservation;
 import com.service.zerobnb.web.review.domain.Review;
-
-import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Index;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
