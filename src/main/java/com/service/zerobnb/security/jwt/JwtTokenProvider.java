@@ -21,13 +21,12 @@ import org.springframework.util.StringUtils;
 public class JwtTokenProvider {
 
     private final DetailsService detailsService;
-//    private final JwtConfig jwtConfig;
 
     private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 60 * 60;
     private static final long REFRESH_TOKEN_EXPIRE_TIME = 1000 * 60 * 60 * 24 * 7;
     private static final String KEY_ROLE = "role";
 
-//    @Value("${spring.jwt.secret}")
+    // TODO: @Value("${spring.jwt.secret}")
     private String secretKey = "test-key-test-key-test-key-test-key-test-key-test-key-test-key-test-key";
 
     private final Key key = Keys.hmacShaKeyFor(secretKey.getBytes());
