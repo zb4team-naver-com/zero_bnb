@@ -1,5 +1,6 @@
 package com.service.zerobnb.web.host.service;
 
+import com.service.zerobnb.util.status.HostStatus;
 import com.service.zerobnb.web.error.message.ExceptionMessage;
 import com.service.zerobnb.web.error.model.FileHandleException;
 import com.service.zerobnb.web.error.model.HostException;
@@ -33,7 +34,7 @@ class HostServiceTest {
     @Test
     void registerHost() {
         when(guestService.findGuestByEmail(any())).thenReturn(Guest.builder().id(25L).build());
-        when(hostRepository.save(any())).thenReturn(Host.builder().id(25L).build());
+        when(hostRepository.save(any())).thenReturn(Host.builder().status(HostStatus.ACTIVE).id(25L).build());
         assertDoesNotThrow(() -> hostService.registerHost(HostInput.builder().build()));
         verify(guestService, times(1)).findGuestByEmail(any());
         verify(hostRepository, times(1)).save(any());
@@ -42,16 +43,16 @@ class HostServiceTest {
     @Test
     void updateHost() {
         when(hostRepository.existsById(any())).thenReturn(true);
-        when(hostRepository.findById(any())).thenReturn(Optional.of(Host.builder().id(25L).build()));
-        when(hostRepository.save(any())).thenReturn(Host.builder().id(25L).build());
+        when(hostRepository.findById(any())).thenReturn(Optional.of(Host.builder().status(HostStatus.ACTIVE).id(25L).build()));
+        when(hostRepository.save(any())).thenReturn(Host.builder().status(HostStatus.ACTIVE).id(25L).build());
         assertDoesNotThrow(() -> hostService.updateHost(HostInput.builder().build(), 25L));
         verify(hostRepository, times(1)).existsById(any());
         verify(hostRepository, times(1)).findById(any());
         verify(hostRepository, times(1)).save(any());
 
         when(hostRepository.existsById(any())).thenReturn(false);
-        when(hostRepository.findById(any())).thenReturn(Optional.of(Host.builder().id(25L).build()));
-        when(hostRepository.save(any())).thenReturn(Host.builder().id(25L).build());
+        when(hostRepository.findById(any())).thenReturn(Optional.of(Host.builder().status(HostStatus.ACTIVE).id(25L).build()));
+        when(hostRepository.save(any())).thenReturn(Host.builder().status(HostStatus.ACTIVE).id(25L).build());
         assertEquals(ExceptionMessage.NOT_EXIST_HOST.message(), assertThrows(HostException.class,
                 () -> hostService.updateHost(HostInput.builder().build(), 25L)).getMessage());
     }
@@ -59,16 +60,16 @@ class HostServiceTest {
     @Test
     void disableHost() {
         when(hostRepository.existsById(any())).thenReturn(true);
-        when(hostRepository.findById(any())).thenReturn(Optional.of(Host.builder().id(25L).build()));
-        when(hostRepository.save(any())).thenReturn(Host.builder().id(25L).build());
+        when(hostRepository.findById(any())).thenReturn(Optional.of(Host.builder().status(HostStatus.ACTIVE).id(25L).build()));
+        when(hostRepository.save(any())).thenReturn(Host.builder().status(HostStatus.ACTIVE).id(25L).build());
         assertDoesNotThrow(() -> hostService.disableHost(25L));
         verify(hostRepository, times(1)).existsById(any());
         verify(hostRepository, times(1)).findById(any());
         verify(hostRepository, times(1)).save(any());
 
         when(hostRepository.existsById(any())).thenReturn(false);
-        when(hostRepository.findById(any())).thenReturn(Optional.of(Host.builder().id(25L).build()));
-        when(hostRepository.save(any())).thenReturn(Host.builder().id(25L).build());
+        when(hostRepository.findById(any())).thenReturn(Optional.of(Host.builder().status(HostStatus.ACTIVE).id(25L).build()));
+        when(hostRepository.save(any())).thenReturn(Host.builder().status(HostStatus.ACTIVE).id(25L).build());
         assertEquals(ExceptionMessage.NOT_EXIST_HOST.message(), assertThrows(HostException.class,
                 () -> hostService.disableHost(25L)).getMessage());
     }
@@ -76,16 +77,16 @@ class HostServiceTest {
     @Test
     void ableHost() {
         when(hostRepository.existsById(any())).thenReturn(true);
-        when(hostRepository.findById(any())).thenReturn(Optional.of(Host.builder().id(25L).build()));
-        when(hostRepository.save(any())).thenReturn(Host.builder().id(25L).build());
+        when(hostRepository.findById(any())).thenReturn(Optional.of(Host.builder().status(HostStatus.ACTIVE).id(25L).build()));
+        when(hostRepository.save(any())).thenReturn(Host.builder().status(HostStatus.ACTIVE).id(25L).build());
         assertDoesNotThrow(() -> hostService.ableHost(25L));
         verify(hostRepository, times(1)).existsById(any());
         verify(hostRepository, times(1)).findById(any());
         verify(hostRepository, times(1)).save(any());
 
         when(hostRepository.existsById(any())).thenReturn(false);
-        when(hostRepository.findById(any())).thenReturn(Optional.of(Host.builder().id(25L).build()));
-        when(hostRepository.save(any())).thenReturn(Host.builder().id(25L).build());
+        when(hostRepository.findById(any())).thenReturn(Optional.of(Host.builder().status(HostStatus.ACTIVE).id(25L).build()));
+        when(hostRepository.save(any())).thenReturn(Host.builder().status(HostStatus.ACTIVE).id(25L).build());
         assertEquals(ExceptionMessage.NOT_EXIST_HOST.message(), assertThrows(HostException.class,
                 () -> hostService.ableHost(25L)).getMessage());
     }
@@ -93,13 +94,13 @@ class HostServiceTest {
     @Test
     void findHostById() {
         when(hostRepository.existsById(any())).thenReturn(true);
-        when(hostRepository.findById(any())).thenReturn(Optional.of(Host.builder().id(25L).build()));
+        when(hostRepository.findById(any())).thenReturn(Optional.of(Host.builder().status(HostStatus.ACTIVE).id(25L).build()));
         assertDoesNotThrow(() -> hostService.findHostById(25L));
         verify(hostRepository, times(1)).existsById(any());
         verify(hostRepository, times(1)).findById(any());
 
         when(hostRepository.existsById(any())).thenReturn(false);
-        when(hostRepository.findById(any())).thenReturn(Optional.of(Host.builder().id(25L).build()));
+        when(hostRepository.findById(any())).thenReturn(Optional.of(Host.builder().status(HostStatus.ACTIVE).id(25L).build()));
         assertEquals(ExceptionMessage.NOT_EXIST_HOST.message(), assertThrows(HostException.class,
                 () -> hostService.findHostById(25L)).getMessage());
     }

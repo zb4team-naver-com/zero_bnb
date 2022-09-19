@@ -2,7 +2,7 @@ package com.service.zerobnb.web.guest.service;
 
 import com.service.zerobnb.component.MailComponents;
 import com.service.zerobnb.security.jwt.JwtTokenProvider;
-import com.service.zerobnb.util.status.UserStatus;
+import com.service.zerobnb.util.status.GuestStatus;
 import com.service.zerobnb.web.error.message.ExceptionMessage;
 import com.service.zerobnb.web.error.model.GuestException;
 import com.service.zerobnb.web.guest.domain.Guest;
@@ -37,7 +37,6 @@ public class GuestService {
 
     /**
      * 회원 가입을 요청한 유저를 db에 저장한 후 인증을 위한 이메일을 전송합니다.
-     *
      * @param request controller 를 통해 받은 유저 정보
      * @return 성공적으로 저장이 완료된 유저 정보
      */
@@ -65,6 +64,11 @@ public class GuestService {
 
     }
 
+    /**
+     * 로그인을 요청한 유저에게 Access Token 과 Refresh Token 을 발급합니다.
+     * @param request 유저의 email, password
+     * @return Access Token, Refresh Token
+     */
     public ResponseTokenDto logIn(LogIn request) {
 
         GuestDto guestDto = authenticate(request);
@@ -93,7 +97,6 @@ public class GuestService {
      * @param uuid 인증에 사용 된 authKey
      * @return db에 저장된 유저의 key 와 일치하면 true 를 반환
      */
-
     public boolean emailAuth(String uuid) {
 
         Optional<Guest> guestOpt = this.guestRepository.findByEmailAuthKey(uuid);
@@ -103,7 +106,7 @@ public class GuestService {
         }
 
         Guest guest = guestOpt.get();
-        guest.changeStatus(UserStatus.ACTIVE);
+        guest.changeStatus(GuestStatus.ACTIVE);
         guestRepository.save(guest);
 
         return true;

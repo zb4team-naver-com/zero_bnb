@@ -2,6 +2,7 @@ package com.service.zerobnb.web.accommodation.domain;
 
 
 import com.service.zerobnb.util.BaseTimeEntity;
+import com.service.zerobnb.web.accommodation.model.EventInput;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,4 +24,11 @@ public class Event extends BaseTimeEntity {
     private Accommodation accommodation;
 
     private String description;
+
+    public static Event from(EventInput eventInput, Accommodation accommodation) {
+        return Event.builder()
+                .accommodation(accommodation)
+                .description(eventInput.getDescription())
+                .build();
+    }
 }

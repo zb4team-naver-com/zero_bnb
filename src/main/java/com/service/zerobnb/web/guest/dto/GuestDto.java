@@ -1,6 +1,6 @@
 package com.service.zerobnb.web.guest.dto;
 
-import com.service.zerobnb.util.status.UserStatus;
+import com.service.zerobnb.util.status.GuestStatus;
 import com.service.zerobnb.web.guest.domain.Guest;
 import java.util.UUID;
 import lombok.Builder;
@@ -20,7 +20,7 @@ public class GuestDto {
 
     private String profileImage;
 
-    private UserStatus status;
+    private GuestStatus status;
 
     private String emailAuthKey;
 
@@ -30,15 +30,15 @@ public class GuestDto {
 
     @Builder
     public GuestDto(String email, String password, String name, String birth, String phone,
-        String profileImage, UserStatus status, String emailAuthKey, Long point,
-        boolean isHost) {
+                    String profileImage, GuestStatus status, String emailAuthKey, Long point,
+                    boolean isHost) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.birth = birth;
         this.phone = phone;
         this.profileImage = profileImage;
-        this.status = UserStatus.NOT_AUTH;
+        this.status = GuestStatus.NOT_AUTH;
         this.emailAuthKey = UUID.randomUUID().toString();
         this.point = 0L;
         this.isHost = false;

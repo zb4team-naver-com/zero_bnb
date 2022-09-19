@@ -21,26 +21,40 @@ public class HostService {
 
     @Transactional
     public long registerHost(HostInput hostInput) {
-        return hostRepository.save(Host.from(hostInput, guestService.findGuestByEmail(hostInput.getEmail()))).getId();
+        Guest guest = guestService.findGuestByEmail(hostInput.getEmail());
+
+        if (guest.isHost()) {
+            throw new HostException(ExceptionMessage.ALREADY_EXIST_HOST);
+        }
+
+        return hostRepository.save(Host.from(hostInput, guest)).getId();
     }
 
     @Transactional
     public long updateHost(HostInput hostInput, Long hostId) {
         Host host = Host.from(hostInput, findHostById(hostId));
+
+        if (!HostStatus.checkIsActive(host.getStatus())) {
+            throw new HostException(ExceptionMessage.DISABLED_HOST);
+        }
         return hostRepository.save(host).getId();
     }
 
     @Transactional
     public long disableHost(Long hostId) {
         Host host = findHostById(hostId);
-        host.setHostStatus(HostStatus.DISABLED);
+
+        if (!HostStatus.checkIsActive(host.getStatus())) {
+            throw new HostException(ExceptionMessage.DISABLED_HOST);
+        }
+        host.setStatus(HostStatus.DISABLED);
         return hostRepository.save(host).getId();
     }
 
     @Transactional
     public long ableHost(Long hostId) {
         Host host = findHostById(hostId);
-        host.setHostStatus(HostStatus.ACTIVE);
+        host.setStatus(HostStatus.ACTIVE);
         return hostRepository.save(host).getId();
     }
 
@@ -48,7 +62,9 @@ public class HostService {
         if (!hostRepository.existsById(hostId)) {
             throw new HostException(ExceptionMessage.NOT_EXIST_HOST);
         }
-        return hostRepository.findById(hostId).get();
+
+        Host host = hostRepository.findById(hostId).get();
+        return host;
     }
 
     public Host findHostByEmail(String email) {
@@ -57,6 +73,7 @@ public class HostService {
         if (!guest.isHost()) {
             throw new HostException(ExceptionMessage.NOT_EXIST_HOST);
         }
+
         Host host = guest.getHost();
         return host;
     }

@@ -2,6 +2,7 @@ package com.service.zerobnb.util.aws;
 
 import com.service.zerobnb.web.error.message.ExceptionMessage;
 import com.service.zerobnb.web.error.model.FileHandleException;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +21,7 @@ class AwsS3ServiceTest {
     private AwsS3Util awsS3Util;
 
     @Test
+    @Disabled
     void uploadImageFile() throws Exception {
         // 정상 이미지
         when(awsS3Util.storeImageFile(any(), any(), any())).thenReturn("success");

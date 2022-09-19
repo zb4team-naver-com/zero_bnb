@@ -2,7 +2,7 @@ package com.service.zerobnb.web.guest.domain;
 
 
 import com.service.zerobnb.util.BaseTimeEntity;
-import com.service.zerobnb.util.status.UserStatus;
+import com.service.zerobnb.util.status.GuestStatus;
 import com.service.zerobnb.web.host.domain.Host;
 import com.service.zerobnb.web.reservation.domain.Reservation;
 import com.service.zerobnb.web.review.domain.Review;
@@ -46,7 +46,7 @@ public class Guest extends BaseTimeEntity {
     private String phone;
 
     @Enumerated(EnumType.STRING)
-    private UserStatus status;
+    private GuestStatus status;
 
     private String emailAuthKey;
 
@@ -69,7 +69,7 @@ public class Guest extends BaseTimeEntity {
 
     @Builder
     public Guest(Long id, String email, String password, String name, String birth,
-                 String phone, UserStatus status, String emailAuthKey, String profileImage, Long point,
+                 String phone, GuestStatus status, String emailAuthKey, String profileImage, Long point,
                  boolean isHost) {
         this.id = id;
         this.email = email;
@@ -84,7 +84,7 @@ public class Guest extends BaseTimeEntity {
         this.isHost = isHost;
     }
 
-    public void changeStatus(UserStatus status) {
+    public void changeStatus(GuestStatus status) {
         this.status = status;
     }
 }
