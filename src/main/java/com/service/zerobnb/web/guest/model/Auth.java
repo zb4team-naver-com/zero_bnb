@@ -1,11 +1,11 @@
 package com.service.zerobnb.web.guest.model;
 
 import com.service.zerobnb.web.guest.dto.GuestDto;
-import lombok.Data;
+import lombok.Getter;
 
 public class Auth {
 
-    @Data
+    @Getter
     public static class SignUp {
         private String email;
         private String password;
@@ -24,9 +24,10 @@ public class Auth {
         }
     }
 
-    @Data
+    @Getter
     public static class LogIn {
         private String email;
         private String password;
     }
+
 }
