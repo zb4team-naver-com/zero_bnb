@@ -8,6 +8,7 @@ import React, {
 import Input from "../common/Input"
 import useInput from "../../hooks/useInput"
 import useAuthQuery from "../../hooks/useAuthQuery"
+import styled from "styled-components"
 
 export default function SignupComponents() {
 	const { signup } = useAuthQuery()
@@ -50,7 +51,7 @@ export default function SignupComponents() {
 
 	const checkValidBirth = () => {
 		const birth = inputBirth.value
-		return /^\d{2,3}-\d{3,4}-\d{4}$/.test(birth)
+		return /^\d{4}-\d{1,2}-\d{1,2}$/.test(birth)
 	}
 
 	const checkValidPhone = () => {
@@ -85,44 +86,50 @@ export default function SignupComponents() {
 
 	return (
 		<>
-			<div>
-				<h2>회원 가입</h2>
+			<S.Div>
+				<S.Span>회원 가입</S.Span>
 				<form name="signup" onSubmit={handleSignUp}>
 					<Input
 						type="email"
 						{...inputEmail}
 						isValid={isValidEmail}
-						invalidMessage="Email을 작성해 주세요."
+						// invalidMessage="Email을 작성해 주세요."
+						required
 					/>
+					<p></p>
 					<Input
 						type="password"
 						placeholder="비밀번호"
 						{...inputPassword}
 						isValid={isValidPassword}
-						invalidMessage="비밀 번호는 8자 이상"
+						// invalidMessage="비밀 번호는 8자 이상"
+						required
 					/>
 					<Input
 						type="text"
 						placeholder="이름"
 						{...inputName}
 						isValid={isValidName}
-						invalidMessage="이름"
+						// invalidMessage="이름"
+						required
 					/>
 					<Input
 						type="birth"
 						placeholder="1999-01-01"
 						{...inputBirth}
 						isValid={isValidBirth}
-						invalidMessage="언제 태어 나심?"
+						// invalidMessage="언제 태어 나심?"
+						required
 					/>
 					<Input
 						type="phone"
 						placeholder="010-0000-0000"
 						{...inputPhone}
 						isValid={isValidPhone}
-						invalidMessage="오빠 오빠 폰 있어?"
+						// invalidMessage="폰 있어?"
+						required
 					/>
-					<button
+					<S.Button
 						type="submit"
 						disabled={
 							!inputEmail.value ||
@@ -133,9 +140,38 @@ export default function SignupComponents() {
 						}
 					>
 						회원가입
-					</button>
+					</S.Button>
 				</form>
-			</div>
+			</S.Div>
 		</>
 	)
 }
+
+const S: any = {}
+
+S.Div = styled.div`
+	margin: auto;
+	width: 498px;
+	height: 718px;
+	border: 1px solid blue;
+`
+S.Span = styled.span`
+	display: block;
+	margin: auto;
+	font-size: 2rem;
+	text-align: center;
+	padding-top: 30px;
+	padding-bottom: 70px;
+`
+
+S.Button = styled.button`
+	width: 25rem;
+	margin-left: 3.3rem;
+	background: #fc797f;
+	border: 1px solid #fc797f;
+	border-radius: 0.8rem;
+	font-size: 1.2rem;
+	font-weight: 700;
+	color: #fff;
+	cursor: pointer;
+`

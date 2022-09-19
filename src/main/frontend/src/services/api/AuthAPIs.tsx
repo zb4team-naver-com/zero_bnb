@@ -8,7 +8,7 @@ interface UserAuthInput {
 }
 
 const instance = axios.create({
-	baseURL: "/users/",
+	baseURL: "http://localhost:8000",
 })
 
 instance.interceptors.response.use(
@@ -22,8 +22,12 @@ instance.interceptors.response.use(
 	}
 )
 
-const fetchSignUp = (props: UserAuthInput) => {
-	return instance.post("create", props)
+const fetchLogin = (props: UserAuthInput) => {
+	return instance.post("login", props)
 }
 
-export { fetchSignUp }
+const fetchSignUp = (props: UserAuthInput) => {
+	return instance.post("signup", props)
+}
+
+export { fetchLogin, fetchSignUp }

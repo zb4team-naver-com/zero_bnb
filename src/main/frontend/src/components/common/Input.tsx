@@ -26,17 +26,17 @@ const Input = (inputProps: InputType) => {
 		...props
 	} = inputProps
 	return (
-		<div className={className}>
-			<label htmlFor={id}>{labelName}</label>
+		<S.Div className={className}>
+			{/* <S.Label htmlFor={id}>{labelName}</S.Label> */}
 			{inputProps.textarea ? (
 				<S.textArea id={id} placeholder={placeholder} {...props} />
 			) : (
 				<S.input id={id} placeholder={placeholder} {...props} />
 			)}
-			<S.inValidInputNotice isValid={isValid}>
+			{/* <S.inValidInputNotice isValid={isValid}>
 				{invalidMessage}
-			</S.inValidInputNotice>
-		</div>
+			</S.inValidInputNotice> */}
+		</S.Div>
 	)
 }
 
@@ -44,14 +44,36 @@ export default Input
 
 const S: any = {}
 
-S.inValidInputNotice = styled.p<{ isValid: boolean }>`
-	opacity: ${({ isValid }) => (isValid ? 0 : 1)};
+// S.inValidInputNotice = styled.p<{ isValid: boolean }>`
+// 	opacity: ${({ isValid }) => (isValid ? 0 : 1)};
+// `
+
+S.Div = styled.div`
+	padding-bottom: 2rem;
 `
 
 S.textArea = styled.textarea`
 	display: block;
+	width: 340px;
+	height: 45px;
+	padding-left: 10px;
+	margin: auto;
+	margin-bottom: 1.2rem;
+	border: none;
+	border-bottom: 1px solid #c9c9c9;
+	font-size: 1.4rem;
+	font-family: "Noto Sans KR", sans-serif;
 `
 
 S.input = styled.input`
 	display: block;
+	width: 340px;
+	height: 45px;
+	padding-left: 10px;
+	margin: auto;
+	margin-bottom: 1.2rem;
+	border: none;
+	border-bottom: 1px solid #c9c9c9;
+	font-size: 1.4rem;
+	font-family: "Noto Sans KR", sans-serif;
 `
