@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @AllArgsConstructor
 @Transactional
-public class GuestService {
+public class AuthService {
 
     private final GuestRepository guestRepository;
     private final RefreshTokenRepository refreshTokenRepository;
@@ -45,7 +45,7 @@ public class GuestService {
         boolean exists = this.guestRepository.existsByEmail(request.getEmail());
 
         if (exists) {
-            throw new RuntimeException("이미 사용중인 이메일입니다.");
+            throw new GuestException(ExceptionMessage.ALREADY_EXIST_GUEST);
         }
 
         GuestDto guestDto = GuestDto.builder()

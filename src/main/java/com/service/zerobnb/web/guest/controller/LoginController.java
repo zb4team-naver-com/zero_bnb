@@ -3,7 +3,7 @@ package com.service.zerobnb.web.guest.controller;
 import com.service.zerobnb.web.guest.dto.GuestDto;
 import com.service.zerobnb.web.guest.dto.ResponseTokenDto;
 import com.service.zerobnb.web.guest.model.Auth;
-import com.service.zerobnb.web.guest.service.GuestService;
+import com.service.zerobnb.web.guest.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
 
-    private final GuestService guestService;
+    private final AuthService guestService;
 
     @Operation(summary = "로그인을 요청하는 api 입니다.", description = "guest 의 이메일과 비밀번호가 필요합니다.")
     @ApiResponses(value = {
