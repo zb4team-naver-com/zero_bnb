@@ -1,24 +1,26 @@
 package com.service.zerobnb.web.host.service;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.BDDMockito.any;
+import static org.mockito.BDDMockito.times;
+import static org.mockito.BDDMockito.verify;
+import static org.mockito.BDDMockito.when;
+
 import com.service.zerobnb.util.status.HostStatus;
 import com.service.zerobnb.web.error.message.ExceptionMessage;
-import com.service.zerobnb.web.error.model.FileHandleException;
 import com.service.zerobnb.web.error.model.HostException;
 import com.service.zerobnb.web.guest.domain.Guest;
-import com.service.zerobnb.web.guest.service.GuestService;
+import com.service.zerobnb.web.guest.service.AuthService;
 import com.service.zerobnb.web.host.domain.Host;
 import com.service.zerobnb.web.host.model.HostInput;
 import com.service.zerobnb.web.host.repository.HostRepository;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.mock.web.MockMultipartFile;
-
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.BDDMockito.*;
 
 @SpringBootTest
 class HostServiceTest {
@@ -29,7 +31,7 @@ class HostServiceTest {
     private HostRepository hostRepository;
 
     @MockBean
-    private GuestService guestService;
+    private AuthService guestService;
 
     @Test
     void registerHost() {

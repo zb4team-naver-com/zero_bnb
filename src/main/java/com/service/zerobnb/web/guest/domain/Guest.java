@@ -6,7 +6,6 @@ import com.service.zerobnb.util.status.GuestStatus;
 import com.service.zerobnb.web.host.domain.Host;
 import com.service.zerobnb.web.reservation.domain.Reservation;
 import com.service.zerobnb.web.review.domain.Review;
-
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,16 +19,15 @@ import javax.persistence.Index;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 @Entity
-@Data
-@Builder
+@Getter
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "guest", indexes = {@Index(name = "guest_email_index", columnList = "email")})
 public class Guest extends BaseTimeEntity {
     @Id

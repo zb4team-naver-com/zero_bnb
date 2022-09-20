@@ -4,7 +4,7 @@ import com.service.zerobnb.util.status.HostStatus;
 import com.service.zerobnb.web.error.message.ExceptionMessage;
 import com.service.zerobnb.web.error.model.HostException;
 import com.service.zerobnb.web.guest.domain.Guest;
-import com.service.zerobnb.web.guest.service.GuestService;
+import com.service.zerobnb.web.guest.service.AuthService;
 import com.service.zerobnb.web.host.domain.Host;
 import com.service.zerobnb.web.host.model.HostInput;
 import com.service.zerobnb.web.host.repository.HostRepository;
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class HostService {
     private final HostRepository hostRepository;
-    private final GuestService guestService;
+    private final AuthService guestService;
 
     @Transactional
     public long registerHost(HostInput hostInput) {

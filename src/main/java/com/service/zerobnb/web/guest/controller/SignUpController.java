@@ -1,7 +1,7 @@
 package com.service.zerobnb.web.guest.controller;
 
 import com.service.zerobnb.web.guest.model.Auth;
-import com.service.zerobnb.web.guest.service.GuestService;
+import com.service.zerobnb.web.guest.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/signup")
 @RequiredArgsConstructor
 @Tag(name = "회원가입", description = "회원가입 관련 API")
-public class SignupController {
+public class SignUpController {
 
-    private final GuestService guestService;
+    private final AuthService guestService;
 
     @Operation(summary = "가입을 원하는 회원의 정보를 받습니다.", description = "회원 가입 메서드")
     @ApiResponses(value = {
