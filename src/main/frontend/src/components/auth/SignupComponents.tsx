@@ -8,6 +8,7 @@ import React, {
 import Input from "../common/Input"
 import useInput from "../../hooks/useInput"
 import useAuthQuery from "../../hooks/useAuthQuery"
+import styled from "styled-components"
 
 export default function SignupComponents() {
 	const { signup } = useAuthQuery()
@@ -30,6 +31,9 @@ export default function SignupComponents() {
 		signup({
 			email: inputEmail.value,
 			password: inputPassword.value,
+			name: inputName.value,
+			birth: inputBirth.value,
+			phone: inputPhone.value,
 		})
 	}
 
@@ -50,7 +54,7 @@ export default function SignupComponents() {
 
 	const checkValidBirth = () => {
 		const birth = inputBirth.value
-		return /^\d{2,3}-\d{3,4}-\d{4}$/.test(birth)
+		return /^\d{4}-\d{1,2}-\d{1,2}$/.test(birth)
 	}
 
 	const checkValidPhone = () => {
@@ -85,44 +89,50 @@ export default function SignupComponents() {
 
 	return (
 		<>
-			<div>
-				<h2>회원 가입</h2>
+			<S.Div>
+				<S.Span>회원가입</S.Span>
 				<form name="signup" onSubmit={handleSignUp}>
 					<Input
 						type="email"
 						{...inputEmail}
 						isValid={isValidEmail}
-						invalidMessage="Email을 작성해 주세요."
+						// invalidMessage="Email을 작성해 주세요."
+						required
 					/>
+					<p></p>
 					<Input
 						type="password"
-						placeholder="비밀번호"
+						placeholder="password"
 						{...inputPassword}
 						isValid={isValidPassword}
-						invalidMessage="비밀 번호는 8자 이상"
+						// invalidMessage="비밀 번호는 8자 이상"
+						required
 					/>
 					<Input
 						type="text"
-						placeholder="이름"
+						placeholder="name"
 						{...inputName}
 						isValid={isValidName}
-						invalidMessage="이름"
+						// invalidMessage="이름"
+						required
 					/>
 					<Input
 						type="birth"
-						placeholder="1999-01-01"
+						placeholder="1999.01.01"
 						{...inputBirth}
 						isValid={isValidBirth}
-						invalidMessage="언제 태어 나심?"
+						// invalidMessage="언제 태어 나심?"
+						required
 					/>
 					<Input
 						type="phone"
 						placeholder="010-0000-0000"
 						{...inputPhone}
 						isValid={isValidPhone}
-						invalidMessage="오빠 오빠 폰 있어?"
+						// invalidMessage="폰 있어?"
+						required
 					/>
-					<button
+					<S.Button
 						type="submit"
 						disabled={
 							!inputEmail.value ||
@@ -133,9 +143,48 @@ export default function SignupComponents() {
 						}
 					>
 						회원가입
-					</button>
+					</S.Button>
 				</form>
-			</div>
+			</S.Div>
 		</>
 	)
 }
+
+const S: any = {}
+
+S.Div = styled.div`
+	margin: 30px auto;
+	width: 498px;
+	height: 618px;
+	background: var(--color-white);
+	border: 1px solid var(--color-gray0);
+	border-radius: 20px;
+	box-shadow: 1px 1px 0 0 var(--color-gray0);
+`
+S.Span = styled.span`
+	display: block;
+	margin: auto;
+	font-size: 20px;
+	font-weight: 700;
+	color: var(--color-gray3);
+	text-align: center;
+	padding-top: 50px;
+	padding-bottom: 70px;
+`
+
+S.Button = styled.button`
+	width: 340px;
+	height: 50px;
+	margin-left: 78px;
+	background: var(--main-color1);
+	border: 1px solid var(--main-color1);
+	border-radius: 8px;
+	font-size: 17px;
+	font-weight: 700;
+	color: #fff;
+	cursor: pointer;
+	&:hover {
+		border: 3px solid var(--main-color1-1);
+		box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+	}
+`
