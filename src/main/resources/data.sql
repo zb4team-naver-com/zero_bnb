@@ -14,7 +14,7 @@ INSERT INTO guest
 values (4, NOW(), NOW(), '1985.12.25', 'sdkels2@naver.com', 'auth-key', true, '여주영', 'password', '010-2185-3892', 25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EC%8B%A0%EC%A7%80%EC%97%B0.jpg', 'NOT_AUTH');
 INSERT INTO guest
-values (5, NOW(), NOW(), '2003.11.16', 'a948594@naver.com', 'auth-key', false, '정주영', 'password', '010-3948-3567',
+values (5, NOW(), NOW(), '2003.11.16', 'a94824594@naver.com', 'auth-key', false, '정주영', 'password', '010-3948-3567',
         25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EC%8B%A0%EC%A7%80%EC%97%B0.jpg', 'ACTIVE');
 INSERT INTO guest
