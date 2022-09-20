@@ -19,7 +19,7 @@ public enum ExceptionMessage {
     // 방
     NOT_EXIST_ROOM("방 정보가 존재하지 않습니다."),
     ZERO_COUNT_ROOM("방 수량이 소진되었습니다."),
-
+    ALREADY_DELETE_ROOM("이미 삭제 된 방 정보 입니다"),
     // 예약
     EXCEED_MAX_PEOPLE("최대 인원을 초과했습니다."),
     NOT_EXIST_RESERVATION("예약 정보가 존재하지 않습니다."),

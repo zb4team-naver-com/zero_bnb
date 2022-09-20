@@ -77,4 +77,17 @@ public class Room extends BaseTimeEntity {
                 .accommodation(accommodation)
                 .build();
     }
+
+    public static Room updateByRoomInput(Room room, RoomInput roomInput) {
+        room.setBasicOption(roomInput.getBasicOption());
+        room.setCost(roomInput.getCost());
+        room.setDescription(roomInput.getDescription());
+        room.setName(roomInput.getName());
+        room.setDiscount(roomInput.getDiscount());
+        room.setStandardPeople(roomInput.getStandardPeople());
+        room.setMaxPeople(roomInput.getMaxPeople());
+        room.setRoomCount(roomInput.getCount());
+        room.setSmoke(roomInput.isSmoke());
+        return room;
+    }
 }

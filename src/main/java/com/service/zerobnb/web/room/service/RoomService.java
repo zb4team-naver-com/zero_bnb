@@ -35,7 +35,13 @@ public class RoomService {
         if (!roomRepository.existsById(roomId)) {
             throw new RoomException(ExceptionMessage.NOT_EXIST_ROOM);
         }
-        return roomRepository.findById(roomId).get();
+
+        Room room = roomRepository.findById(roomId).get();
+
+        if(room.isDelete()) {
+            throw new RoomException(ExceptionMessage.ALREADY_DELETE_ROOM);
+        }
+        return room;
     }
 
     @Transactional
@@ -60,15 +66,7 @@ public class RoomService {
     }
 
     private Room updateRoom(Room room, RoomInput roomInput) {
-        room.setBasicOption(roomInput.getBasicOption());
-        room.setCost(roomInput.getCost());
-        room.setDescription(roomInput.getDescription());
-        room.setName(roomInput.getName());
-        room.setDiscount(roomInput.getDiscount());
-        room.setStandardPeople(roomInput.getStandardPeople());
-        room.setMaxPeople(roomInput.getMaxPeople());
-        room.setRoomCount(roomInput.getCount());
-        room.setSmoke(room.isSmoke());
+        room = Room.updateByRoomInput(room, roomInput);
 
         List<RoomImage> roomImages = room.getRoomImageList();
         List<RoomImageInput> roomImageInputs = roomInput.getRoomImages();
