@@ -9,20 +9,21 @@ const useAuthQuery = () => {
 
 	const login = useMutation(fetchLogin, {
 		onSuccess: () => {
-			navigate("../pages/LoginPage")
+			navigate("../MainContainerPage")
 		},
-		// onError: (error) => {
-		// 	if (error instanceof AxiosError) alert(error.response?.data.details)
-		// },
+		onError: (error) => {
+			if (error instanceof AxiosError) alert(error.response?.data.details)
+		},
 	}).mutate
 
 	const signup = useMutation(fetchSignUp, {
 		onSuccess: () => {
-			navigate("../pages/LoginPage")
+			navigate("../LoginPage")
+			console.log("성공")
 		},
-		// onError: (error) => {
-		// 	if (error instanceof AxiosError) alert(error.response?.data.details)
-		// },
+		onError: (error) => {
+			if (error instanceof AxiosError) alert(error.response?.data.details)
+		},
 	}).mutate
 
 	return { login, signup }

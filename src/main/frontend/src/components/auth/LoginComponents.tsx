@@ -3,6 +3,7 @@ import useAuthQuery from "../../hooks/useAuthQuery"
 import useInput from "../../hooks/useInput"
 import Input from "../common/Input"
 import styled from "styled-components"
+import axios from "axios"
 
 export default function LoginComponents() {
 	const { login } = useAuthQuery()
@@ -54,28 +55,39 @@ export default function LoginComponents() {
 const S: any = {}
 
 S.Div = styled.div`
-	margin: auto;
+	margin: 60px auto;
 	width: 498px;
 	height: 518px;
-	border: 1px solid blue;
+	background: var(--color-white);
+	border: 1px solid var(--color-gray0);
+	border-radius: 20px;
+	box-shadow: 1px 1px 0 0 var(--color-gray0);
 `
 S.Span = styled.span`
 	display: block;
 	margin: auto;
-	font-size: 2rem;
+	font-size: 20px;
+	font-weight: 700;
+	color: var(--color-gray3);
 	text-align: center;
-	padding-top: 30px;
+	padding-top: 50px;
 	padding-bottom: 70px;
 `
 
 S.Button = styled.button`
-	width: 25rem;
-	margin-left: 3.3rem;
-	background: #fc797f;
-	border: 1px solid #fc797f;
-	border-radius: 0.8rem;
-	font-size: 1.2rem;
+	width: 340px;
+	height: 50px;
+	margin-left: 78px;
+	margin-top: 20px;
+	background: var(--main-color1);
+	border: 1px solid var(--main-color1);
+	border-radius: 8px;
+	font-size: 17px;
 	font-weight: 700;
 	color: #fff;
 	cursor: pointer;
+	&:hover {
+		border: 3px solid var(--main-color1-1);
+		box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+	}
 `

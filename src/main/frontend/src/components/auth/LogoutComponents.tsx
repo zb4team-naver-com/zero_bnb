@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import LoginPage from "../../pages/LoginPage"
 import storage from "../../services/api/api"
 
 export default function LogoutComponents() {
@@ -7,8 +8,12 @@ export default function LogoutComponents() {
 
 	useEffect(() => {
 		storage.remove({ key: "token" })
-		navigate("../../pages/LoginPage.tsx")
+		navigate("../../pages/LoginPage")
 	})
 
-	return <></>
+	return (
+		<>
+			<LoginPage />
+		</>
+	)
 }

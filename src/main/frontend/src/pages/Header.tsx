@@ -2,17 +2,28 @@ import React from "react"
 import { Outlet, Link } from "react-router-dom"
 import HeaderComponents from "../components/layout/HeaderComponents"
 import styled from "styled-components"
-import MainPage from "./MainPage"
+import GlobalStyle from "../assets/GlobalStyle"
+import storage from "../services/api/api"
+import Image from "../assets/logo.png"
 
 export default function Header() {
+	const isLogined = storage.get({ key: "token" }) ? true : false
+	console.log(isLogined)
 	return (
 		<>
+			<GlobalStyle />
 			<S.HeaderContainer>
 				<HeaderComponents />
 
-				<MainPage />
+				<Link to="./MainContainerPage">
+					<S.IMG src={Image} />
+				</Link>
 				<S.ButtonDiv>
-					<S.StyledLink to="./LoginPage">로그인</S.StyledLink>
+					{!isLogined ? (
+						<S.StyledLink to="./LoginPage">로그인</S.StyledLink>
+					) : (
+						<S.StyledLink to="./LoginPage">로그아웃</S.StyledLink>
+					)}
 					<S.StyledLink to="./SignupPage">회원가입</S.StyledLink>
 				</S.ButtonDiv>
 			</S.HeaderContainer>
@@ -31,6 +42,7 @@ S.HeaderContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	background-color: var(--main-color2);
 `
 
 S.ButtonDiv = styled.div`
@@ -51,4 +63,8 @@ S.StyledLink = styled(Link)`
 	font-weight: 500;
 	color: #a6adce;
 	flex-shrink: 0;
+`
+
+S.IMG = styled.img`
+	width: 10rem;
 `

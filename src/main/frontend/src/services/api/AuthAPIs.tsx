@@ -2,7 +2,15 @@ import React from "react"
 import axios from "axios"
 import storage from "./api"
 
-interface UserAuthInput {
+interface UserAuthSignUpInput {
+	email: string
+	password: string
+	name: string
+	birth: string
+	phone: string
+}
+
+interface UserAuthLoginInput {
 	email: string
 	password: string
 }
@@ -22,12 +30,12 @@ instance.interceptors.response.use(
 	}
 )
 
-const fetchLogin = (props: UserAuthInput) => {
-	return instance.post("login", props)
+const fetchLogin = (props: UserAuthLoginInput) => {
+	return instance.post("./login", props)
 }
 
-const fetchSignUp = (props: UserAuthInput) => {
-	return instance.post("signup", props)
+const fetchSignUp = (props: UserAuthSignUpInput) => {
+	return instance.post("./signup", props)
 }
 
 export { fetchLogin, fetchSignUp }
