@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.service.zerobnb.web.accommodation.mapper.AccommodationMapper">
+    <select id="nearDistAccommodation" resultType="com.service.zerobnb.web.accommodation.dto.AccommodationMainDto">
+                <![CDATA[
+                select *, (6371*acos(cos(radians(#{lat}))*cos(radians(latitude))*cos(radians(longitude)-radians(#{lnt}))
+                    +sin(radians(#{lat}))*sin(radians(latitude)))) AS distance
+                from accommodation
+                group by ACCOMMODATION_ID
+                having distance < 3000
+                order by distance
+                limit 20;
+                ]]>
+    </select>
+
+    <select id="typeAccommodation" resultType="com.service.zerobnb.web.accommodation.dto.AccommodationMainDto">
+                <![CDATA[
+                select *
+                from accommodation
+                where accommodation_type = #{accommodationType}
+                limit 20;
+                ]]>
+    </select>
+
+    <select id="typeAndDistAccommodation" resultType="com.service.zerobnb.web.accommodation.dto.AccommodationMainDto">
+                <![CDATA[
+        select *, (6371*acos(cos(radians(#{lat}))*cos(radians(latitude))*cos(radians(longitude)-radians(#{lnt}))
+            +sin(radians(#{lat}))*sin(radians(latitude)))) AS distance
+        from accommodation
+        where accommodation_type = #{accommodationType}
+        having distance < 3000
+        order by distance
+        limit 20;
+        ]]>
+    </select>
+</mapper>
