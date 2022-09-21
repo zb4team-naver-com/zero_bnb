@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.net.URI;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -35,7 +36,7 @@ public class SignUpController {
         @ApiResponse(responseCode = "500", description = "특정 이유로 가입에 실패했을 때의 응답 코드")
     })
     @PostMapping
-    public ResponseEntity<GuestDto> Signup(@RequestBody Auth.SignUp request) {
+    public ResponseEntity<GuestDto> Signup(@Valid @RequestBody Auth.SignUp request) {
         var result = this.guestService.register(request);
 
         return ResponseEntity.ok(result);

@@ -1,7 +1,5 @@
 package com.service.zerobnb.web.guest.controller;
 
-import com.service.zerobnb.web.error.message.ExceptionMessage;
-import com.service.zerobnb.web.error.model.GuestException;
 import com.service.zerobnb.web.guest.dto.GuestDto;
 import com.service.zerobnb.web.guest.dto.ResponseTokenDto;
 import com.service.zerobnb.web.guest.model.Auth;
@@ -10,6 +8,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +32,7 @@ public class LoginController {
         @ApiResponse(responseCode = "500", description = "로그인에 실패했을 때의 응답 코드")
     })
     @PostMapping("/login")
-    public ResponseEntity<ResponseTokenDto> login(@RequestBody Auth.LogIn request) {
+    public ResponseEntity<ResponseTokenDto> login(@Valid @RequestBody Auth.LogIn request) {
 
         ResponseTokenDto responseToken = this.guestService.logIn(request);
 
