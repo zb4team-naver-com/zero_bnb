@@ -6,8 +6,11 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.net.URI;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,9 +41,9 @@ public class SignUpController {
     }
 
 
-    @Operation(summary = "이메일 인증이 완료된 회원이 받는 결과입니다.", description = "메일 인증 메서드")
+    @Operation(summary = "이메일 인증이 완료된 회원은 로그인 페이지로 이동합니다.", description = "메일 인증 메서드")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "메일 인증에 성공했을 때의 응답 코드"),
+        @ApiResponse(responseCode = "301", description = "메일 인증에 성공하면 redirect:/"),
         @ApiResponse(responseCode = "404", description = "인증에 실패했을 때의 응답 코드")
     })
     @GetMapping("/email-auth/{id}")
@@ -50,6 +53,9 @@ public class SignUpController {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok().build();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(URI.create("/"));
+
+        return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
     }
 }
