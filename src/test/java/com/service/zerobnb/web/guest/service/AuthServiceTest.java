@@ -1,6 +1,7 @@
 package com.service.zerobnb.web.guest.service;
 
 import static com.service.zerobnb.web.error.message.ExceptionMessage.ALREADY_EXIST_GUEST;
+import static com.service.zerobnb.web.error.message.ExceptionMessage.NOT_AUTH_EMAIL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -104,5 +105,32 @@ class AuthServiceTest {
         authService.logIn(guest);
 
         // then
+    }
+
+    @Test
+    @DisplayName("이메일 인증이 되지 않은 회원은 로그인에 실패한다.")
+    void LogInFailByNotEmailAuth() {
+        // given
+        Guest guestE = Guest.builder()
+            .id(1L)
+            .email(EMAIL)
+            .password(PASSWORD)
+            .name(NAME)
+            .birth(BIRTH)
+            .phone(PHONE)
+            .status(GuestStatus.NOT_AUTH)
+            .build();
+        given(guestRepository.findByEmail(anyString())).willReturn(Optional.of(guestE));
+
+        // when
+        LogIn logIn = LogIn.builder()
+            .email(EMAIL)
+            .password(PASSWORD)
+            .build();
+        GuestException exception = assertThrows(GuestException.class,
+            () -> authService.logIn(logIn));
+
+        // then
+        assertEquals(NOT_AUTH_EMAIL.message(), exception.getMessage());
     }
 }

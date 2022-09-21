@@ -1,5 +1,7 @@
 package com.service.zerobnb.web.guest.controller;
 
+import com.service.zerobnb.web.error.message.ExceptionMessage;
+import com.service.zerobnb.web.error.model.GuestException;
 import com.service.zerobnb.web.guest.dto.GuestDto;
 import com.service.zerobnb.web.guest.dto.ResponseTokenDto;
 import com.service.zerobnb.web.guest.model.Auth;
@@ -28,7 +30,7 @@ public class LoginController {
     @Operation(summary = "로그인을 요청하는 api 입니다.", description = "guest 의 이메일과 비밀번호가 필요합니다.")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "성공 시 JWT 로 만들어진 Access token 과 Refresh token 이 발급됩니다."),
-        @ApiResponse(responseCode = "505", description = "로그인에 실패했을 때의 응답 코드")
+        @ApiResponse(responseCode = "500", description = "로그인에 실패했을 때의 응답 코드")
     })
     @PostMapping("/login")
     public ResponseEntity<ResponseTokenDto> login(@RequestBody Auth.LogIn request) {

@@ -71,6 +71,10 @@ public class AuthService {
      */
     public ResponseTokenDto logIn(LogIn request) {
 
+        if (checkStatus(request)) {
+            throw new GuestException(ExceptionMessage.NOT_AUTH_EMAIL);
+        }
+
         GuestDto guestDto = authenticate(request);
 
         String refToken = this.jwtTokenProvider.generateRefToken(guestDto.getName());
@@ -130,6 +134,22 @@ public class AuthService {
             .password(guest.getPassword())
             .name(guest.getName())
             .build();
+    }
+
+    /**
+     * 이메일 인증이 완료된 회원인지 확인합니다.
+     * @param request 유저의 이메일과 패스워드
+     * @return boolean
+     */
+    public boolean checkStatus(LogIn request) {
+        Guest guest = guestRepository.findByEmail(request.getEmail())
+                        .orElseThrow(() -> new GuestException(ExceptionMessage.NOT_EXIST_GUEST));
+
+        if (guest.getStatus() == GuestStatus.NOT_AUTH) {
+            throw new GuestException(ExceptionMessage.NOT_AUTH_EMAIL);
+        }
+
+        return false;
     }
 
     public GuestDto logOut() {
