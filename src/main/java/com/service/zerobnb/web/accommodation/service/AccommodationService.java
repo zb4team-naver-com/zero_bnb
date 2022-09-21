@@ -129,7 +129,7 @@ public class AccommodationService {
         if (accommodation.isDelete()) {
             throw new AccommodationException(ExceptionMessage.ALREADY_DELETE_ACCOMMODATION);
         }
-        return accommodationRepository.findById(accommodationId).get();
+        return accommodation;
     }
 
     public List<AccommodationForHostDto> findAccommodationByHostId(Long hostId) {

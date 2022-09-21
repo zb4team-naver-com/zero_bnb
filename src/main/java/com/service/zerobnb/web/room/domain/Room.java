@@ -4,6 +4,7 @@ import com.service.zerobnb.util.BaseTimeEntity;
 import com.service.zerobnb.web.accommodation.domain.Accommodation;
 import com.service.zerobnb.web.reservation.domain.Reservation;
 import com.service.zerobnb.web.review.domain.Review;
+import com.service.zerobnb.web.room.model.RoomInput;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -60,4 +61,33 @@ public class Room extends BaseTimeEntity {
     @Fetch(FetchMode.SUBSELECT)
     @OneToMany(mappedBy = "room")
     private List<Reservation> reservationList;
+
+    public static Room from(RoomInput roomInput, Accommodation accommodation) {
+        return Room.builder()
+                .standardPeople(roomInput.getStandardPeople())
+                .maxPeople(roomInput.getMaxPeople())
+                .description(roomInput.getDescription())
+                .name(roomInput.getName())
+                .basicOption(roomInput.getBasicOption())
+                .smoke(roomInput.isSmoke())
+                .roomCount(roomInput.getCount())
+                .cost(roomInput.getCost())
+                .discount(roomInput.getDiscount())
+                .isDelete(false)
+                .accommodation(accommodation)
+                .build();
+    }
+
+    public static Room updateByRoomInput(Room room, RoomInput roomInput) {
+        room.setBasicOption(roomInput.getBasicOption());
+        room.setCost(roomInput.getCost());
+        room.setDescription(roomInput.getDescription());
+        room.setName(roomInput.getName());
+        room.setDiscount(roomInput.getDiscount());
+        room.setStandardPeople(roomInput.getStandardPeople());
+        room.setMaxPeople(roomInput.getMaxPeople());
+        room.setRoomCount(roomInput.getCount());
+        room.setSmoke(roomInput.isSmoke());
+        return room;
+    }
 }
