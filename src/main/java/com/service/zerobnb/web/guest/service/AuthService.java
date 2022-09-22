@@ -156,14 +156,12 @@ public class AuthService {
     /**
      * 로그아웃 메서드
      * 로그아웃 시 db 에 저장된 refresh token 이 삭제됩니다.
-     * @param request 유저의 이메일, refresh token
      */
-    public String logOut(LogOut request) {
+    // TODO : refresh token 삭제
+    public void logOut(LogOut request) {
         RefreshToken refToken = refreshTokenRepository.findByGuestEmail(request.getEmail())
                                     .orElseThrow(() -> new GuestException(ExceptionMessage.NOT_EXIST_GUEST));
 
         refreshTokenRepository.delete(refToken);
-
-        return request.getEmail();
     }
 }

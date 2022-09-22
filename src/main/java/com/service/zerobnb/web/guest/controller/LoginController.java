@@ -35,16 +35,4 @@ public class LoginController {
 
         return ResponseEntity.ok(responseToken);
     }
-
-    @Operation(summary = "로그아웃을 요청하는 api 입니다.", description = "로그아웃 요청 시 Refresh token 은 삭제됩니다.")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "로그아웃에 성공하면 메인 페이지로 이동합니다.")
-    })
-    @PostMapping("/logout")
-    public ResponseEntity<String> postLogout(@RequestBody Auth.LogOut request) {
-
-        String response = this.guestService.logOut(request);
-
-        return ResponseEntity.ok(response);
-    }
 }
