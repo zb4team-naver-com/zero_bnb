@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class AccommodationForGuestDto {
-    private Long id;
+    private Long accommodationId;
     private String name;
     private LocationPosition locationPosition;
     private String address;
@@ -21,10 +21,9 @@ public class AccommodationForGuestDto {
     private int wishCount;
     private AccommodationType accommodationType;
 
-
     public static AccommodationForGuestDto from(Accommodation accommodation) {
         return AccommodationForGuestDto.builder()
-                .id(accommodation.getId())
+                .accommodationId(accommodation.getId())
                 .name(accommodation.getName())
                 .locationPosition(accommodation.getLocationPosition())
                 .address(accommodation.getAddress())
