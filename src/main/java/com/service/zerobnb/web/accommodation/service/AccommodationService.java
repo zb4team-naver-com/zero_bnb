@@ -1,12 +1,16 @@
 package com.service.zerobnb.web.accommodation.service;
 
 import com.service.zerobnb.util.status.HostStatus;
+import com.service.zerobnb.util.type.AccommodationType;
 import com.service.zerobnb.util.type.PopularFacilityServiceType;
 import com.service.zerobnb.web.accommodation.domain.Accommodation;
 import com.service.zerobnb.web.accommodation.domain.AccommodationImage;
 import com.service.zerobnb.web.accommodation.domain.Event;
 import com.service.zerobnb.web.accommodation.domain.PopularFacilityService;
 import com.service.zerobnb.web.accommodation.dto.AccommodationForHostDto;
+import com.service.zerobnb.web.accommodation.dto.AccommodationInfoDto;
+import com.service.zerobnb.web.accommodation.dto.AccommodationMainDto;
+import com.service.zerobnb.web.accommodation.mapper.AccommodationMapper;
 import com.service.zerobnb.web.accommodation.model.AccommodationImageInput;
 import com.service.zerobnb.web.accommodation.model.AccommodationInput;
 import com.service.zerobnb.web.accommodation.model.EventInput;
@@ -15,9 +19,9 @@ import com.service.zerobnb.web.accommodation.repository.AccommodationImageReposi
 import com.service.zerobnb.web.accommodation.repository.AccommodationRepository;
 import com.service.zerobnb.web.accommodation.repository.EventRepository;
 import com.service.zerobnb.web.accommodation.repository.PopularFacilityServiceRepository;
-import com.service.zerobnb.web.error.message.ExceptionMessage;
 import com.service.zerobnb.web.error.model.AccommodationException;
 import com.service.zerobnb.web.error.model.HostException;
+import com.service.zerobnb.web.error.model.ValidationException;
 import com.service.zerobnb.web.host.domain.Host;
 import com.service.zerobnb.web.host.service.HostService;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +30,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.service.zerobnb.web.error.message.ExceptionMessage.*;
 
 @Service
 @RequiredArgsConstructor
@@ -36,13 +42,14 @@ public class AccommodationService {
     private final EventRepository eventRepository;
     private final PopularFacilityServiceRepository popularFacilityServiceRepository;
     private final HostService hostService;
+    private final AccommodationMapper accommodationMapper;
 
     @Transactional
     public Long registerAccommodation(AccommodationInput accommodationInput) {
         Host host = hostService.findHostById(accommodationInput.getHostId());
 
         if (!HostStatus.checkIsActive(host.getStatus())) {
-            throw new HostException(ExceptionMessage.DISABLED_HOST);
+            throw new HostException(DISABLED_HOST);
         }
 
         Accommodation accommodation = Accommodation.from(accommodationInput, hostService.findHostById(accommodationInput.getHostId()));
@@ -55,7 +62,7 @@ public class AccommodationService {
         Host host = hostService.findHostById(accommodationInput.getHostId());
 
         if (!HostStatus.checkIsActive(host.getStatus())) {
-            throw new HostException(ExceptionMessage.DISABLED_HOST);
+            throw new HostException(DISABLED_HOST);
         }
 
         Accommodation accommodation = findAccommodationById(accommodationId);
@@ -121,24 +128,53 @@ public class AccommodationService {
 
     public Accommodation findAccommodationById(Long accommodationId) {
         if (!accommodationRepository.existsById(accommodationId)) {
-            throw new AccommodationException(ExceptionMessage.NOT_EXIST_ACCOMMODATION);
+            throw new AccommodationException(NOT_EXIST_ACCOMMODATION);
         }
 
         Accommodation accommodation = accommodationRepository.findById(accommodationId).get();
 
         if (accommodation.isDelete()) {
-            throw new AccommodationException(ExceptionMessage.ALREADY_DELETE_ACCOMMODATION);
+            throw new AccommodationException(ALREADY_DELETE_ACCOMMODATION);
         }
-        return accommodationRepository.findById(accommodationId).get();
+        return accommodation;
     }
 
     public List<AccommodationForHostDto> findAccommodationByHostId(Long hostId) {
         Host host = hostService.findHostById(hostId);
 
         if (!HostStatus.checkIsActive(host.getStatus())) {
-            throw new HostException(ExceptionMessage.DISABLED_HOST);
+            throw new HostException(DISABLED_HOST);
         }
         return host.getAccommodationList().stream().filter(accommodation -> accommodation.isDelete() != true)
                 .map(AccommodationForHostDto::from).collect(Collectors.toList());
+    }
+
+    public List<AccommodationMainDto> nearDistOrTypeAccommodation(AccommodationType accommodationType, Double lat, Double lnt) {
+
+        if ((lat != null && lnt == null) || (lat == null && lnt != null)) {
+            throw new ValidationException(NOT_VALID_INPUT);
+        }
+
+        if (accommodationType == null) {
+            return accommodationMapper.nearDistAccommodation(lat, lnt);
+        }
+
+        boolean accommodationTypeCheck = accommodationRepository.existsByAccommodationType(accommodationType);
+        if (!accommodationTypeCheck) {
+            throw new AccommodationException(NOT_EXIST_ACCOMMODATION_TYPE);
+        }
+
+        if (lat == null && lnt == null) {
+            return accommodationMapper.typeAccommodation(accommodationType);
+        }
+
+        return accommodationMapper.typeAndDistAccommodation(lat, lnt, accommodationType);
+    }
+
+    public AccommodationInfoDto accommodationInfo(Long accommodationId) {
+        Accommodation accommodation = accommodationRepository.findById(accommodationId)
+                .orElseThrow(() -> new AccommodationException(NOT_EXIST_ACCOMMODATION));
+
+        return AccommodationInfoDto.from(accommodation);
     }
 }
