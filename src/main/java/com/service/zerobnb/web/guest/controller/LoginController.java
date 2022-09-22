@@ -1,6 +1,5 @@
 package com.service.zerobnb.web.guest.controller;
 
-import com.service.zerobnb.web.guest.dto.GuestDto;
 import com.service.zerobnb.web.guest.dto.ResponseTokenDto;
 import com.service.zerobnb.web.guest.model.Auth;
 import com.service.zerobnb.web.guest.service.AuthService;
@@ -12,7 +11,6 @@ import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,8 +26,7 @@ public class LoginController {
 
     @Operation(summary = "로그인을 요청하는 api 입니다.", description = "guest 의 이메일과 비밀번호가 필요합니다.")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "성공 시 JWT 로 만들어진 Access token 과 Refresh token 이 발급됩니다."),
-        @ApiResponse(responseCode = "500", description = "로그인에 실패했을 때의 응답 코드")
+        @ApiResponse(responseCode = "200", description = "성공 시 JWT 로 만들어진 Access token 과 Refresh token 이 발급됩니다.")
     })
     @PostMapping("/login")
     public ResponseEntity<ResponseTokenDto> login(@Valid @RequestBody Auth.LogIn request) {
@@ -41,16 +38,13 @@ public class LoginController {
 
     @Operation(summary = "로그아웃을 요청하는 api 입니다.", description = "로그아웃 요청 시 Refresh token 은 삭제됩니다.")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "로그아웃에 성공하면 메인 페이지로 이동합니다."),
-        @ApiResponse(responseCode = "404", description = "로그아웃에 실패했을 때의 응답 코드")
+        @ApiResponse(responseCode = "200", description = "로그아웃에 성공하면 메인 페이지로 이동합니다.")
     })
-    @GetMapping("/logout")
-    public ResponseEntity<GuestDto> logout() {
+    @PostMapping("/logout")
+    public ResponseEntity<String> postLogout(@RequestBody Auth.LogOut request) {
 
-        GuestDto guestDto = this.guestService.logOut();
+        String response = this.guestService.logOut(request);
 
-        return ResponseEntity.ok(guestDto);
+        return ResponseEntity.ok(response);
     }
-
-
 }

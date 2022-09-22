@@ -10,6 +10,7 @@ import com.service.zerobnb.web.guest.domain.RefreshToken;
 import com.service.zerobnb.web.guest.dto.GuestDto;
 import com.service.zerobnb.web.guest.dto.ResponseTokenDto;
 import com.service.zerobnb.web.guest.model.Auth.LogIn;
+import com.service.zerobnb.web.guest.model.Auth.LogOut;
 import com.service.zerobnb.web.guest.model.Auth.SignUp;
 import com.service.zerobnb.web.guest.repository.GuestRepository;
 import com.service.zerobnb.web.guest.repository.RefreshTokenRepository;
@@ -152,8 +153,17 @@ public class AuthService {
         return false;
     }
 
-    public GuestDto logOut() {
+    /**
+     * 로그아웃 메서드
+     * 로그아웃 시 db 에 저장된 refresh token 이 삭제됩니다.
+     * @param request 유저의 이메일, refresh token
+     */
+    public String logOut(LogOut request) {
+        RefreshToken refToken = refreshTokenRepository.findByGuestEmail(request.getEmail())
+                                    .orElseThrow(() -> new GuestException(ExceptionMessage.NOT_EXIST_GUEST));
 
-        return null;
+        refreshTokenRepository.delete(refToken);
+
+        return request.getEmail();
     }
 }

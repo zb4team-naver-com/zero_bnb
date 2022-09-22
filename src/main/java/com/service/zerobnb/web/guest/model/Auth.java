@@ -73,4 +73,19 @@ public class Auth {
         private String password;
     }
 
+    @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class LogOut {
+        @NotEmpty
+        @NotBlank
+        @Email(message = "이메일 형식이 아닙니다.")
+        private String email;
+
+        @NotEmpty
+        @NotBlank
+        private String refreshToken;
+    }
+
 }

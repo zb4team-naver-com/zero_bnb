@@ -28,12 +28,14 @@ public class SecurityConfig {
             .httpBasic().disable()
             .csrf().disable()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                    .authorizeHttpRequests()
-                    .antMatchers("/**/signup", "/**/login").permitAll()
-                .and()
-                    .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+            .and()
+                .authorizeHttpRequests()
+                .antMatchers("/**/login", "/**/signup").permitAll()
+            .and()
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
+            .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/");
         return http.build();
     }
-
 }
