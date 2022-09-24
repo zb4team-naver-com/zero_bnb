@@ -19,6 +19,7 @@ import javax.persistence.Index;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,16 +36,22 @@ public class Guest extends BaseTimeEntity {
     @Column(name = "guest_id")
     private Long id;
 
+    @NotNull
     private String email;
 
+    @NotNull
     private String password;
 
+    @NotNull
     private String name;
 
+    @NotNull
     private String birth;
 
+    @NotNull
     private String phone;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private GuestStatus status;
 

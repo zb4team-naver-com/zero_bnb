@@ -6,6 +6,7 @@ public enum ExceptionMessage {
 
     // 게스트, 호스트
     ALREADY_EXIST_GUEST("이미 등록된 이메일입니다."),
+    NOT_AUTH_EMAIL("이메일 인증이 필요합니다."),
     NOT_LOGIN_STATUS("로그인 되어있지 않습니다"),
     NOT_EXIST_GUEST("게스트 정보가 존재하지 않습니다"),
     NOT_EXIST_HOST("호스트 정보가 존재하지 않습니다"),
