@@ -1,14 +1,5 @@
-import React from "react"
 import axios from "axios"
 import storage from "./api"
-
-interface UserAuthSignUpInput {
-	email: string
-	password: string
-	name: string
-	birth: string
-	phone: string
-}
 
 interface UserAuthLoginInput {
 	email: string
@@ -34,8 +25,4 @@ const fetchLogin = (props: UserAuthLoginInput) => {
 	return instance.post("./login", props)
 }
 
-const fetchSignUp = (props: UserAuthSignUpInput) => {
-	return instance.post("./signup", props)
-}
-
-export { fetchLogin, fetchSignUp }
+export { fetchLogin }

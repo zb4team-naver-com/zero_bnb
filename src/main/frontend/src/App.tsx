@@ -1,16 +1,16 @@
-import React, {useEffect} from 'react';
-import Router from './router/Router'
-import axios from 'axios';
+import React, { useEffect } from "react"
+import Router from "./router/Router"
+import axios from "axios"
 
 function App() {
+	useEffect(() => {
+		axios
+			.get("/")
+			.then((response) => console.log(response))
+			.catch((error) => console.log(error))
+	}, [])
 
-  useEffect(() => {
-    axios.get('/test')
-    .then(response => console.log(response))
-    .catch(error => console.log(error))
-  }, []);
-
-  return <Router/>;
+	return <Router />
 }
 
-export default App;
+export default App
