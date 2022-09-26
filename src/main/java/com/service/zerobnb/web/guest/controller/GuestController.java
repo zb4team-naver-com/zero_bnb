@@ -10,7 +10,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -50,5 +52,17 @@ public class GuestController {
         GuestDto guestDto = this.guestService.update(id, request);
 
         return ResponseEntity.ok(guestDto);
+    }
+
+    @Operation(summary = "유저 탈퇴", description = "탈퇴 시 해당 유저의 서비스 이용이 제한됩니다.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "")
+    })
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteGuest(@PathVariable Long id) {
+
+        this.guestService.withdraw(id);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

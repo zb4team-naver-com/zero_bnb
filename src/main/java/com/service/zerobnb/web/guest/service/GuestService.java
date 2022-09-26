@@ -2,13 +2,14 @@ package com.service.zerobnb.web.guest.service;
 
 import static com.service.zerobnb.web.error.message.ExceptionMessage.*;
 
+import com.service.zerobnb.util.status.GuestStatus;
+import com.service.zerobnb.web.accommodation.repository.AccommodationRepository;
 import com.service.zerobnb.web.error.model.GuestException;
 import com.service.zerobnb.web.guest.domain.Guest;
 import com.service.zerobnb.web.guest.dto.GuestDto;
 import com.service.zerobnb.web.guest.model.GuestInput;
 import com.service.zerobnb.web.guest.repository.GuestRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class GuestService {
 
     private final GuestRepository guestRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final AccommodationRepository accommodationRepository;
 
     public GuestDto getGuestInfo(Long userId) {
 
@@ -50,5 +51,19 @@ public class GuestService {
                     .phone(request.getPhone())
                     .profileImage(request.getProfileImage())
                     .build();
+    }
+
+    @Transactional
+    public void withdraw(Long id) {
+        Guest guest = guestRepository.findById(id).orElseThrow(() -> new GuestException(NOT_EXIST_GUEST));
+
+        boolean checkedRoom = accommodationRepository.existsByHost(guest.getHost());
+
+        if (checkedRoom) {
+            throw new GuestException(MUST_DELETE_ACCOMMODATION);
+        }
+
+        guest.changeStatus(GuestStatus.WITHDRAW);
+        guestRepository.save(guest);
     }
 }
