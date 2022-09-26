@@ -23,10 +23,12 @@ import javax.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 @Entity
+@Setter
 @Getter
 @NoArgsConstructor
 @Table(name = "guest", indexes = {@Index(name = "guest_email_index", columnList = "email")})
