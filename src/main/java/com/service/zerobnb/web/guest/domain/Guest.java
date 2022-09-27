@@ -3,7 +3,6 @@ package com.service.zerobnb.web.guest.domain;
 
 import com.service.zerobnb.util.BaseTimeEntity;
 import com.service.zerobnb.util.status.GuestStatus;
-import com.service.zerobnb.web.guest.dto.GuestDto;
 import com.service.zerobnb.web.guest.model.GuestInput;
 import com.service.zerobnb.web.host.domain.Host;
 import com.service.zerobnb.web.reservation.domain.Reservation;
@@ -27,7 +26,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
 @Getter
