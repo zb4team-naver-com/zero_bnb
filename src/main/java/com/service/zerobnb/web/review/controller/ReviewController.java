@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -36,7 +37,9 @@ public class ReviewController {
             @ApiResponse(responseCode = "500", description = "리뷰 등록 실패")
     })
     @PostMapping("/register")
-    public ResponseEntity<ReviewDto> registerReview(@RequestBody @Valid ReviewForm reviewForm, Principal principal) {
+    public ResponseEntity<ReviewDto> registerReview(@RequestBody @Valid ReviewForm reviewForm,
+                                                    BindingResult bindingResult,
+                                                    Principal principal) {
 //        TODO principal 통해 email 가져오기
 //        if (principal == null) {
 //            throw new GuestException(NOT_LOGIN_STATUS);
@@ -46,6 +49,10 @@ public class ReviewController {
 //        if (!reviewForm.getEmail().equals(email)) {
 //            throw new ValidationException(NOT_VALID_INPUT);
 //        }
+
+        if (bindingResult.hasErrors()) {
+            throw new ValidationException(NOT_VALID_INPUT);
+        }
 
         return ResponseEntity.ok(reviewService.registerReview(reviewForm));
     }
@@ -74,6 +81,7 @@ public class ReviewController {
     @PutMapping("update/{reviewId}")
     public ResponseEntity<ReviewDto> updateReview(@RequestBody @Valid ReviewForm reviewForm,
                                           @PathVariable Long reviewId,
+                                          BindingResult bindingResult,
                                           Principal principal) {
 //        TODO principal 통해 email 가져오기
 //        if (principal == null) {
@@ -84,6 +92,10 @@ public class ReviewController {
 //        if (!reviewForm.getEmail().equals(email)) {
 //            throw new ValidationException(NOT_VALID_INPUT);
 //        }
+
+        if (bindingResult.hasErrors()) {
+            throw new ValidationException(NOT_VALID_INPUT);
+        }
 
         return ResponseEntity.ok(reviewService.updateReview(reviewId, reviewForm));
     }
