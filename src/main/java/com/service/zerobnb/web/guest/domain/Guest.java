@@ -97,7 +97,6 @@ public class Guest extends BaseTimeEntity {
     public Guest from(GuestInput guestInput) {
         return Guest.builder()
             .id(this.id)
-            .email(guestInput.getEmail())
             .password(this.password)
             .name(guestInput.getName())
             .birth(guestInput.getBirth())
