@@ -1,7 +1,7 @@
 package com.service.zerobnb.web.guest.controller;
 
 import com.service.zerobnb.web.guest.dto.GuestDto;
-import com.service.zerobnb.web.guest.model.Auth;
+import com.service.zerobnb.web.guest.model.AuthInput;
 import com.service.zerobnb.web.guest.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -36,7 +36,7 @@ public class SignUpController {
         @ApiResponse(responseCode = "500", description = "특정 이유로 가입에 실패했을 때의 응답 코드")
     })
     @PostMapping
-    public ResponseEntity<GuestDto> Signup(@Valid @RequestBody Auth.SignUp request) {
+    public ResponseEntity<GuestDto> Signup(@Valid @RequestBody AuthInput.SignUp request) {
         var result = this.guestService.register(request);
 
         return ResponseEntity.ok(result);

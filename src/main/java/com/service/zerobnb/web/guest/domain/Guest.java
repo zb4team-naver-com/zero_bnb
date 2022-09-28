@@ -3,6 +3,7 @@ package com.service.zerobnb.web.guest.domain;
 
 import com.service.zerobnb.util.BaseTimeEntity;
 import com.service.zerobnb.util.status.GuestStatus;
+import com.service.zerobnb.web.guest.model.GuestInput;
 import com.service.zerobnb.web.host.domain.Host;
 import com.service.zerobnb.web.reservation.domain.Reservation;
 import com.service.zerobnb.web.review.domain.Review;
@@ -91,6 +92,21 @@ public class Guest extends BaseTimeEntity {
         this.profileImage = profileImage;
         this.point = point;
         this.isHost = isHost;
+    }
+
+    public Guest from(GuestInput guestInput) {
+        return Guest.builder()
+            .id(this.id)
+            .password(this.password)
+            .name(guestInput.getName())
+            .birth(guestInput.getBirth())
+            .phone(guestInput.getPhone())
+            .status(this.status)
+            .emailAuthKey(this.emailAuthKey)
+            .profileImage(guestInput.getProfileImage())
+            .point(this.point)
+            .isHost(this.isHost)
+            .build();
     }
 
     public void changeStatus(GuestStatus status) {
