@@ -20,20 +20,13 @@ public class GuestService {
     private final GuestRepository guestRepository;
     private final AccommodationRepository accommodationRepository;
 
+    @Transactional(readOnly = true)
     public GuestDto getGuestInfo(Long userId) {
 
         Guest guest = guestRepository.findById(userId)
             .orElseThrow(() -> new GuestException(NOT_EXIST_GUEST));
 
-        return GuestDto.builder()
-                    .email(guest.getEmail())
-                    .name(guest.getName())
-                    .phone(guest.getPhone())
-                    .birth(guest.getBirth())
-                    .profileImage(guest.getProfileImage())
-                    .isHost(guest.isHost())
-                    .point(guest.getPoint())
-                    .build();
+        return setDto(guest);
     }
 
     @Transactional
@@ -41,16 +34,9 @@ public class GuestService {
         Guest guest = guestRepository.findById(id)
                                     .orElseThrow(() -> new GuestException(NOT_EXIST_GUEST));
 
-        guestRepository.save(guest.from(request));
+        setEntity(guest, request);
 
-        return GuestDto.builder()
-                    .email(request.getEmail())
-                    .password(request.getPassword())
-                    .name(request.getName())
-                    .birth(request.getBirth())
-                    .phone(request.getPhone())
-                    .profileImage(request.getProfileImage())
-                    .build();
+        return setDto(request);
     }
 
     @Transactional
@@ -64,6 +50,40 @@ public class GuestService {
         }
 
         guest.changeStatus(GuestStatus.WITHDRAW);
-        guestRepository.save(guest);
+    }
+
+    private Guest setEntity(Guest guest, GuestInput input) {
+
+        guest.setEmail(input.getEmail());
+        guest.setPassword(input.getPassword());
+        guest.setName(input.getName());
+        guest.setBirth(input.getBirth());
+        guest.setPhone(input.getPhone());
+        guest.setProfileImage(input.getProfileImage());
+
+        return guest;
+    }
+
+    private GuestDto setDto(Guest guest) {
+        return GuestDto.builder()
+                    .email(guest.getEmail())
+                    .name(guest.getName())
+                    .phone(guest.getPhone())
+                    .birth(guest.getBirth())
+                    .profileImage(guest.getProfileImage())
+                    .isHost(guest.isHost())
+                    .point(guest.getPoint())
+                    .build();
+    }
+
+    private GuestDto setDto(GuestInput input) {
+        return GuestDto.builder()
+                    .email(input.getEmail())
+                    .password(input.getPassword())
+                    .name(input.getName())
+                    .birth(input.getBirth())
+                    .phone(input.getPhone())
+                    .profileImage(input.getProfileImage())
+                    .build();
     }
 }
