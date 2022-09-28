@@ -19,6 +19,7 @@ const Router = () => {
 				</Route>
 				<Route path="/" element={<NotHeader />}>
 					<Route path="MainContainerPage" element={<MainPage />} />
+					{/* <Route path="MainContainerPage/:hotelId" element={</>}/> */}
 					<Route path="LogoutPage" element={<LogoutPage />} />
 					<Route path="SignupPage" element={<SignupPage />} />
 				</Route>

@@ -15,46 +15,6 @@ export default function MainContainerComponents() {
 							<p>여기어때 혼자 어때 ~~</p>
 						</S.PDiv>
 					</S.DivBox>
-					<S.DivBox>
-						<S.ImgDiv>
-							<img src="/" />
-						</S.ImgDiv>
-						<S.PDiv>
-							<p>여기어때 혼자 어때 ~~</p>
-						</S.PDiv>
-					</S.DivBox>
-					<S.DivBox>
-						<S.ImgDiv>
-							<img src="/" />
-						</S.ImgDiv>
-						<S.PDiv>
-							<p>여기어때 혼자 어때 ~~</p>
-						</S.PDiv>
-					</S.DivBox>
-					<S.DivBox>
-						<S.ImgDiv>
-							<img src="/" />
-						</S.ImgDiv>
-						<S.PDiv>
-							<p>여기어때 혼자 어때 ~~</p>
-						</S.PDiv>
-					</S.DivBox>
-					<S.DivBox>
-						<S.ImgDiv>
-							<img src="/" />
-						</S.ImgDiv>
-						<S.PDiv>
-							<p>여기어때 혼자 어때 ~~</p>
-						</S.PDiv>
-					</S.DivBox>
-					<S.DivBox>
-						<S.ImgDiv>
-							<img src="/" />
-						</S.ImgDiv>
-						<S.PDiv>
-							<p>여기어때 혼자 어때 ~~</p>
-						</S.PDiv>
-					</S.DivBox>
 				</S.Section>
 			</S.Main>
 		</>

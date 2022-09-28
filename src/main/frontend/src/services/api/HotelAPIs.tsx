@@ -1,16 +1,23 @@
 import axios from "axios"
-import storage from "./api"
 
 interface HotelType {
-	id: string
-	title: string
-	content: string
+	accommodationId: string
+	name: string
+	latitude: number
+	longitude: number
+	address: string
+	description: string
+	wishCount: string
+	accommodationType: string
+	accommodationImageList: string
 }
 
 const instance = axios.create({
-	baseURL: "http://localhost:8000",
+	baseURL: "http://localhost:8000/accommodation/info",
 })
 
-instance.interceptors.response.use((res) => {
-	return res.data
-})
+const fetchHotelList = (props: HotelType) => {
+	return instance.post("./accommodation/info", props)
+}
+
+export { fetchHotelList }

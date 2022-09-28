@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios, { AxiosRequestConfig, AxiosRequestHeaders } from "axios"
 import storage from "./api"
 
 interface UserAuthLoginInput {
@@ -6,15 +6,33 @@ interface UserAuthLoginInput {
 	password: string
 }
 
+const EXPIRE_TIEM = 3600 * 1000
+
 const instance = axios.create({
 	baseURL: "http://localhost:8000",
+	timeout: 6000,
+	withCredentials: false,
+	headers: {
+		"Content-Type": "application/json",
+	},
 })
 
+// instance.interceptors.request.use((config) => {
+// 	const AccessToken = storage.get({ key: "Accesstoken" })
+// 	const RefreshToken = storage.get({ key: "Accesstoken" })
+// 	if (!!AccessToken) {
+// 		storage.remove({ key: "Accesstoken" })
+// 	}
+// })
+
 instance.interceptors.response.use(
-	(res) => {
-		const { token } = res.data
-		storage.set({ key: "token", value: token })
-		return res
+	(response) => {
+		const { token } = response.data
+		storage.set({
+			key: "Accesstoken",
+			value: `Bearer ${token}`,
+		})
+		return { ...response, headers: { Authorization: token } }
 	},
 	(error) => {
 		return Promise.reject(error)

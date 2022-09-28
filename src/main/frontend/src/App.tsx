@@ -6,7 +6,7 @@ function App() {
 	useEffect(() => {
 		axios
 			.get("/")
-			.then((response) => console.log(response))
+			.then((response) => console.log(response.status))
 			.catch((error) => console.log(error))
 	}, [])
 
