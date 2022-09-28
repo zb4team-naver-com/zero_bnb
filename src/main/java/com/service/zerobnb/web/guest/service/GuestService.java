@@ -53,8 +53,6 @@ public class GuestService {
     }
 
     private Guest setEntity(Guest guest, GuestInput input) {
-
-        guest.setEmail(input.getEmail());
         guest.setPassword(input.getPassword());
         guest.setName(input.getName());
         guest.setBirth(input.getBirth());
@@ -78,7 +76,6 @@ public class GuestService {
 
     private GuestDto setDto(GuestInput input) {
         return GuestDto.builder()
-                    .email(input.getEmail())
                     .password(input.getPassword())
                     .name(input.getName())
                     .birth(input.getBirth())

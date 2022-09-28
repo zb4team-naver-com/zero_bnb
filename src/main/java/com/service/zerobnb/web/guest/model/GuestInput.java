@@ -16,11 +16,6 @@ import lombok.NoArgsConstructor;
 public class GuestInput {
     @NotEmpty
     @NotBlank
-    @Email(message = "이메일 형식이 아닙니다.")
-    private String email;
-
-    @NotEmpty
-    @NotBlank
     @Pattern(regexp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,20}",
         message = "비밀번호는 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상 포함된 8 ~ 20자의 비밀번호여야 합니다.")
     private String password;
