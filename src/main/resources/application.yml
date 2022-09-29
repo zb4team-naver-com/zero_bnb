@@ -5,10 +5,6 @@ server:
   port: 8000
 
 spring:
-  redis:
-    host: ${REDIS_HOST}
-    port: ${REDIS_PORT}
-
   profiles:
     include: secret
 
@@ -28,30 +24,19 @@ spring:
       max-file-size: 20MB
       max-request-size: 20MB
 
-  #mysql
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
   datasource:
-    url: jdbc:mysql://localhost:${DB_PORT}/${DB_SCHEMA}?serverTimezone=Asia/Seoul
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
-
-
-  # h2 DB
-  #  datasource:
-  #    url: jdbc:h2:mem:testdb
-  #    driver-class-name: org.h2.Driver
-  #    hikari:
-  #      username: sa
-  #      password:
-  #
-  #  h2:
-  #    console:
-  #      enabled: true
-  #      path: /h2-console
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    hikari:
+      username: sa
+      password:
 
   jpa:
-    database: mysql
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     defer-datasource-initialization: true
     hibernate:
       format_sql: true
@@ -88,9 +73,6 @@ spring:
       name: user
       password: password
       roles: USER
-
-  jwt:
-    secret: ${JWT_SECRET_KEY}
 
 springdoc:
   cache:

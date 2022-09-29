@@ -5,7 +5,7 @@ import axios from 'axios';
 function App() {
 
   useEffect(() => {
-    axios.get('/test')
+    axios.get('/')
     .then(response => console.log(response))
     .catch(error => console.log(error))
   }, []);
