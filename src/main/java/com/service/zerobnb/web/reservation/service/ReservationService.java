@@ -46,6 +46,12 @@ public class ReservationService {
             throw new ReservationException(ALREADY_EXIST_RESERVATION_DATE);
         }
 
+        if (guest.getPoint() - form.getPaymentForm().getPointCost() < 0) {
+            throw new GuestException(USE_POINT_GREATER_THAN_GUEST_POINT);
+        }
+        guest.setPoint(guest.getPoint() - form.getPaymentForm().getPointCost());
+        guestRepository.save(guest);
+
         room.setRoomCount(room.getRoomCount() - 1);
         roomRepository.save(room);
 
@@ -78,6 +84,9 @@ public class ReservationService {
         if (reservation.getCheckInTime().isBefore(LocalDateTime.now().plusDays(7))) {
             throw new ReservationException(EXPIRE_CANCEL_PERIOD);
         }
+
+        guest.setPoint(guest.getPoint() + reservation.getPayment().getPointCost());
+        guestRepository.save(guest);
         reservationRepository.delete(reservation);
     }
 
