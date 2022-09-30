@@ -40,10 +40,10 @@ out/
 logs
 
 ### application-aws.yml
-application-aws.yml
+#application-aws.yml
 
 ### Secret Key
-application-secret.yml
+#application-secret.yml
 
 ### build file
 src/main/resources/static/js

@@ -7,6 +7,7 @@ import com.service.zerobnb.web.accommodation.model.AccommodationInput;
 import com.service.zerobnb.web.accommodation.model.EventInput;
 import com.service.zerobnb.web.accommodation.model.PopularFacilityServiceInput;
 import com.service.zerobnb.web.accommodation.service.AccommodationService;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -24,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureMockMvc
 @WebMvcTest(controllers = AccommodationController.class)
+@Disabled
 class AccommodationControllerTest {
     @Autowired
     MockMvc mockMvc;

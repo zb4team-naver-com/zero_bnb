@@ -17,6 +17,7 @@ import com.service.zerobnb.web.review.repository.ReviewCategoryRepository;
 import com.service.zerobnb.web.review.repository.ReviewRepository;
 import com.service.zerobnb.web.room.domain.Room;
 import com.service.zerobnb.web.room.repository.RoomRepository;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,7 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 
 @SpringBootTest
+@Disabled
 class ReviewServiceTest {
 
     @Autowired
