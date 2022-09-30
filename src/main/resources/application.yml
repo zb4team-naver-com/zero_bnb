@@ -30,7 +30,7 @@ spring:
 
   #mysql
   datasource:
-    url: jdbc:mysql://localhost:${DB_PORT}/${DB_SCHEMA}?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_SCHEMA}?serverTimezone=Asia/Seoul
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
