@@ -30,7 +30,8 @@ public class SecurityConfig {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
                 .authorizeHttpRequests()
-                .antMatchers("/**/login", "/**/signup").permitAll()
+                .antMatchers("/**").permitAll()
+//                .anyRequest().authenticated()
             .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
             .logout()
@@ -38,4 +39,5 @@ public class SecurityConfig {
                 .logoutSuccessUrl("/");
         return http.build();
     }
+
 }

@@ -10,7 +10,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-public class Auth {
+public class AuthInput {
 
     @Getter
     @Builder
@@ -30,7 +30,6 @@ public class Auth {
 
         @NotEmpty
         @NotBlank
-
         private String name;
 
         @NotEmpty

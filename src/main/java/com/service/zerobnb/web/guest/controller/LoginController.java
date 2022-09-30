@@ -1,7 +1,7 @@
 package com.service.zerobnb.web.guest.controller;
 
 import com.service.zerobnb.web.guest.dto.ResponseTokenDto;
-import com.service.zerobnb.web.guest.model.Auth;
+import com.service.zerobnb.web.guest.model.AuthInput;
 import com.service.zerobnb.web.guest.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -29,7 +29,7 @@ public class LoginController {
         @ApiResponse(responseCode = "200", description = "성공 시 JWT 로 만들어진 Access token 과 Refresh token 이 발급됩니다.")
     })
     @PostMapping("/login")
-    public ResponseEntity<ResponseTokenDto> login(@Valid @RequestBody Auth.LogIn request) {
+    public ResponseEntity<ResponseTokenDto> login(@Valid @RequestBody AuthInput.LogIn request) {
 
         ResponseTokenDto responseToken = this.guestService.logIn(request);
 
