@@ -3,8 +3,10 @@ package com.service.zerobnb.web.reservation.service;
 import com.service.zerobnb.web.error.model.GuestException;
 import com.service.zerobnb.web.error.model.ReservationException;
 import com.service.zerobnb.web.error.model.RoomException;
+import com.service.zerobnb.web.error.model.ValidationException;
 import com.service.zerobnb.web.guest.domain.Guest;
 import com.service.zerobnb.web.guest.repository.GuestRepository;
+import com.service.zerobnb.web.payment.domain.Payment;
 import com.service.zerobnb.web.reservation.domain.Reservation;
 import com.service.zerobnb.web.reservation.dto.ReservationDto;
 import com.service.zerobnb.web.reservation.model.ReservationForm;
@@ -31,7 +33,7 @@ public class ReservationService {
     private final RoomRepository roomRepository;
 
     @Transactional
-    public void reservation(String email, ReservationForm form) {
+    public ReservationDto reservation(String email, ReservationForm form) {
         Guest guest = existGuestException(email);
 
         Room room = roomRepository.findById(form.getRoomId())
@@ -44,32 +46,47 @@ public class ReservationService {
             throw new ReservationException(ALREADY_EXIST_RESERVATION_DATE);
         }
 
-        if (room.getStandardPeople() < form.getPeopleCount()) {
-            // TODO 추가 인원에 따른 비용 추가 고민 
+        if (guest.getPoint() - form.getPaymentForm().getPointCost() < 0) {
+            throw new GuestException(USE_POINT_GREATER_THAN_GUEST_POINT);
         }
+        guest.setPoint(guest.getPoint() - form.getPaymentForm().getPointCost());
+        guestRepository.save(guest);
 
         room.setRoomCount(room.getRoomCount() - 1);
-        Reservation reservation = Reservation.from(form, guest, room);
-        reservationRepository.save(reservation);
         roomRepository.save(room);
+
+        Payment payment = Payment.from(form, room);
+
+        Reservation reservation = Reservation.from(form, guest, room, payment);
+        payment.setReservation(reservation);
+        reservationRepository.save(reservation);
+
+        return ReservationDto.from(reservation);
     }
 
-    public List<ReservationDto> myReservation(String email) {
+    public List<ReservationDto> myReservation(Long guestId, String email) {
         Guest guest = existGuestException(email);
+        if (!guest.getId().equals(guestId)) {
+            throw new ValidationException(NOT_VALID_INPUT);
+        }
+
         return guest.getReservationList().stream()
                 .map(ReservationDto::from).collect(Collectors.toList());
     }
 
     @Transactional
-    public void cancelReservation(String email, Long id) {
+    public void cancelReservation(String email, Long reservationId) {
         Guest guest = existGuestException(email);
 
-        Reservation reservation = reservationRepository.findByGuestIdAndId(guest.getId(), id)
+        Reservation reservation = reservationRepository.findByGuestIdAndId(guest.getId(), reservationId)
                 .orElseThrow(() -> new ReservationException(NOT_EXIST_RESERVATION));
 
         if (reservation.getCheckInTime().isBefore(LocalDateTime.now().plusDays(7))) {
             throw new ReservationException(EXPIRE_CANCEL_PERIOD);
         }
+
+        guest.setPoint(guest.getPoint() + reservation.getPayment().getPointCost());
+        guestRepository.save(guest);
         reservationRepository.delete(reservation);
     }
 

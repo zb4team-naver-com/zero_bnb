@@ -33,7 +33,7 @@ public class Reservation extends BaseTimeEntity {
     @JoinColumn(name = "room_id")
     private Room room;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "reservation")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "reservation", cascade = CascadeType.ALL)
     private Payment payment;
 
     private LocalDateTime checkInTime;
@@ -51,14 +51,15 @@ public class Reservation extends BaseTimeEntity {
 
     private boolean isReview;
 
-    public static Reservation from(ReservationForm form, Guest guest, Room room) {
+    public static Reservation from(ReservationForm form, Guest guest, Room room, Payment payment) {
         return Reservation.builder()
                 .guest(guest)
                 .room(room)
+                .payment(payment)
                 .checkInTime(form.getCheckInTime())
                 .checkOutTime(form.getCheckOutTime())
                 .days(form.getDays(form.getCheckInTime(), form.getCheckOutTime()))
-                .cost(room.getCost() * (100 - room.getDiscount()) / 100)
+                .cost(payment.getReservationCost())
                 .peopleCount(form.getPeopleCount())
                 .transportationType(form.getTransportationType())
                 .bookerName(guest.getName())
