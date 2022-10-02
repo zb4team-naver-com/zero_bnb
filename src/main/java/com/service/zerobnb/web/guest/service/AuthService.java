@@ -34,7 +34,7 @@ public class AuthService {
     private final JwtTokenProvider jwtTokenProvider;
 
     private final String EMAIL_SUBJECT = "zero bnb 가입 인증 메일입니다.";
-    private final String EMAIL_TEXT = "<p> 아래 링크를 통해 가입을 완료하세요. </p> <div><a href='http://localhost:8000/signup/email-auth/";
+    private final String EMAIL_TEXT = "<p> 아래 링크를 통해 가입을 완료하세요. </p> <div><a href='http://ec2-3-16-183-72.us-east-2.compute.amazonaws.com/signup/email-auth/";
 
     /**
      * 회원 가입을 요청한 유저를 db에 저장한 후 인증을 위한 이메일을 전송합니다.
