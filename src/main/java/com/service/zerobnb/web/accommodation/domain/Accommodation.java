@@ -1,8 +1,8 @@
 package com.service.zerobnb.web.accommodation.domain;
 
 import com.service.zerobnb.util.BaseTimeEntity;
-import com.service.zerobnb.util.type.AccommodationType;
 import com.service.zerobnb.util.LocationPosition;
+import com.service.zerobnb.util.type.AccommodationType;
 import com.service.zerobnb.web.accommodation.model.AccommodationInput;
 import com.service.zerobnb.web.coupon.domain.Coupon;
 import com.service.zerobnb.web.host.domain.Host;
@@ -36,8 +36,6 @@ public class Accommodation extends BaseTimeEntity {
     private LocationPosition locationPosition;
 
     private String address;
-
-    // TODO 지도 API 사용에 따른 위치 필드 추가될 수도 ...
 
     @Lob
     private String description;

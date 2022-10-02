@@ -12,7 +12,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
 @ToString(exclude = {"guest", "room", "payment"})
 @NoArgsConstructor
@@ -32,7 +33,7 @@ public class Reservation extends BaseTimeEntity {
     @JoinColumn(name = "room_id")
     private Room room;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "reservation")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "reservation", cascade = CascadeType.ALL)
     private Payment payment;
 
     private LocalDateTime checkInTime;
@@ -48,18 +49,22 @@ public class Reservation extends BaseTimeEntity {
     private String bookerName;
     private String bookerPhone;
 
-    public static Reservation from(ReservationForm form, Guest guest, Room room) {
+    private boolean isReview;
+
+    public static Reservation from(ReservationForm form, Guest guest, Room room, Payment payment) {
         return Reservation.builder()
                 .guest(guest)
                 .room(room)
+                .payment(payment)
                 .checkInTime(form.getCheckInTime())
                 .checkOutTime(form.getCheckOutTime())
                 .days(form.getDays(form.getCheckInTime(), form.getCheckOutTime()))
-                .cost(room.getCost() * (100 - room.getDiscount()) / 100)
+                .cost(payment.getReservationCost())
                 .peopleCount(form.getPeopleCount())
                 .transportationType(form.getTransportationType())
                 .bookerName(guest.getName())
                 .bookerPhone(guest.getPhone())
+                .isReview(false)
                 .build();
     }
 

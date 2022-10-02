@@ -8,32 +8,32 @@ INSERT INTO guest
 values (2, NOW(), NOW(), '1985.03.10', 'fdsfs@daum.net', 'auth-key', true, '김구라', '$2a$10$.rDw.GmmeGJEkmBhwgeyh.tLWu9twxbthVgWVIm4vpQG0ItBYc1Wa', '010-4343-5435', 25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EA%B9%80%EA%B5%AC%EB%9D%BC.png', 'NOT_AUTH');
 INSERT INTO guest
-values (3, NOW(), NOW(), '2002.05.25', 'fgfg@gmail.com', 'auth-key', false, '김주민', 'password', '010-9828-3333', 25000,
+values (3, NOW(), NOW(), '2002.05.25', 'fgfg@gmail.com', 'auth-key', false, '김주민', '$2a$10$.rDw.GmmeGJEkmBhwgeyh.tLWu9twxbthVgWVIm4vpQG0ItBYc1Wa', '010-9828-3333', 25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EA%B0%95%EC%98%81%EB%AF%BC.jpg', 'ACTIVE');
 INSERT INTO guest
-values (4, NOW(), NOW(), '1985.12.25', 'sdkels2@naver.com', 'auth-key', true, '여주영', 'password', '010-2185-3892', 25000,
+values (4, NOW(), NOW(), '1985.12.25', 'sdkels2@naver.com', 'auth-key', true, '여주영', '$2a$10$.rDw.GmmeGJEkmBhwgeyh.tLWu9twxbthVgWVIm4vpQG0ItBYc1Wa', '010-2185-3892', 25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EC%8B%A0%EC%A7%80%EC%97%B0.jpg', 'NOT_AUTH');
 INSERT INTO guest
-values (5, NOW(), NOW(), '2003.11.16', 'a94824594@naver.com', 'auth-key', false, '정주영', 'password', '010-3948-3567',
+values (5, NOW(), NOW(), '2003.11.16', 'a94824594@naver.com', 'auth-key', false, '정주영', '$2a$10$.rDw.GmmeGJEkmBhwgeyh.tLWu9twxbthVgWVIm4vpQG0ItBYc1Wa', '010-3948-3567',
         25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EC%8B%A0%EC%A7%80%EC%97%B0.jpg', 'ACTIVE');
 INSERT INTO guest
-values (6, NOW(), NOW(), '2000.06.19', 'yolu@naver.com', 'auth-key', false, '신지연', 'password', '010-4343-3323', 25000,
+values (6, NOW(), NOW(), '2000.06.19', 'yolu@naver.com', 'auth-key', false, '신지연', '$2a$10$.rDw.GmmeGJEkmBhwgeyh.tLWu9twxbthVgWVIm4vpQG0ItBYc1Wa', '010-4343-3323', 25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EC%8B%A0%EC%A7%80%EC%97%B0.jpg', 'ACTIVE');
 INSERT INTO guest
-values (7, NOW(), NOW(), '1999.03.28', 'enime434@naver.com', 'auth-key', false, '이유진', 'password', '010-1577-1577',
+values (7, NOW(), NOW(), '1999.03.28', 'enime434@naver.com', 'auth-key', false, '이유진', '$2a$10$.rDw.GmmeGJEkmBhwgeyh.tLWu9twxbthVgWVIm4vpQG0ItBYc1Wa', '010-1577-1577',
         25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EA%B0%95%EC%98%81%EB%AF%BC.jpg', 'NOT_AUTH');
 INSERT INTO guest
-values (8, NOW(), NOW(), '1978.03.01', 'nebiros@tistory.com', 'auth-key', false, '연준호', 'password', '010-8675-4938',
+values (8, NOW(), NOW(), '1978.03.01', 'nebiros@tistory.com', 'auth-key', false, '연준호', '$2a$10$.rDw.GmmeGJEkmBhwgeyh.tLWu9twxbthVgWVIm4vpQG0ItBYc1Wa', '010-8675-4938',
         25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EA%B0%95%EC%98%81%EB%AF%BC.jpg', 'ACTIVE');
 INSERT INTO guest
-values (9, NOW(), NOW(), '1965.02.26', 'loveyooop@naver.com', 'auth-key', true, '정준길', 'password', '010-5464-2343',
+values (9, NOW(), NOW(), '1965.02.26', 'loveyooop@naver.com', 'auth-key', true, '정준길', '$2a$10$.rDw.GmmeGJEkmBhwgeyh.tLWu9twxbthVgWVIm4vpQG0ItBYc1Wa', '010-5464-2343',
         25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EA%B0%95%EC%98%81%EB%AF%BC.jpg', 'ACTIVE');
 INSERT INTO guest
-values (10, NOW(), NOW(), '1999.04.04', 'saymymin@kakao.com', 'auth-key', true, '김준호', 'password', '010-4664-5453',
+values (10, NOW(), NOW(), '1999.04.04', 'saymymin@kakao.com', 'auth-key', true, '김준호', '$2a$10$.rDw.GmmeGJEkmBhwgeyh.tLWu9twxbthVgWVIm4vpQG0ItBYc1Wa', '010-4664-5453',
         25000,
         'https://zerobnb-bucket.s3.amazonaws.com/image/%EA%B9%80%EC%A4%80%ED%98%B8.jpg', 'NOT_AUTH');
 
@@ -72,18 +72,18 @@ values (2, NOW(), NOW(), 'PENSION', '서울 강서구 등촌동 구구호텔', '
         '구구호텔에 오신 것을 환영합니다. 과도한 애정행각은 금지입니다.',
         '쓰고간 곳은 청결히 유지해주세요.', 11, 2);
 INSERT INTO accommodation
-values (3, NOW(), NOW(), 'MOTEL', '서울 신림구 신림동 신림짝모텔', '둘이 들어가서 셋이되서 나오는 짝 모텔', false, 25.5, 34.4, '신림짝모텔',
+values (3, NOW(), NOW(), 'MOTEL', '서울 신림구 신림동 신림짝모텔', '둘이 들어가서 셋이되서 나오는 짝 모텔', false, 23.5, 34.4, '신림짝모텔',
         '신림짝 모텔입니다. 즐거운 사랑을 나누세요.',
         '쓰고간 곳은 청결히 유지해주세요. 위반 시 벌금 1백만원', 25, 2);
 INSERT INTO accommodation
-values (4, NOW(), NOW(), 'MOTEL', '서울 강남구 강남동 강남 어게인', '밝게 빛나는 강남 어게인', false, 25.5, 34.4, '강남어게인', '강남 어게인 입니다.',
+values (4, NOW(), NOW(), 'MOTEL', '서울 강남구 강남동 강남 어게인', '밝게 빛나는 강남 어게인', false, 25.5, 31.4, '강남어게인', '강남 어게인 입니다.',
         '1. 뒷처리는 깔끔히 한다. 2. 쓰고남은 휴지는 휴지통에 버린다.', 509, 3);
 INSERT INTO accommodation
-values (5, NOW(), NOW(), 'GUEST_HOUSE', '제주 특별시 감귤 게스트 하우스', '어서오세요, 감귤 게스트 하우스 입니다.', false, 25.5, 34.4, '감귤 게스트 하우스',
+values (5, NOW(), NOW(), 'GUEST_HOUSE', '제주 특별시 감귤 게스트 하우스', '어서오세요, 감귤 게스트 하우스 입니다.', false, 27.5, 35.4, '감귤 게스트 하우스',
         '편하게 즐기다 가세요~',
         '놀다간 뒷처리는 깔끔하게~', 119, 4);
 INSERT INTO accommodation
-values (6, NOW(), NOW(), 'VILLA', '경남 김해시 진주빌라', '진주 빌라 입니다.', false, 25.5, 34.4, '진주빌라', '어서오세요~ 진주빌라입니다.',
+values (6, NOW(), NOW(), 'VILLA', '경남 김해시 진주빌라', '진주 빌라 입니다.', false, 26.5, 33.4, '진주빌라', '어서오세요~ 진주빌라입니다.',
         '1. 뒷처리는 깔끔히 한다. 2. 쓰고남은 휴지는 휴지통에 버린다.', 3, 5);
 
 
@@ -779,26 +779,26 @@ values (64, 4, 5, 16);
  */
 -- 1번 고객
 INSERT INTO reservation
-values (1, now(), now(), '강영민', '010-5948-3938', '2020-04-29 20:00:00', '2022-04-30 15:00:00', 500000, 1, 5, 'FOOT', 1,
+values (1, now(), now(), '강영민', '010-5948-3938', '2020-04-29 20:00:00', '2022-04-30 15:00:00',500000, 1, false, 5, 'FOOT', 1,
         10);
 INSERT INTO payment
 values (1, now(), now(), 0, 1, 0, 500000, 1);
 
 INSERT INTO reservation
-values (2, now(), now(), '강영민', '010-5948-3938', '2021-11-01 19:00:00', '2021-11-01 22:00:00', 30000, 0, 5, 'FOOT', 1,
+values (2, now(), now(), '강영민', '010-5948-3938', '2021-11-01 19:00:00', '2021-11-01 22:00:00', 30000, 0, false, 5, 'FOOT', 1,
         5);
 INSERT INTO payment
 values (2, now(), now(), 0, 1, 0, 30000, 2);
 
 INSERT INTO reservation
-values (3, now(), now(), '강영민', '010-5948-3938', '2022-04-05 13:00:00', '2022-04-05 17:00:00', 200000, 1, 5, 'FOOT', 1,
+values (3, now(), now(), '강영민', '010-5948-3938', '2022-04-05 13:00:00', '2022-04-05 17:00:00', 200000, 1, false, 5, 'FOOT', 1,
         7);
 INSERT INTO payment
 values (3, now(), now(), 0, 1, 0, 200000, 3);
 
 
 INSERT INTO reservation
-values (4, now(), now(), '강영민', '010-5948-3938', '2019-04-05 13:00:00', '2019-04-05 17:00:00', 200000, 1, 5, 'FOOT', 1,
+values (4, now(), now(), '강영민', '010-5948-3938', '2019-04-05 13:00:00', '2019-04-05 17:00:00', 200000, 1, false, 5, 'FOOT', 1,
         7);
 INSERT INTO payment
 values (4, now(), now(), 0, 1, 0, 200000, 4);
@@ -806,58 +806,58 @@ values (4, now(), now(), 0, 1, 0, 200000, 4);
 
 -- 2번 고객
 INSERT INTO reservation
-values (5, now(), now(), '김구라', '010-4343-5435', '2022-04-08 13:00:00', '2022-04-09 16:00:00', 20000, 1, 5, 'FOOT', 2,
+values (5, now(), now(), '김구라', '010-4343-5435', '2022-04-08 13:00:00', '2022-04-09 16:00:00', 20000, 1, false, 5, 'FOOT', 2,
         7);
 INSERT INTO payment
 values (5, now(), now(), 0, 1, 0, 20000, 5);
 
 INSERT INTO reservation
-values (6, now(), now(), '김구라', '010-4343-5435', '2022-04-08 13:00:00', '2022-04-09 16:00:00', 20000, 1, 5, 'FOOT', 2,
+values (6, now(), now(), '김구라', '010-4343-5435', '2022-04-08 13:00:00', '2022-04-09 16:00:00', 20000, 1, false, 5, 'FOOT', 2,
         7);
 INSERT INTO payment
 values (6, now(), now(), 0, 1, 0, 20000, 6);
 
 INSERT INTO reservation
-values (7, now(), now(), '김구라', '010-4343-5435', '2022-04-08 13:00:00', '2022-04-09 16:00:00', 20000, 1, 5, 'FOOT', 2,
+values (7, now(), now(), '김구라', '010-4343-5435', '2022-04-08 13:00:00', '2022-04-09 16:00:00', 20000, 1, false, 5, 'FOOT', 2,
         11);
 INSERT INTO payment
 values (7, now(), now(), 0, 1, 0, 20000, 7);
 
 INSERT INTO reservation
-values (8, now(), now(), '김구라', '010-4343-5435', '2022-04-08 13:00:00', '2022-04-09 16:00:00', 20000, 1, 5, 'FOOT', 2,
+values (8, now(), now(), '김구라', '010-4343-5435', '2022-04-08 13:00:00', '2022-04-09 16:00:00', 20000, 1, false, 5, 'FOOT', 2,
         8);
 INSERT INTO payment
 values (8, now(), now(), 0, 1, 0, 20000, 8);
 
 INSERT INTO reservation
-values (9, now(), now(), '김구라', '010-4343-5435', '2022-04-08 13:00:00', '2022-04-09 16:00:00', 20000, 1, 5, 'FOOT', 2,
+values (9, now(), now(), '김구라', '010-4343-5435', '2022-04-08 13:00:00', '2022-04-09 16:00:00', 20000, 1, false, 5, 'FOOT', 2,
         4);
 INSERT INTO payment
 values (9, now(), now(), 0, 1, 0, 20000, 9);
 
 INSERT INTO reservation
-values (10, now(), now(), '김구라', '010-4343-5435', '2022-04-08 13:00:00', '2022-04-09 16:00:00', 20000, 1, 5, 'FOOT', 2,
+values (10, now(), now(), '김구라', '010-4343-5435', '2022-04-08 13:00:00', '2022-04-09 16:00:00', 20000, 1, false, 5, 'FOOT', 2,
         7);
 INSERT INTO payment
 values (10, now(), now(), 0, 1, 0, 20000, 10);
 
 -- 3번 고객
 INSERT INTO reservation
-values (11, now(), now(), '김주민', '010-9828-3333', '2021-03-28 19:00:00', '2021-03-28 22:00:00', 25000, 0, 5, 'VEHICLE', 3,
+values (11, now(), now(), '김주민', '010-9828-3333', '2021-03-28 19:00:00', '2021-03-28 22:00:00', 25000, 0, false, 5, 'VEHICLE', 3,
         6);
 INSERT INTO payment
 values (11, now(), now(), 0, 1, 0, 20000, 11);
 
 -- 4번 고객
 INSERT INTO reservation
-values (12, now(), now(), '여주영', '010-2185-3892', '2022-01-01 19:00:00', '2022-01-02 13:00:00', 150000, 1, 5, 'FOOT', 4,
+values (12, now(), now(), '여주영', '010-2185-3892', '2022-01-01 19:00:00', '2022-01-02 13:00:00', 150000, 1, false, 5, 'FOOT', 4,
         11);
 INSERT INTO payment
 values (12, now(), now(), 0, 1, 0, 20000, 12);
 
 -- 5번 고객
 INSERT INTO reservation
-values (13, now(), now(), '정주영', '010-3948-3567', '2022-04-04 19:00:00', '2022-04-06 13:00:00', 390000, 2, 5, 'FOOT', 5,
+values (13, now(), now(), '정주영', '010-3948-3567', '2022-04-04 19:00:00', '2022-04-06 13:00:00', 390000, 2, false, 5, 'FOOT', 5,
         11);
 INSERT INTO payment
 values (13, now(), now(), 0, 1, 0, 390000, 13);
@@ -865,39 +865,39 @@ values (13, now(), now(), 0, 1, 0, 390000, 13);
 
 -- 6번 고객
 INSERT INTO reservation
-values (14, now(), now(), '신지연', '010-4343-3323', '2022-04-04 19:00:00', '2022-04-06 13:00:00', 390000, 2, 5, 'FOOT', 6,
+values (14, now(), now(), '신지연', '010-4343-3323', '2022-04-04 19:00:00', '2022-04-06 13:00:00', 390000, 2, false, 5, 'FOOT', 6,
         3);
 INSERT INTO payment
 values (14, now(), now(), 0, 1, 0, 390000, 14);
 
 INSERT INTO reservation
-values (15, now(), now(), '신지연', '010-4343-3323', '2021-04-04 19:00:00', '2021-04-06 13:00:00', 390000, 2, 5, 'FOOT', 6,
+values (15, now(), now(), '신지연', '010-4343-3323', '2021-04-04 19:00:00', '2021-04-06 13:00:00', 390000, 2, false, 5, 'FOOT', 6,
         7);
 INSERT INTO payment
 values (15, now(), now(), 0, 1, 0, 390000, 15);
 
 INSERT INTO reservation
-values (16, now(), now(), '신지연', '010-4343-3323', '2020-04-04 19:00:00', '2020-04-06 13:00:00', 390000, 2, 5, 'FOOT', 6,
+values (16, now(), now(), '신지연', '010-4343-3323', '2020-04-04 19:00:00', '2020-04-06 13:00:00', 390000, 2, false, 5, 'FOOT', 6,
         8);
 INSERT INTO payment
 values (16, now(), now(), 0, 1, 0, 390000, 16);
 
 -- 7번 고객
 INSERT INTO reservation
-values (17, now(), now(), '이유진', '010-1577-1577', '2022-07-01 19:00:00', '2022-07-01 13:00:00', 30000, 1, 5, 'FOOT', 7,
+values (17, now(), now(), '이유진', '010-1577-1577', '2022-07-01 19:00:00', '2022-07-01 13:00:00', 30000, 1, false, 5, 'FOOT', 7,
         12);
 INSERT INTO payment
 values (17, now(), now(), 0, 1, 0, 30000, 17);
 
 INSERT INTO reservation
-values (18, now(), now(), '이유진', '010-1577-1577', '2022-06-26 19:00:00', '2022-06-27 13:00:00', 30000, 1, 5, 'FOOT', 7,
+values (18, now(), now(), '이유진', '010-1577-1577', '2022-06-26 19:00:00', '2022-06-27 13:00:00', 30000, 1, false, 5, 'FOOT', 7,
         12);
 INSERT INTO payment
 values (18, now(), now(), 0, 1, 0, 30000, 18);
 
 -- 10번 고객
 INSERT INTO reservation
-values (19, now(), now(), '김준호', '010-4664-5453', '2022-05-25 19:00:00', '2022-05-25 22:00:00', 27000, 0, 5, 'FOOT', 7,
+values (19, now(), now(), '김준호', '010-4664-5453', '2022-05-25 19:00:00', '2022-05-25 22:00:00', 27000, 0, false, 5, 'FOOT', 7,
         11);
 INSERT INTO payment
 values (19, now(), now(), 0, 1, 0, 30000, 19);

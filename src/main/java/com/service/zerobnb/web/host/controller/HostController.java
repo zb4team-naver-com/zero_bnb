@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
-
+ 
 @Tag(name = "호스트", description = "호스트 관련 API")
 @RestController
 @RequiredArgsConstructor
