@@ -90,7 +90,6 @@ class GuestServiceTest {
 
         // when
         GuestInput guestInput = GuestInput.builder()
-            .email("abc@naver.com")
             .password("Password0!")
             .name("바뀐이름")
             .birth("1995.03.04")
