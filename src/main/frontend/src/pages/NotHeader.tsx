@@ -9,7 +9,7 @@ import Image from "../assets/logo.png"
 export default function Header() {
 	const isLogined = storage.get({ key: "token" }) ? true : false
 
-	if (!!isLogined) {
+	if (!isLogined) {
 		return (
 			<>
 				<GlobalStyle />
@@ -20,7 +20,7 @@ export default function Header() {
 						<S.IMG src={Image} />
 					</Link>
 					<S.ButtonDiv>
-						<S.StyledLink to="./LogoutPage">로그아웃</S.StyledLink>
+						<S.StyledLink to="./LoginPage">로그인</S.StyledLink>
 						<S.StyledLink to="./SignupPage">회원가입</S.StyledLink>
 					</S.ButtonDiv>
 				</S.HeaderContainer>
@@ -38,7 +38,7 @@ export default function Header() {
 						<S.IMG src={Image} />
 					</Link>
 					<S.ButtonDiv>
-						<S.StyledLink to="./LoginPage">로그인</S.StyledLink>
+						<S.StyledLink to="./LogoutPage">로그아웃</S.StyledLink>
 						<S.StyledLink to="./SignupPage">회원가입</S.StyledLink>
 					</S.ButtonDiv>
 				</S.HeaderContainer>
