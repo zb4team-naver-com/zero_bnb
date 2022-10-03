@@ -10,6 +10,7 @@ import com.service.zerobnb.web.reservation.model.ReservationForm;
 import com.service.zerobnb.web.reservation.repository.ReservationRepository;
 import com.service.zerobnb.web.room.domain.Room;
 import com.service.zerobnb.web.room.repository.RoomRepository;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -31,6 +32,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @SpringBootTest
+@Disabled
 class ReservationServiceTest {
 
     @Autowired

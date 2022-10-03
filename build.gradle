@@ -10,7 +10,9 @@ plugins {
     id 'java'
     id 'war'
     id 'jacoco'
+    id "org.sonarqube" version "3.4.0.2513"
     id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+    id 'com.google.cloud.tools.jib' version '3.1.4'
 }
 
 group = 'com.service'
@@ -51,14 +53,41 @@ jacocoTestCoverageVerification {
     }
 }
 
+def sonarqube_url = "http://ec2-3-21-103-66.us-east-2.compute.amazonaws.com:9000"
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "ZeroBnb code statistics"
+        property "sonar.exclusions", "**/generated-*/**/*"
+        property "sonar.projectKey", "org.sonarqubeJacocoCodeCoverage"
+        property "sonar.reportPath", "${project.buildDir}/jacoco/test.exec"
+        property "sonar.host.url", "${sonarqube_url}"
+        property "sonar.sources", "src/main/java"
+        property "sonar.tests", "src/test/java"
+        /**
+         * // 로컬에서 sonarqube 테스트 할 경우, sonarqube id,pw 입력 후, task 실행
+         * property "sonar.login", "test"
+         * property "sonar.password", "test"
+         */
+    }
+}
+
+tasks['sonarqube'].dependsOn test
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
 }
 
+def nexus_url = "http://ec2-18-218-40-12.us-east-2.compute.amazonaws.com:8081/repository/test-docker-nexus-maven-repository/";
+
 repositories {
-    mavenCentral()
+//    mavenCentral()
+    maven {
+        url "${nexus_url}"
+        allowInsecureProtocol true
+    }
 }
 
 dependencies {
@@ -131,7 +160,8 @@ def frontendDir = "$projectDir/src/main/frontend"
 
 sourceSets {
     main {
-        resources { srcDirs = ["$projectDir/src/main/resources"]
+        resources {
+            srcDirs = ["$projectDir/src/main/resources"]
         }
     }
 }
@@ -144,8 +174,8 @@ task installReact(type: Exec) {
     group = BasePlugin.BUILD_GROUP
     if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
         commandLine "npm.cmd", "audit", "fix"
-        commandLine 'npm.cmd', 'install' }
-    else {
+        commandLine 'npm.cmd', 'install'
+    } else {
         commandLine "npm", "audit", "fix" commandLine 'npm', 'install'
     }
 }
@@ -166,4 +196,34 @@ task copyReactBuildFiles(type: Copy) {
     dependsOn "buildReact"
     from "$frontendDir/build"
     into "$projectDir/src/main/resources/static"
+}
+
+// jib configuration
+jib {
+    from {
+        image = 'adoptopenjdk/openjdk11'
+        auth {
+            username = 'nebi25' // Defined in 'gradle.properties'.
+            password = 'Ww44226003!@'
+        }
+    }
+    container {
+        entrypoint = ['java', '-jar', 'zerobnb-0.0.1-SNAPSHOT.war']
+        mainClass = 'com.service.zerobnb.ZeroBnbApplication'
+        jvmFlags = ['-Xms512m', '-Xmx512m', '-Xdebug', '-XshowSettings:vm', '-XX:+UnlockExperimentalVMOptions', '-XX:+UseContainerSupport']
+        ports = ['8000']
+
+        environment = [SPRING_OUTPUT_ANSI_ENABLED: "ALWAYS"]
+        labels = [version: project.version, name: project.name, group: project.group]
+
+        creationTime = 'USE_CURRENT_TIMESTAMP'
+        format = 'Docker'
+    }
+    extraDirectories {
+        paths {
+            path {
+                from = file('build/libs')
+            }
+        }
+    }
 }

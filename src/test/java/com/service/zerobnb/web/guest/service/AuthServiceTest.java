@@ -20,6 +20,8 @@ import com.service.zerobnb.web.guest.model.AuthInput.SignUp;
 import com.service.zerobnb.web.guest.repository.GuestRepository;
 import com.service.zerobnb.web.guest.repository.RefreshTokenRepository;
 import java.util.Optional;
+
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,6 +32,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
+@Disabled
 class AuthServiceTest {
 
     @Autowired

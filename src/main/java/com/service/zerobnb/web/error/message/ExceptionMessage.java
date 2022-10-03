@@ -29,6 +29,7 @@ public enum ExceptionMessage {
     NOT_EXIST_RESERVATION("예약 정보가 존재하지 않습니다."),
     EXPIRE_CANCEL_PERIOD("예약 취소 기간이 지났습니다."),
     ALREADY_EXIST_RESERVATION_DATE("입력한 날짜에 예약이 이미 존재합니다."),
+    USE_POINT_GREATER_THAN_GUEST_POINT("사용 포인트가 게스트가 가지고 있는 포인트보다 큽니다."),
 
     // 리뷰
     ALREADY_EXIST_REVIEW("이미 작성하신 리뷰입니다."),

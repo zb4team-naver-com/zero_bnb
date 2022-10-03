@@ -6,24 +6,32 @@ import LoginPage from "../pages/LoginPage"
 import LogoutPage from "../pages/LogoutPage"
 import SignupPage from "../pages/SignupPage"
 import MainPage from "../pages/MainContainerPage"
-import storage from "../services/api/api"
+import RoomRegisterContext from "../hostpage/store/RoomRegisterContext"
+import HostMainPage from "../hostpage/page/HostMainPage"
+import RoomRegisterPage from "../hostpage/page/RoomRegisterPage"
+import HostUpdatePage from "../hostpage/page/HostUpdatePage"
 
 const Router = () => {
 	return (
 		<BrowserRouter>
-			<Routes>
-				<Route path="/" element={<Header />}>
-					<Route path="MainContainerPage" element={<MainPage />} />
-					<Route path="LoginPage" element={<LoginPage />} />
-					<Route path="SignupPage" element={<SignupPage />} />
-				</Route>
-				<Route path="/" element={<NotHeader />}>
-					<Route path="MainContainerPage" element={<MainPage />} />
-					{/* <Route path="MainContainerPage/:hotelId" element={</>}/> */}
-					<Route path="LogoutPage" element={<LogoutPage />} />
-					<Route path="SignupPage" element={<SignupPage />} />
-				</Route>
-			</Routes>
+      <RoomRegisterContext>
+		  	<Routes>
+				  <Route path="/" element={<Header />}>
+					  <Route path="MainContainerPage" element={<MainPage />} />
+					  <Route path="LoginPage" element={<LoginPage />} />
+					  <Route path="SignupPage" element={<SignupPage />} />
+				  </Route>
+				  <Route path="/" element={<NotHeader />}>
+					  <Route path="MainContainerPage" element={<MainPage />} />
+					  {/* <Route path="MainContainerPage/:hotelId" element={</>}/> */}
+					  <Route path="LogoutPage" element={<LogoutPage />} />
+					  <Route path="SignupPage" element={<SignupPage />} />
+            <Route path="/host" element={<HostMainPage/>} />
+					  <Route path="/host/update" element={<HostUpdatePage/>} />
+					  <Route path="/host/roomRegister" element={<RoomRegisterPage/>} />
+				  </Route>
+			  </Routes>
+       </RoomRegisterContext>
 		</BrowserRouter>
 	)
 }
