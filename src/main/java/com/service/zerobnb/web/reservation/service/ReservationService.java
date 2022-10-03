@@ -73,7 +73,7 @@ public class ReservationService {
         reservationRepository.delete(reservation);
     }
 
-    private Guest existGuestException(String email) {
+    public Guest existGuestException(String email) {
         return guestRepository.findByEmail(email)
                 .orElseThrow(() -> new GuestException(NOT_EXIST_GUEST));
     }

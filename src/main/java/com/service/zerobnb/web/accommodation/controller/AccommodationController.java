@@ -1,6 +1,7 @@
 package com.service.zerobnb.web.accommodation.controller;
 
 import com.service.zerobnb.web.accommodation.dto.AccommodationForHostDto;
+import com.service.zerobnb.web.accommodation.dto.AccommodationInfoDto;
 import com.service.zerobnb.web.accommodation.model.AccommodationInput;
 import com.service.zerobnb.web.accommodation.service.AccommodationService;
 import com.service.zerobnb.web.error.message.ExceptionMessage;
@@ -78,5 +79,16 @@ public class AccommodationController {
     public ResponseEntity<Long> deleteAccommodation(@PathVariable Long accommodationId, Principal principal) {
         // TODO principal 객체를 이용한 guest email 반환 및 이메일 인증에 사용
         return ResponseEntity.status(HttpStatus.OK).body(accommodationService.deleteAccommodation(accommodationId));
+    }
+
+
+    @Operation(summary = "숙소 상세 정보 반환", description = "숙소 상세 정보 반환 메서드")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "숙소 상세 정보 반환 완료"),
+            @ApiResponse(responseCode = "500", description = "숙소 상세 정보 반환 실패")
+    })
+    @GetMapping("/info/{accommodationId}")
+    public ResponseEntity<AccommodationInfoDto> accommodationInfo(@PathVariable Long accommodationId) {
+        return ResponseEntity.ok(accommodationService.accommodationInfo(accommodationId));
     }
 }

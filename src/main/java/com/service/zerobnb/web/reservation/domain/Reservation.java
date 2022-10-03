@@ -12,7 +12,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
 @ToString(exclude = {"guest", "room", "payment"})
 @NoArgsConstructor
@@ -48,6 +49,8 @@ public class Reservation extends BaseTimeEntity {
     private String bookerName;
     private String bookerPhone;
 
+    private boolean isReview;
+
     public static Reservation from(ReservationForm form, Guest guest, Room room) {
         return Reservation.builder()
                 .guest(guest)
@@ -60,6 +63,7 @@ public class Reservation extends BaseTimeEntity {
                 .transportationType(form.getTransportationType())
                 .bookerName(guest.getName())
                 .bookerPhone(guest.getPhone())
+                .isReview(false)
                 .build();
     }
 

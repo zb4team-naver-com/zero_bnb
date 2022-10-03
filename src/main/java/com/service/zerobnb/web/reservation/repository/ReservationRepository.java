@@ -11,4 +11,6 @@ import java.util.Optional;
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
     Optional<Reservation> findByGuestIdAndId(Long guestId, Long id);
     boolean existsByGuestIdAndCheckInTimeBetween(Long id, LocalDateTime checkInTime, LocalDateTime checkOutTime);
+
+    Optional<Reservation> findByGuestIdAndRoomIdAndId(Long guestId, Long roomId, Long reservationId);
 }

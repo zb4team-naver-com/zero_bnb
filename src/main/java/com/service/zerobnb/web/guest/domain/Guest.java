@@ -3,6 +3,7 @@ package com.service.zerobnb.web.guest.domain;
 
 import com.service.zerobnb.util.BaseTimeEntity;
 import com.service.zerobnb.util.status.GuestStatus;
+import com.service.zerobnb.web.guest.model.GuestInput;
 import com.service.zerobnb.web.host.domain.Host;
 import com.service.zerobnb.web.reservation.domain.Reservation;
 import com.service.zerobnb.web.review.domain.Review;
@@ -19,13 +20,16 @@ import javax.persistence.Index;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 @Entity
+@Setter
 @Getter
 @NoArgsConstructor
 @Table(name = "guest", indexes = {@Index(name = "guest_email_index", columnList = "email")})
@@ -35,16 +39,22 @@ public class Guest extends BaseTimeEntity {
     @Column(name = "guest_id")
     private Long id;
 
+    @NotNull
     private String email;
 
+    @NotNull
     private String password;
 
+    @NotNull
     private String name;
 
+    @NotNull
     private String birth;
 
+    @NotNull
     private String phone;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private GuestStatus status;
 
@@ -82,6 +92,21 @@ public class Guest extends BaseTimeEntity {
         this.profileImage = profileImage;
         this.point = point;
         this.isHost = isHost;
+    }
+
+    public Guest from(GuestInput guestInput) {
+        return Guest.builder()
+            .id(this.id)
+            .password(this.password)
+            .name(guestInput.getName())
+            .birth(guestInput.getBirth())
+            .phone(guestInput.getPhone())
+            .status(this.status)
+            .emailAuthKey(this.emailAuthKey)
+            .profileImage(guestInput.getProfileImage())
+            .point(this.point)
+            .isHost(this.isHost)
+            .build();
     }
 
     public void changeStatus(GuestStatus status) {

@@ -44,4 +44,7 @@ application-aws.yml
 
 ### Secret Key
 application-secret.yml
+
 src/main/resources/data.sql
+
+

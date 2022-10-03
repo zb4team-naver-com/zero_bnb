@@ -1,10 +1,9 @@
 package com.service.zerobnb.web.error.dto;
 
+import javax.servlet.http.HttpServletRequest;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Data
 @Builder
