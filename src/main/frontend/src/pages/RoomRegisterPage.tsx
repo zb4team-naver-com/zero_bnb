@@ -1,17 +1,18 @@
+import React, { useContext, useState } from "react"
+import styled from "styled-components"
+import { useNavigate } from "react-router-dom"
+
+import { myContext } from "../store/RoomRegisterContext"
+import roomQuery from "../services/HostAPI/roomQuery"
 import { serviceTypes } from "../services/roomRegister"
 
-import React, { useContext, useEffect, useState } from "react"
-import { myContext } from "../store/RoomRegisterContext"
+import ImageUpload from "../components/host/ImageUpload"
 import {
 	CheckBox,
 	Input,
 	Radio,
 	TextArea,
 } from "../components/host/Room_registerItem"
-import ImageUpload from "../components/host/ImageUpload"
-import styled from "styled-components"
-import roomQuery from "../services/HostAPI/roomQuery"
-import { useNavigate } from "react-router-dom"
 
 export default function RoomRegisterPage() {
 	let {
@@ -40,6 +41,7 @@ export default function RoomRegisterPage() {
 
 	const [basicInfo, setBasicInfo] = useState(initvalue)
 	const [service, setService] = useState<string[] | null>([])
+	const [order, setOrder] = useState(0)
 
 	const { roomRegister } = roomQuery()
 	const mutation = roomRegister()
@@ -76,12 +78,26 @@ export default function RoomRegisterPage() {
 
 	const clickReset = () => {
 		alert("취소 되었습니다")
-		nav("HostMainPage")
+		nav("/Host/HostMainPage")
+	}
+
+	const prevOrder = () => {
+		if (order < 1) return
+		setOrder(order - 1)
+	}
+
+	const nextOrder = () => {
+		if (order > 6) return
+		setOrder(order + 1)
 	}
 
 	const submitHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		const data = { ...basicInfo, popularFacilityServiceInputs: service }
+		const data = {
+			...basicInfo,
+			popularFacilityServiceInputs: service,
+			accommodationImageInputs,
+		}
 		mutation.mutate(data)
 		console.log(data)
 	}
@@ -94,65 +110,83 @@ export default function RoomRegisterPage() {
 					<S.ImgDiv>
 						<ImageUpload />
 					</S.ImgDiv>
-					<S.Form onSubmit={submitHandler}>
-						<Radio
-							text="숙소 타입을 선택하세요"
-							name="type"
-							lists={typeLists}
-							onChange={handler.basicChange}
-						/>
-						<Input
-							id="address"
-							text="주소를 입력하세요"
-							name="address"
-							placeholder="주소 입력"
-							onChange={handler.basicChange}
-						/>
-						<TextArea
-							id="description"
-							text="숙소에 대해 소개해 주세요"
-							name="description"
-							onChange={handler.basicChange}
-						/>
-						<Input
-							id="name"
-							text="숙박명을 입력하세요"
-							name="name"
-							placeholder="숙소명 입력"
-							onChange={handler.basicChange}
-						/>
-						<TextArea
-							id="notice"
-							text="공지사항을 입력하세요"
-							name="notice"
-							onChange={handler.basicChange}
-						/>
-						<TextArea
-							id="policy"
-							text="지침사항을 입력하세요"
-							name="policy"
-							onChange={handler.basicChange}
-						/>
-						<Input
-							id="events"
-							text="이벤트를 입력하세요"
-							name="eventInputs"
-							placeholder="이벤트 입력"
-							onChange={handler.eventChange}
-						/>
-						<CheckBox
-							text="게스트에게 제공할 서비스를 선택하세요"
-							name="popularFacilityServiceInputs"
-							lists={eventList}
-							onChange={handler.serviceChange}
-						/>
-						<S.ButtonArea>
-							<S.Reset type="reset" onClick={clickReset}>
-								취소
-							</S.Reset>
-							<S.Button type="submit" value="등록" />
-						</S.ButtonArea>
-					</S.Form>
+					<S.FormArea>
+						<S.MoveBT type="button" onClick={prevOrder}>
+							{"<"}
+						</S.MoveBT>
+						<S.Form onSubmit={submitHandler}>
+							<S.Carousel>
+								<S.MoveDiv id={order}>
+									<Radio
+										text="숙소 타입을 선택하세요"
+										name="type"
+										lists={typeLists}
+										onChange={handler.basicChange}
+									/>
+									<Input
+										id="address"
+										text="주소를 입력하세요"
+										name="address"
+										placeholder="주소 입력"
+										onChange={handler.basicChange}
+									/>
+									<TextArea
+										id="description"
+										text="숙소에 대해 소개해 주세요"
+										name="description"
+										onChange={handler.basicChange}
+									/>
+									<Input
+										id="name"
+										text="숙박명을 입력하세요"
+										name="name"
+										placeholder="숙소명 입력"
+										onChange={handler.basicChange}
+									/>
+									<TextArea
+										id="notice"
+										text="공지사항을 입력하세요"
+										name="notice"
+										onChange={handler.basicChange}
+									/>
+									<TextArea
+										id="policy"
+										text="지침사항을 입력하세요"
+										name="policy"
+										onChange={handler.basicChange}
+									/>
+									<Input
+										id="events"
+										text="이벤트를 입력하세요"
+										name="eventInputs"
+										placeholder="이벤트 입력"
+										onChange={handler.eventChange}
+									/>
+									<CheckBox
+										text="게스트에게 제공할 서비스를 선택하세요"
+										name="popularFacilityServiceInputs"
+										lists={eventList}
+										onChange={handler.serviceChange}
+									/>
+								</S.MoveDiv>
+							</S.Carousel>
+							<S.ButtonArea>
+								<S.Reset type="reset" onClick={clickReset}>
+									취소
+								</S.Reset>
+								<S.Button
+									type="submit"
+									value="등록"
+									disabled={order === 7 ? false : true}
+								>
+									등록
+								</S.Button>
+							</S.ButtonArea>
+						</S.Form>
+						<S.MoveBT type="button" onClick={nextOrder}>
+							{">"}
+						</S.MoveBT>
+					</S.FormArea>
 				</div>
 			</S.Layout>
 		</>
@@ -167,7 +201,7 @@ S.Layout = styled.div`
 	align-items: center;
 	width: 60rem;
 	margin: 0 auto;
-	margin-top: 10rem;
+	margin-top: 8rem;
 	margin-bottom: 10rem;
 `
 S.Title = styled.h2`
@@ -180,16 +214,45 @@ S.ImgDiv = styled.div`
 	display: flex;
 	justify-content: center;
 	width: 50rem;
-	height: 5rem;
-	padding-bottom: 3rem;
-	border-bottom: 1px solid var(--color-gray0);
+	height: 8rem;
+	margin-left: 12rem;
+`
+S.FormArea = styled.div`
+	display: flex;
+	align-items: center;
+`
+S.MoveBT = styled.button`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 4rem;
+	height: 4rem;
+	background: var(--color-white);
+	border: 2px solid var(--main-color2-1);
+	border-radius: 50%;
+	font-size: 2rem;
+	font-weight: 700;
+	color: var(--main-color2-1);
 `
 S.Form = styled.form`
-	margin-left: 5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
 	margin-top: 5rem;
 `
-
-S.Button = styled.input`
+S.Carousel = styled.div`
+	width: 60rem;
+	height: 32rem;
+	overflow: hidden;
+`
+S.MoveDiv = styled.div`
+  display: flex;
+  transform: ${(props) => `translateX(-${Number(props.id) * 60}rem);`}
+  transition: transform 0.5s linear;
+`
+S.Button = styled.button`
 	width: 8rem;
 	height: 3.5rem;
 	background: var(--main-color1);
@@ -198,7 +261,6 @@ S.Button = styled.input`
 	font-size: 1.5rem;
 	font-weight: 700;
 	color: var(--color-white);
-	cursor: pointer;
 	&:hover,
 	&:focus {
 		transform: scale(1.01);
@@ -227,5 +289,5 @@ S.Reset = styled.button`
 S.ButtonArea = styled.div`
 	display: flex;
 	align-items: center;
-	margin-left: 8rem;
+	margin-top: 3rem;
 `

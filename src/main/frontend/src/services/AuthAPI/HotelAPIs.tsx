@@ -13,7 +13,7 @@ interface HotelType {
 }
 
 const instance = axios.create({
-	baseURL: "http://localhost:8000/accommodation/info",
+	baseURL: "http://localhost:8000",
 })
 
 const fetchHotelList = (props: HotelType) => {

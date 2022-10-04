@@ -13,11 +13,10 @@ const instance = axios.create({
 	},
 })
 
-instance.interceptors.request.use((config) => {
-	const accesstoken = config.data
-	axios.defaults.headers.common["Authorization"] = `Bearer ${accesstoken.token}`
-	console.log(accesstoken.token)
-	return config
+instance.interceptors.response.use((response) => {
+	const accesstoken = response.data
+	storage.set({ key: "token", value: `Bearer ${accesstoken}` })
+	return response
 })
 
 const fetchLogin = (props: UserAuthLoginInput) => {

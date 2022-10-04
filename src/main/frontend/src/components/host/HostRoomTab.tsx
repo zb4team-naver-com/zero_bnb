@@ -17,7 +17,7 @@ export default function HostRoomTab() {
 					marginTop: 3 + "rem",
 					fontSize: 1.4 + "rem",
 				}}
-				onClick={() => nav("/host/roomRegister")}
+				onClick={() => nav("../RoomRegisterPage")}
 			></Button>
 			<S.Ul>
 				<RoomListLayout />

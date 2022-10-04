@@ -1,10 +1,11 @@
 import { useState } from "react"
 import styled from "styled-components"
-import RoomRegisterForm from "../components/host/HostRegisterForm"
-import ico from "../assets/jjangkoo.png"
-import { Register } from "../services/hostRegister"
+
 import Popup from "../components/common/Popup"
+import HostRegisterForm from "../components/host/HostRegisterForm"
+
 import hostQuery from "../services/HostAPI/host_Query"
+import { Register } from "../services/hostRegister"
 
 export default function HostRegisterPage() {
 	const { hostRegister } = hostQuery()
@@ -19,17 +20,12 @@ export default function HostRegisterPage() {
 			text="등록이 완료되었어요"
 			subText="호스트 페이지로 이동해 보세요"
 			page="GO"
-			toPage="HostMainPage"
+			toPage="/Host/HostMainPage"
 		/>
 	)
 
 	const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setRegister({ ...register!, [e.target.name]: e.target.value })
-	}
-
-	const imgHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const fileName = URL.createObjectURL(e.target.files![0])
-		setRegister({ ...register!, [e.target.name]: fileName })
 	}
 
 	const submitHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
@@ -39,7 +35,7 @@ export default function HostRegisterPage() {
 			companyRegistrationNumber: (register as Register)
 				.companyRegistrationNumber,
 			email: (register as Register).email,
-			profileImage: (register as Register).profileImage,
+			profileImage: "",
 		}
 		console.log(data)
 		setTimeout(() => {
@@ -48,23 +44,16 @@ export default function HostRegisterPage() {
 	}
 
 	const props = {
-		onChange: [changeHandler, imgHandler],
+		onChange: [changeHandler],
 	}
 
 	return (
 		<S.MainDiv>
 			<S.Div>
 				<S.Title>호스트 등록</S.Title>
-				<S.Img
-					src={
-						(register as Register).profileImage
-							? (register as Register).profileImage
-							: ico
-					}
-				/>
-				<form onSubmit={submitHandler}>
-					<RoomRegisterForm {...props} />
-				</form>
+				<S.Form onSubmit={submitHandler}>
+					<HostRegisterForm {...props} />
+				</S.Form>
 				{openPopup ? popUp : null}
 			</S.Div>
 		</S.MainDiv>
@@ -80,16 +69,16 @@ S.MainDiv = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin-top: 8rem;
+	margin-top: 12rem;
 `
 
 S.Div = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 55rem;
-	height: 65rem;
-	padding-top: 4rem;
+	width: 50rem;
+	height: 55rem;
+	padding-top: 5rem;
 	padding-bottom: 4rem;
 	background: var(--color-white);
 	border: 1px solid var(--color-gray0);
@@ -114,4 +103,9 @@ S.Img = styled.img`
 		transform: scale(1.08);
 		transition: all 0.3s ease;
 	}
+`
+S.Form = styled.form`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 `

@@ -12,7 +12,7 @@ export default function MainContainerComponents() {
 							<img src="/" />
 						</S.ImgDiv>
 						<S.PDiv>
-							<p>여기어때 혼자 어때 ~~</p>
+							<p>zeroBnb</p>
 						</S.PDiv>
 					</S.DivBox>
 				</S.Section>

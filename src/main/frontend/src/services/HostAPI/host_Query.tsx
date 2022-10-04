@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { Host, postHost, putHost } from "./host_axios"
+import Popup from "../../components/common/Popup"
+import { GetHost, postHost, putHost } from "./host_axios"
 
 export default function hostQuery() {
 	const queryClient = useQueryClient()
@@ -16,14 +17,20 @@ export default function hostQuery() {
 		})
 	}
 
-	const hostModify = (id: number, data: Host) => {
+	const hostModify = (id: number, data: GetHost) => {
 		return useMutation(() => putHost(id, data), {
 			onSuccess: () => {
 				queryClient.invalidateQueries(["@host"])
-				console.log("성공?")
+				return (
+					<Popup
+						text={"수정이 완료 되었습니다"}
+						page={"go hostpage"}
+						toPage={"/host"}
+					/>
+				)
 			},
-			onError: () => {
-				console.log("실패?")
+			onError: (e: any) => {
+				alert(e.message)
 			},
 		})
 	}

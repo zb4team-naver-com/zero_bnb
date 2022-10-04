@@ -1,6 +1,5 @@
-import React, { useEffect } from "react"
+import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import MainContainerPage from "../../pages/MainContainerPage"
 import storage from "../../services/AuthAPI/api"
 
 export default function LogoutComponents() {
