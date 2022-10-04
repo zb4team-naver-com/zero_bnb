@@ -19,8 +19,9 @@ airbnb, 야놀자 등등 여행,숙박 예약 사이트의 기본,핵심 기능�
 <br>
 
 ### 요구사항 & 기능 
-[요구사항 림크] (https://blush-wolfsbane-982.notion.site/d9a513698d4c4edd94eed372dd983b25)
-[기능정의 링크] (https://blush-wolfsbane-982.notion.site/deec03357ef34ecdb089e47c6243edd3)
+[요구사항 문서](https://blush-wolfsbane-982.notion.site/d9a513698d4c4edd94eed372dd983b25)
+<br>
+[기능정의 문서](https://blush-wolfsbane-982.notion.site/deec03357ef34ecdb089e47c6243edd3)
 
 <br>
 
@@ -38,12 +39,16 @@ airbnb, 야놀자 등등 여행,숙박 예약 사이트의 기본,핵심 기능�
 <br> 
 
 ## API, 데이터 타입 문서
-[API 문서 링크] (https://blush-wolfsbane-982.notion.site/API-fb89bfc8c4ec4bd9bed6ab15ad7dd557)
-[데이터 타입 문서 링크] (https://blush-wolfsbane-982.notion.site/34f9060b46974e308885e75f248088f8)
+[API 문서](https://blush-wolfsbane-982.notion.site/API-fb89bfc8c4ec4bd9bed6ab15ad7dd557)
+<br>
+[데이터 타입 문서](https://blush-wolfsbane-982.notion.site/34f9060b46974e308885e75f248088f8)
 <br>
 
 ## 구성원
-| 이름  | 역할  | 이메일                |
-|-----|-----|--------------------|
-| 강준모 | 백엔드 | apdh1709@gmail.com |
-| 김모모 | 000 | test@naver.com     |
+| 이름  | 역할    | 이메일                   |
+|-----|-------|-----------------------|
+| 강준모 | 백엔드   | apdh1709@gmail.com    |
+| 송현정 | 백엔드   | skdml20022@gmail.com  |
+| 김명환 | 백엔드   | kmh9250@naver.com     |
+| 유영빈 | 프론트엔드 | mynameisyyb@naver.com |
+| 우성희 | 프론트엔드 | wnjqkwnj2@naver.com   |
