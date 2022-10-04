@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import MainContainerPage from "../../pages/MainContainerPage"
-import storage from "../../services/api/api"
+import storage from "../../services/AuthAPI/api"
 
 export default function LogoutComponents() {
 	const navigate = useNavigate()
@@ -9,6 +9,7 @@ export default function LogoutComponents() {
 	useEffect(() => {
 		storage.remove({ key: "token" })
 		navigate("../MainContainerPage")
+		window.location.reload()
 	})
 
 	return <></>

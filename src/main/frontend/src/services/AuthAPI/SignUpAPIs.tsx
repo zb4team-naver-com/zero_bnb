@@ -9,7 +9,7 @@ interface UserAuthSignUpInput {
 }
 
 const instance = axios.create({
-	baseURL: "http://localhost:8000",
+	baseURL: "http://ec2-3-16-183-72.us-east-2.compute.amazonaws.com",
 })
 
 const fetchSignUp = (props: UserAuthSignUpInput) => {

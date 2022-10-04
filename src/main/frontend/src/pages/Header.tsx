@@ -3,49 +3,37 @@ import { Outlet, Link } from "react-router-dom"
 import HeaderComponents from "../components/layout/HeaderComponents"
 import styled from "styled-components"
 import GlobalStyle from "../assets/GlobalStyle"
-import storage from "../services/api/api"
+import storage from "../services/AuthAPI/api"
 import Image from "../assets/logo.png"
 
 export default function Header() {
 	const isLogined = storage.get({ key: "token" }) ? true : false
 
-	if (!!isLogined) {
-		return (
-			<>
-				<GlobalStyle />
-				<S.HeaderContainer>
-					<HeaderComponents />
+	return (
+		<>
+			<GlobalStyle />
+			<S.HeaderContainer>
+				<HeaderComponents />
 
-					<Link to="./MainContainerPage">
-						<S.IMG src={Image} />
-					</Link>
-					<S.ButtonDiv>
+				<Link to="./MainContainerPage">
+					<S.IMG src={Image} />
+				</Link>
+				<S.ButtonDiv>
+					{!!isLogined ? (
 						<S.StyledLink to="./LogoutPage">로그아웃</S.StyledLink>
-						<S.StyledLink to="./SignupPage">회원가입</S.StyledLink>
-					</S.ButtonDiv>
-				</S.HeaderContainer>
-				<Outlet />
-			</>
-		)
-	} else {
-		return (
-			<>
-				<GlobalStyle />
-				<S.HeaderContainer>
-					<HeaderComponents />
-
-					<Link to="./MainContainerPage">
-						<S.IMG src={Image} />
-					</Link>
-					<S.ButtonDiv>
+					) : (
 						<S.StyledLink to="./LoginPage">로그인</S.StyledLink>
+					)}
+					{!!isLogined ? (
+						<S.StyledLink to="./HostMainPage">내정보</S.StyledLink>
+					) : (
 						<S.StyledLink to="./SignupPage">회원가입</S.StyledLink>
-					</S.ButtonDiv>
-				</S.HeaderContainer>
-				<Outlet />
-			</>
-		)
-	}
+					)}
+				</S.ButtonDiv>
+			</S.HeaderContainer>
+			<Outlet />
+		</>
+	)
 }
 
 const S: any = {}

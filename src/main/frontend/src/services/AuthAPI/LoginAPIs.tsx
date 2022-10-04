@@ -7,7 +7,7 @@ interface UserAuthLoginInput {
 }
 
 const instance = axios.create({
-	baseURL: "http://localhost:8000/login",
+	baseURL: "http://localhost:8000",
 	headers: {
 		"Content-Type": "application/json",
 	},
@@ -21,7 +21,7 @@ instance.interceptors.request.use((config) => {
 })
 
 const fetchLogin = (props: UserAuthLoginInput) => {
-	return instance.post("/", props)
+	return instance.post("./login", props)
 }
 
 export { fetchLogin }

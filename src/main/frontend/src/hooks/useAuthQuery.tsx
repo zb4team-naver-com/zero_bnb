@@ -2,8 +2,8 @@ import React from "react"
 import { AxiosError } from "axios"
 import { useMutation } from "@tanstack/react-query"
 import { useNavigate } from "react-router-dom"
-import { fetchLogin } from "../services/api/LoginAPIs"
-import { fetchSignUp } from "../services/api/SignUpAPIs"
+import { fetchLogin } from "../services/AuthAPI/LoginAPIs"
+import { fetchSignUp } from "../services/AuthAPI/SignUpAPIs"
 
 const useAuthQuery = () => {
 	const navigate = useNavigate()

@@ -4,6 +4,8 @@ import useInput from "../../hooks/useInput"
 import Input from "../common/Input"
 import styled from "styled-components"
 import axios from "axios"
+import storage from "../../services/AuthAPI/api"
+import { useNavigate } from "react-router-dom"
 
 export default function LoginComponents() {
 	const { login } = useAuthQuery()
@@ -18,6 +20,16 @@ export default function LoginComponents() {
 		login({
 			email: inputEmail.value,
 			password: inputPassword.value,
+		})
+	}
+
+	const isLogined = storage.get({ key: "token" })
+	const navigate = useNavigate()
+
+	if (!!isLogined) {
+		useEffect(() => {
+			alert("이미 로그인이 돼있습니다.")
+			navigate("../MainContainerPage")
 		})
 	}
 

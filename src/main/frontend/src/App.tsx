@@ -10,13 +10,7 @@ function App() {
 			.catch((error) => console.log(error))
 	}, [])
 
-  useEffect(() => {
-    axios.get('/')
-    .then(response => console.log(response))
-    .catch(error => console.log(error))
-  }, []);
-
-  return <Router/>;
+	return <Router />
 }
 
 export default App
