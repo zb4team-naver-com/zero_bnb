@@ -30,15 +30,19 @@ airbnb, 야놀자 등등 여행,숙박 예약 사이트의 기본,핵심 기능�
 <br>
 
 ## 서버 아키텍처 
-
+![zerobnb_server_architecture](https://user-images.githubusercontent.com/48584943/193728263-4b912827-99bd-4b2a-82f2-3dc3fe380b12.png)
 <br>
 
 ## CI/CD 파이프라인 
-
+![zerobnb_ci_cd_pipeline drawio](https://user-images.githubusercontent.com/48584943/193739976-1c90ed1e-41aa-4d79-8913-09740a2407e3.png)
 <br> 
 
-## 구성원
+## API, 데이터 타입 문서
+[API 문서 링크] (https://blush-wolfsbane-982.notion.site/API-fb89bfc8c4ec4bd9bed6ab15ad7dd557)
+[데이터 타입 문서 링크] (https://blush-wolfsbane-982.notion.site/34f9060b46974e308885e75f248088f8)
+<br>
 
+## 구성원
 | 이름  | 역할  | 이메일                |
 |-----|-----|--------------------|
 | 강준모 | 백엔드 | apdh1709@gmail.com |
