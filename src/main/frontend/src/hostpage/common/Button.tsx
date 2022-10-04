@@ -1,10 +1,11 @@
+import React, { ReactEventHandler } from 'react'
 import styled from 'styled-components'
 
 interface Props {
   theme?: 'line'
   type: 'button' | 'submit' | 'reset' | undefined
   style?: {}
-  onClick?: () => void
+  onClick?: () => void 
   text: string
 }
 

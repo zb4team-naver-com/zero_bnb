@@ -1,37 +1,35 @@
 import axios from "axios"
-import { useState } from "react"
+import { useContext, useState } from "react"
 
 import styled from "styled-components"
+import { imagesUpload } from "../api/imgUpload_axios"
 import plus from "../img/plus.svg"
+import { myContext } from "../store/RoomRegisterContext"
 
 export default function ImageUpload() {
-  const [ file, setFile ] = useState<any>("")
+  const [ files, setFiles ] = useState<any>([])
+
+  let { accommodationImageInputs } = useContext(myContext)
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFile( e.target.files![0] )
-      
+        if(files.length > 5) {
+          alert('등록 가능한 이미지수는 5장 입니다.')
+          return
+        }
+        const fileList = e.target.files
+        const addList = [ ...files].concat(fileList)
+        setFiles(addList)
       }
     
   
   const submitHandler = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const formData = new FormData()
-    formData.append('file', file )
-    console.log(formData.get('file'))
-    const res = await axios({
-      method: 'post',
-      url: "http://localhost:8000/images",
-      data: formData,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
-    console.log(res.data)
-
+    const inputImages = imagesUpload(files)
+    accommodationImageInputs = inputImages as unknown as {url: string}[]
   }
 
   return (
-    <S.Form action="/images" method="POST" encType="multipart/form-data">
+    <S.Form onSubmit={submitHandler}>
       <label htmlFor="images"></label>
       <S.Input type="file" 
         name="images" 
@@ -39,7 +37,7 @@ export default function ImageUpload() {
         accept="image/*" 
         multiple onChange={changeHandler}/>
       <S.Submit type="submit" value='확인' />
-      </S.Form>
+    </S.Form>
   )
 }
 

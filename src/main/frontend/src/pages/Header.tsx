@@ -13,19 +13,20 @@ export default function Header() {
 		<>
 			<GlobalStyle />
 			<S.HeaderContainer>
-				<HeaderComponents />
-
-				<Link to="./MainContainerPage">
-					<S.IMG src={Image} />
-				</Link>
-				<S.ButtonDiv>
-					{!isLogined ? (
-						<S.StyledLink to="./LoginPage">로그인</S.StyledLink>
-					) : (
-						<S.StyledLink to="./LoginPage">로그아웃</S.StyledLink>
-					)}
-					<S.StyledLink to="./SignupPage">회원가입</S.StyledLink>
-				</S.ButtonDiv>
+				<S.Content>
+					<HeaderComponents />
+					<Link to="./MainContainerPage">
+						<S.IMG src={Image} />
+					</Link>
+					<S.ButtonDiv>
+						{!isLogined ? (
+							<S.StyledLink to="./LoginPage">로그인</S.StyledLink>
+						) : (
+							<S.StyledLink to="./LoginPage">로그아웃</S.StyledLink>
+						)}
+						<S.StyledLink to="./SignupPage">회원가입</S.StyledLink>
+					</S.ButtonDiv>
+				</S.Content>
 			</S.HeaderContainer>
 			<Outlet />
 		</>
@@ -35,14 +36,17 @@ export default function Header() {
 const S: any = {}
 
 S.HeaderContainer = styled.div`
-	max-width: 169rem;
+	height: 8rem;
+	background-color: var(--main-color2);
+`
+
+S.Content = styled.div`
+	width: 145rem;
 	height: 8rem;
 	margin: 0 auto;
-	padding: 0 2rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background-color: var(--main-color2);
 `
 
 S.ButtonDiv = styled.div`
@@ -66,5 +70,5 @@ S.StyledLink = styled(Link)`
 `
 
 S.IMG = styled.img`
-	width: 10rem;
+	width: 11.5rem;
 `

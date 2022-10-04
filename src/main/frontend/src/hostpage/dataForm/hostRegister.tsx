@@ -45,9 +45,11 @@ export type Name_ = 'profileImage' | 'businessContact' | 'companyRegistrationNum
 //name추가해야함
 
 export const initialValue = {
-  profileImage: ico,
-  name: 'sinjjankoo',
-  businessContact: '010-000-0000',
-  companyRegistrationNumber: '12312321',
-  email: 'ssinjjangkoo@jjankoo.com'
+  profileImage: "https://zerobnb-bucket.s3.amazonaws.com/image/%EC%95%84%EC%9D%B4%EC%9C%A0.jpg",
+  name: 'leegeegeom',
+  businessContact: '010-2955-4948',
+  companyRegistrationNumber: '3837273644',
+  email: 'ssinjjangkoo@jjankoo.com',
+  active: true,
+  hostId: 4
 }

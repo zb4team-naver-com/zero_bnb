@@ -2,25 +2,25 @@ import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
 export interface Room {
-  type: string
-  address: string
-  description: string
-  locationPosition: {
-    latitude: number
-    longitude: number
+  type?: string
+  address?: string
+  description?: string
+  locationPosition?: {
+    latitude?: number
+    longitude?: number
   }
-  name: string
-  notice: string
-  policy: string
-  eventInputs: {
+  name?: string
+  notice?: string
+  policy?: string
+  eventInputs?: {
     description: string
   } []
-  popularFacilityServiceInputs: {
+  popularFacilityServiceInputs?: {
     popularFacilityServiceType: number
   } []
-  accommodationImageInputs: {
+  accommodationImageInputs?: {
     url: string
-  } []
+  } [] 
 }
 
 export interface RoomData extends Room {
@@ -28,7 +28,7 @@ export interface RoomData extends Room {
 }
 
 const getRoomInfo = async(hostId: number) => {
-  const data = await axios.get(`/accommodation/search/${hostId}`)
+  const data = await axios.get(`http://ec2-3-16-183-72.us-east-2.compute.amazonaws.com/accommodation/search/${hostId}`)
   return data.data
 }
 
@@ -37,20 +37,10 @@ export default function getRoom(hostId: number) {
 }
 
 export const putRoom = (accommodationId: number, data: any) => {
-  return axios.put(`/accommodation/update/${accommodationId}`, data)
+  return axios.put(`http://ec2-18-221-179-218.us-east-2.compute.amazonaws.com/accommodation/update/${accommodationId}`, data)
 }
 
 export const postRoom = (data: any) => {
-  return axios.post(`/accommodation/register`, data)
+  return axios.post(`http://ec2-3-16-183-72.us-east-2.compute.amazonaws.com/accommodation/register`, data)
 }
 
-export const postImg = (data:any) => {
-  return axios({
-    method: 'post',
-    url: '/images',
-    data: data,
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  })
-}

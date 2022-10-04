@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { postImg, postRoom, putRoom, Room, RoomData } from "./room_axios";
+import {  postRoom, putRoom, Room, RoomData } from "./room_axios";
 
 export default function roomQuery() {
   const queryClient = useQueryClient()

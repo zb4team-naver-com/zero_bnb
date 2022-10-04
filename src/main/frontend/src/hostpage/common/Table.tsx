@@ -9,13 +9,15 @@ interface Props{
 
 export default function Table(props: Props) {
   const { headList, desList } = props
+
+  const keyList = [ "dfas", "shg", "kkh", "qwt", "itb", "qppy", "rios", "vmkl" ]
   return (
     <div>
       {headList
         .map( (list, idx) => {
           return(
-            <S.Div>
-             <S.Span key={list}>{list}</S.Span>
+            <S.Div key={keyList[idx]}>
+             <S.Span>{list}</S.Span>
              <S.Content>{desList[idx]}</S.Content>
             </S.Div>
           )
@@ -32,21 +34,23 @@ const S: any = {}
 
 S.Div = styled.div`
   display: flex;
-  align-items: end;
-  margin: 1.5rem 0;
+  flex-direction: column;
+  align-items: left;
+  height: 4rem;
+  margin: 1.2rem 0;
 `
 
 S.Span = styled.span`
-  display: inline-block;
-  width: 14rem;
-  height: 2.2rem;
-  margin-right: 1rem;
+  width: 11rem;
+  margin-bottom: 0.8rem;
   text-align: left;
-  font-weight: border;
+  font-size: 1.3rem;
+  font-weight: 700;
 `
 S.Content = styled.span`
   display: inline-block;
   height: 2.2rem;
+  font-size: 1.3rem;
   text-align: left;
 `
 

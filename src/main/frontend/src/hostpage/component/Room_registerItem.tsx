@@ -116,8 +116,13 @@ export function CheckBox(props: CheckBox) {
 const Common: any = {}
 
 Common.Div = styled.div`
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60rem;
+  height: 32rem;
   margin-bottom: 4rem;
 `
 Common.Input = styled.input`

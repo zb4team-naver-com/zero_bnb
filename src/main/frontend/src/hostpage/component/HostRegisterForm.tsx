@@ -9,24 +9,22 @@ interface Props {
 const dataForm = hostRegisterForm
 
 export default function HostRegisterForm(props: Props) {
-  const  [ changeHandler, imgHandler ] = props.onChange
+  const  [ changeHandler ] = props.onChange
   return (
     <>
       <S.Div>
         {dataForm.map(({ name_, type, placeholder, required }) => {
+          if(name_ !== "profileImage")
           return <S.Input 
                   key={name_}
                   name={name_}  
                   placeholder={placeholder}
                   type={type}
                   required={required}
-                  onChange={
-                    name_ === 'profileImage'
-                    ? imgHandler 
-                    : changeHandler}
+                  onChange={changeHandler}
                   />})}
         </S.Div>
-        <Button type='submit' text="등록 하기" />
+        <Button type='submit' text="등록" style={{width: 12 + 'rem'}}/>
       </>
   )
 }
@@ -35,11 +33,11 @@ const S: any = {}
 
 S.Div = styled.div`
   margin-top: 3rem;
-  margin-bottom: 4rem;
+  margin-bottom: 8rem;
 `
 S.Input = styled.input`
   display: block;
-  width: 340px;
+  width: 310px;
   height: 45px;
   padding-left: 10px;
   margin-bottom: 1.2rem;

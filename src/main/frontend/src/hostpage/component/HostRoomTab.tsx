@@ -1,45 +1,41 @@
+import { useQueryClient } from "@tanstack/react-query"
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
+import { Room } from "../api/room_axios"
 import Button from "../common/Button"
+import { roomInitValues } from "../dataForm/roomRegister"
 
 export default function HostRoomTab() {
-  const nav = useNavigate()
+  const query = useQueryClient()
+  const getDatas = query.getQueryData(['@room']) 
+
+  const renderValues = (getDatas? getDatas : roomInitValues) as Room[]
+  const keys = [ 'a', 'b', 'c', 'd', 'e']
   //api 로직
   //정보받아와서 map으로 돌려야함
   return(
-    <>
-    <Button 
-      type="button"
-      theme="line"
-      text="숙소 등록"
-      style={{
-        marginLeft: 134 + 'rem',
-        marginTop: 3 + 'rem',
-        fontSize: 1.4 + 'rem'
-        }}
-      onClick={() => nav('/host/roomRegister')}></Button>
-    <S.Ul>
-      <RoomListLayout />
-      <RoomListLayout />
-      <RoomListLayout />
-      <RoomListLayout />
-      <RoomListLayout />
-      <RoomListLayout />
-    </S.Ul>
-    </>
+    <S.Layout>
+      <S.H2>등록한 숙소</S.H2>
+      <S.Ul>
+        {renderValues.map((list, idx) => <RoomListLayout key={keys[idx]} renderValues={list}/>)}
+      </S.Ul>
+    </S.Layout>
   ) 
 }
 
-const RoomListLayout = () => {
+const RoomListLayout = (props: {renderValues: Room}) => {
+  const { accommodationImageInputs, description, name } = props.renderValues
   const nav = useNavigate()
   return (
     <S.Li onClick={() => nav('/host/roommanage')}>
-      <S.DivButton role='button' araia-label='관리페이지로 가기'>
-        <S.Img src="/" alt='숙소대표이미지' className={styled.img}/>
+      <S.Div>
+        <S.Img src={accommodationImageInputs![0].url} alt='숙소대표이미지' />
         <div>
-          <S.DesDiv>{'숙소명가나다라마바사아자차카파타하하하'}</S.DesDiv>
+          <S.Name>{name}</S.Name>
+          <S.DesDiv>{description}</S.DesDiv>
+          <S.Button type="button" onClick={() => nav("/host/roommange")}>자세히 보기</S.Button>
         </div>
-      </S.DivButton>
+      </S.Div>
     </S.Li>
   )
 }
@@ -48,51 +44,62 @@ const RoomListLayout = () => {
 
 const S: any = {}
 
+S.Layout = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4rem;
+`
+S.H2 = styled.h2`
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: var(--color-gray4);
+`
 S.Ul = styled.ul`
   display: flex;
   justify-content: center;
   align-items: center;
   align-content: center;
   flex-wrap: wrap;
-  width: 102rem;
-  margin: 0 auto;
+  width: 90rem;
   margin-top: 3rem;
 `
 S.Li = styled.li`
-  width: 30rem;
-  height: 33rem;
+  width: 60rem;
+  height: 18rem;
   margin-right: 2rem;
   margin-left: 2rem;
   margin-bottom: 3rem;
   border:1px solid var(--color-gray0);
   border-radius: 2.5rem;
-  padding: 2rem;
+  padding: 2rem 3rem;
   &:hover,
   &:focus {
     box-shadow: 1px 1px 2px var(--color-gray0);
   }
 `
 
-S.DivButton = styled.div`
-  cursor: pointer;
+S.Div = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: start;
 `
 
 S.Img = styled.img`
   display: block;
-  width: 25rem;
-  height: 22rem;
-  margin: 0 auto;
-  border-radius: 2rem;
+  width: 20rem;
+  height: 14rem;
+  margin-right: 3rem;
+  border-radius: 1rem;
   background: var(--color-gray0);
-  margin-bottom: 3rem;
+`
+S.Name = styled.div`
+  font-size: 2rem;
+  margin-bottom: 2rem;
 `
 S.DesDiv = styled.div`
-  width: 22rem;
+  width: 30rem;
+  height: 7rem;
   font-size: 1.6rem;
-  margin-left: 2rem;
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -100,4 +107,21 @@ S.DesDiv = styled.div`
     display: none;
   }
 `
+S.Button = styled.button`
+  width: 7.7rem;
+  height: 2.8rem;
+  margin-left: 22rem;
+  background: var(--color-white);
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--main-color2-0);
+  border-bottom: 1px solid var(--main-color2-0);
+  &:hover,
+  &:focus {
+    color: var(--main-color2);
+    border-bottom: 1px solid var(--main-color2);
+  }
+`
+
 

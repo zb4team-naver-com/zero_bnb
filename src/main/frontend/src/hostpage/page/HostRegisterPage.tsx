@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import RoomRegisterForm from "../component/HostRegisterForm";
-import ico from "../assets/jjangkoo.png"
+import ico from "../img/smile.png"
 import { Register } from "../dataForm/hostRegister";
 import Popup from "../common/Popup";
 import hostQuery from "../api/host_Query";
@@ -25,19 +25,13 @@ export default function HostRegisterPage() {
     setRegister({ ...register!, [e.target.name]: e.target.value })
   }
 
-  const imgHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const fileName = URL.createObjectURL(e.target.files![0])
-    setRegister({ ...register!, [e.target.name]: fileName })
-    }
-  
-
   const submitHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
     const data = {
       businessContact : (register as Register).businessContact,
       companyRegistrationNumber: (register as Register).companyRegistrationNumber,
       email: (register as Register).email,
-      profileImage: (register as Register).profileImage,
+      profileImage: "",
     }
     console.log(data)
     setTimeout(() => {
@@ -46,21 +40,17 @@ export default function HostRegisterPage() {
   }  
 
   const props = {
-    onChange: [ changeHandler, imgHandler ]
+    onChange: [ changeHandler ]
   }
 
   return (
     <S.MainDiv>
       <S.Div>
-      <S.Title>호스트 등록</S.Title>
-      <S.Img 
-        src={(register as Register).profileImage
-            ? (register as Register).profileImage 
-            : ico} />
-      <form onSubmit={submitHandler}>
-        <RoomRegisterForm { ...props }/>
-      </form>
-      {openPopup ? popUp : null}
+        <S.Title>호스트 등록</S.Title>
+        <S.Form onSubmit={submitHandler}>
+          <RoomRegisterForm { ...props }/>
+        </S.Form>
+        {openPopup ? popUp : null}
       </S.Div>
     </S.MainDiv>
   )
@@ -75,16 +65,16 @@ S.MainDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 8rem;
+  margin-top: 12rem;
 `
 
 S.Div = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 55rem;
-  height: 65rem;
-  padding-top: 4rem;
+  width: 50rem;
+  height: 55rem;
+  padding-top: 5rem;
   padding-bottom: 4rem;
   background: var(--color-white);
   border: 1px solid var(--color-gray0);
@@ -109,4 +99,9 @@ S.Img = styled.img`
     transform: scale(1.08);
     transition: all 0.3s ease;
   }
+`
+S.Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center
 `

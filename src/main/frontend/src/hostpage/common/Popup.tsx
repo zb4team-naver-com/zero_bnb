@@ -1,17 +1,17 @@
 import { useNavigate } from 'react-router-dom'
 import styled from "styled-components"
 import Button, { CloseButton } from './Button'
-import ico from "../../assets/jjangkoo.png"
+import ico from "../img/smile.png"
 
-interface PopupProps {
+interface Popup {
   text: string,
-  subText: string,
-  page: string,
-  toPage: string,
+  subText?: string,
+  page?: string,
+  toPage?: string,
   close?: () => void
 }
 
-export default function Popup(props: PopupProps) {
+export default function Popup(props: Popup) {
   const { text, subText, page, toPage, close } = props
   const nav = useNavigate()
   
@@ -28,11 +28,35 @@ export default function Popup(props: PopupProps) {
         
           <S.Img src={ico} alt="캐릭터아이콘" />
         
-        <Button type='button' text={page} onClick={() => nav(toPage)}/>
+        <Button type='button' text={page!} onClick={() => nav(toPage!)}/>
+      </S.Div>
+    </S.Layout>
+  )
+}
+
+interface ManagePopup extends Popup {
+  onClick?: () => void
+}
+
+export function ManagePopup(props: ManagePopup) {
+  const { text, close, onClick } = props
+  
+  return(
+    <S.Layout>
+      <S.Div>
+        <S.TextDiv>
+          <S.Text>{text}</S.Text>
+        </S.TextDiv>
+        
+          <S.Img src={ico} alt="캐릭터아이콘" />
+        
+        <S.Button type='button' onClick={close}>취소</S.Button>
+        <S.Button type='button' onClick={onClick}>확인</S.Button>
       </S.Div>
     </S.Layout>
   )
   }
+
   //style
 
   const S: any = {}
@@ -41,12 +65,14 @@ export default function Popup(props: PopupProps) {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
     height:100vh;
     background: rgba(0, 0, 0, 0.75);
     z-index: 9999;
+    overflow: hidden;
   `
 
   S.Div = styled.div`
@@ -91,5 +117,16 @@ export default function Popup(props: PopupProps) {
     margin-top: 4rem;
     margin-bottom: 6rem;
   `
-  
- 
+  S.Button = styled.button`
+    width: 8rem;
+    height: 3.8rem;
+    margin-bottom: 1rem;
+    background: var(--color-white);
+    border: 1px solid var(--color-gray0);
+    border-radius: 1rem;
+    &:hover,
+    &:focus {
+      background: var(--main-color1);
+      color: var(--color-white);
+    }
+  `

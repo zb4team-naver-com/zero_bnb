@@ -4,7 +4,7 @@ module.exports = function(app) {
       app.use(
           '/',
           createProxyMiddleware({
-            target: 'http://ec2-18-221-179-218.us-east-2.compute.amazonaws.com',
+            target: 'http://ec2-3-16-183-72.us-east-2.compute.amazonaws.com/',
       changeOrigin: true,
     })
   );

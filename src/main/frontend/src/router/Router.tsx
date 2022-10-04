@@ -9,6 +9,9 @@ import RoomRegisterContext from "../hostpage/store/RoomRegisterContext"
 import HostMainPage from "../hostpage/page/HostMainPage"
 import RoomRegisterPage from "../hostpage/page/RoomRegisterPage"
 import HostUpdatePage from "../hostpage/page/HostUpdatePage"
+import HostRegisterPage from "../hostpage/page/HostRegisterPage"
+import HostPage from "../hostpage/page/HostPage"
+
 
 const Router = () => {
 	return (
@@ -19,9 +22,12 @@ const Router = () => {
 						<Route path="MainContainerPage" element={<MainPage />} />
 						<Route path="LoginPage" element={<LoginPage />} />
 						<Route path="SignupPage" element={<SignupPage />} />
-						<Route path="/host" element={<HostMainPage/>} />
-						<Route path="/host/update" element={<HostUpdatePage/>} />
-						<Route path="/host/roomRegister" element={<RoomRegisterPage/>} />
+						<Route path="/host" element={<HostPage/>}>
+							<Route path="/host/main" element={<HostMainPage/>}/>
+							<Route path="/host/register" element={<HostRegisterPage/>} />
+							<Route path="/host/update" element={<HostUpdatePage/>} />
+							<Route path="/host/roomRegister" element={<RoomRegisterPage/>} />
+						</Route>
 					</Route>
 				</Routes>
 			</RoomRegisterContext>
