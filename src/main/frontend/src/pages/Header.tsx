@@ -25,7 +25,7 @@ export default function Header() {
 						<S.StyledLink to="./LoginPage">로그인</S.StyledLink>
 					)}
 					{!!isLogined ? (
-						<S.StyledLink to="./HostMainPage">내정보</S.StyledLink>
+						<S.StyledLink to="./HostTab">내정보</S.StyledLink>
 					) : (
 						<S.StyledLink to="./SignupPage">회원가입</S.StyledLink>
 					)}

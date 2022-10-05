@@ -22,7 +22,7 @@ const Router = () => {
 					<Route path="LoginPage" element={<LoginPage />} />
 					<Route path="LogoutPage" element={<LogoutPage />} />
 					<Route path="SignupPage" element={<SignupPage />} />
-					<Route path="Host" element={<HostTab />}>
+					<Route path="HostTab" element={<HostTab />}>
 						<Route path="HostMainPage" element={<HostMainPage />} />
 						<Route path="HostRegisterPage" element={<HostRegisterPage />} />
 						<Route path="HostUpdatePage" element={<HostUpdatePage />} />

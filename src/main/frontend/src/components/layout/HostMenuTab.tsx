@@ -41,7 +41,7 @@ export default function HostMenuTab() {
 						계정관리
 						<U.Ul>
 							<U.Li>
-								<Link to="/Host/HostUpdatePage">프로필 수정</Link>
+								<Link to="/HostTab/HostUpdatePage">프로필 수정</Link>
 							</U.Li>
 							<U.Li onClick={() => setOpenPopup(true)}>계정 비활성화</U.Li>
 						</U.Ul>
@@ -50,10 +50,10 @@ export default function HostMenuTab() {
 						숙소관리
 						<U.Ul>
 							<U.Li>
-								<Link to="/Host/HostMainPage">숙소 보기</Link>
+								<Link to="/HostTab/HostMainPage">숙소 보기</Link>
 							</U.Li>
 							<U.Li>
-								<Link to="/Host/RoomRegisterPage">숙소 등록</Link>
+								<Link to="/HostTab/RoomRegisterPage">숙소 등록</Link>
 							</U.Li>
 							<U.Li>숙소 수정</U.Li>
 						</U.Ul>
