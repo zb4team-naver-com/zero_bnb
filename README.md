@@ -25,6 +25,11 @@ airbnb, 야놀자 등등 여행,숙박 예약 사이트의 기본,핵심 기능�
 
 <br>
 
+### ERD 테이블 
+![jhg](https://user-images.githubusercontent.com/48584943/195437361-c5194945-bfdc-4057-88aa-8c7202dc3e73.png)
+
+<br> 
+
 ## 유스케이스 다이어그램
 ![Untitled Diagram drawio](https://user-images.githubusercontent.com/48584943/193713709-cb237e5c-92c6-4711-b844-133f152e2e86.png)
 
