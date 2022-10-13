@@ -8,13 +8,15 @@ airbnb, 야놀자 등등 여행,숙박 예약 사이트의 기본,핵심 기능�
 
 ## 🛠 기술 스택
 - 프론트엔드 
-  - React.js, typescript
+  - React.js typescript axios
 - 백엔드
-  - Spring Boot, JPA, mybatis, QueryDsl
+  - nginx  SpringBoot JPA mybitis Querydsl
 - DB
   - MySql, Redis
 - infra
-  - AWS, nexus, sonarqube, docker
+  - gradle jib  AWS nexus sonarqube docker
+- 협업 tools 
+  - github notion  discord
 
 <br>
 
@@ -31,7 +33,7 @@ airbnb, 야놀자 등등 여행,숙박 예약 사이트의 기본,핵심 기능�
 <br> 
 
 ## 유스케이스 다이어그램
-![Untitled Diagram drawio](https://user-images.githubusercontent.com/48584943/193713709-cb237e5c-92c6-4711-b844-133f152e2e86.png)
+![Untitled Diagram drawio](https://user-images.githubusercontent.com/48584943/195486332-426a1cd8-2230-44dd-b908-97a28a4a285d.png)
 
 <br>
 
